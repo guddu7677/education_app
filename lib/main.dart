@@ -1,3 +1,5 @@
+import 'package:education_app/screens/HomeScreens/main_screen.dart';
+import 'package:education_app/screens/exam_details/exam_details.dart';
 import 'package:education_app/screens/loginscreen/login_screen.dart';
 import 'package:education_app/screens/otpscreen/otp_screen.dart';
 import 'package:education_app/screens/personl_details/persnol_details.dart';
@@ -23,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(
+      home: MainScreen(
       ),
       routes: {
         "/SplashScreen":(context)=>SplashScreen(),
@@ -33,6 +35,8 @@ class _MyAppState extends State<MyApp> {
         "/RegisterScreen":(context)=>RegisterScreen(),
         "/OtpScreen":(context)=>OtpScreen(),
         "/PersnolDetails":(context)=>PersnolDetails(),
+        "/ExamDetails":(context)=>ExamDetails(),
+        "/MainScreen":(context)=>MainScreen(),
       },
     );
   }

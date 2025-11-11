@@ -13,7 +13,6 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          /// Background Image
           Positioned.fill(
             child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
           ),
