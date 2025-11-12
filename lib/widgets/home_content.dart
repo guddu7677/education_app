@@ -35,7 +35,6 @@ class _HomeContentState extends State<HomeContent> {
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        // Main Calendar Container
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -47,7 +46,6 @@ class _HomeContentState extends State<HomeContent> {
                             padding: const EdgeInsets.only(bottom: 16.0),
                             child: Column(
                               children: [
-                                // Header Row
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -96,139 +94,41 @@ class _HomeContentState extends State<HomeContent> {
                                     ),
                                   ],
                                 ),
-                                const Divider(height: 2, color: Colors.grey),
-                                const SizedBox(height: 8),
-                                
-                                // Tabs
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                    child: Row(
-                                      children: [
-                                        _buildTab("All Studying", 0),
-                                        const SizedBox(width: 24),
-                                        _buildTab("Question of the day", 1),
-                                        const SizedBox(width: 24),
-                                        _buildTab("30 Day Streak", 2),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 8),
-                                  child: Divider(),
-                                ),
-                                const SizedBox(height: 16),
-                                
-                                // Calendar
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: TableCalendar(
-                                      firstDay: DateTime.utc(2020, 1, 1),
-                                      lastDay: DateTime.utc(2030, 12, 31),
-                                      focusedDay: _focusedDay,
-                                      selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                                      onDaySelected: (selectedDay, focusedDay) {
-                                        setState(() {
-                                          _selectedDay = selectedDay;
-                                          _focusedDay = focusedDay;
-                                        });
-                                      },
-                                      calendarStyle: const CalendarStyle(
-                                        todayDecoration: BoxDecoration(
-                                          color: Color(0xFF4334B4),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        selectedDecoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        selectedTextStyle: TextStyle(
-                                          color: Color(0xFF4334B4),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        defaultTextStyle: TextStyle(color: Colors.white),
-                                        weekendTextStyle: TextStyle(color: Colors.white70),
-                                        outsideTextStyle: TextStyle(color: Colors.white38),
-                                      ),
-                                      headerStyle: const HeaderStyle(
-                                        formatButtonVisible: false,
-                                        titleCentered: true,
-                                        titleTextStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
-                                        rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
-                                      ),
-                                      daysOfWeekStyle: const DaysOfWeekStyle(
-                                        weekdayStyle: TextStyle(color: Colors.white),
-                                        weekendStyle: TextStyle(color: Colors.white70),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                
-                                // Calendar Key
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                               Divider(height: 2, color: Colors.grey),
+                               SizedBox(height: 8),
+                               Padding(
+                                  padding:  EdgeInsets.symmetric(horizontal: 4.0),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Text(
-                                        "Calendar Key:",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Container(
-                                        height: 10,
-                                        width: 10,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 4),
-                                      const Text(
-                                        "Studied",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                        ),
-                                      ),
+                                      _buildTab("All Studying", 0),
+                                      const SizedBox(width: 12),
+                                      _buildTab("Question of the day", 1),
+                                      const SizedBox(width: 24),
+                                      _buildTab("30 Day Streak", 2),
                                     ],
                                   ),
                                 ),
+                              
+                                const SizedBox(height: 16),
+                                
+                                // Tab Content
+                                _buildTabContent(),
                               ],
                             ),
                           ),
                         ),
                         const SizedBox(height: 24),
-
-                        // Select Exam Section
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               "Select Exam",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "Add Exam",
                               style: TextStyle(
                                 color: Colors.white,
@@ -239,8 +139,6 @@ class _HomeContentState extends State<HomeContent> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        
-                        // Exam Dropdown
                         Container(
                           height: 60,
                           width: double.infinity,
@@ -265,43 +163,46 @@ class _HomeContentState extends State<HomeContent> {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        
-                        // Question of the Day
-                        Container(
-                          height: 60,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF4334B4).withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.white24),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/images/qq.png",
-                                    height: 41,
-                                    width: 31,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  const Text(
-                                    "Question of the day",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/SecondQuizPage");
+                          },
+                          child: Container(
+                            height: 60,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF4334B4).withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.white24),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/qq.png",
+                                      height: 41,
+                                      width: 31,
                                     ),
-                                  ),
-                                ],
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_outlined,
-                                color: Colors.white,
-                              ),
-                            ],
+                                    const SizedBox(width: 4),
+                                    const Text(
+                                      "Question of the day",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Icon(
+                                  Icons.arrow_forward_outlined,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -425,6 +326,202 @@ class _HomeContentState extends State<HomeContent> {
         ],
       ),
     );
+  }
+
+  Widget _buildTabContent() {
+    switch (_selectedTabIndex) {
+      case 0: // All Studying - Show Calendar
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TableCalendar(
+                  firstDay: DateTime.utc(2020, 1, 1),
+                  lastDay: DateTime.utc(2030, 12, 31),
+                  focusedDay: _focusedDay,
+                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                  onDaySelected: (selectedDay, focusedDay) {
+                    setState(() {
+                      _selectedDay = selectedDay;
+                      _focusedDay = focusedDay;
+                    });
+                  },
+                  calendarStyle: const CalendarStyle(
+                    todayDecoration: BoxDecoration(
+                      color: Color(0xFF4334B4),
+                      shape: BoxShape.circle,
+                    ),
+                    selectedDecoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    selectedTextStyle: TextStyle(
+                      color: Color(0xFF4334B4),
+                      fontWeight: FontWeight.bold,
+                    ),
+                    defaultTextStyle: TextStyle(color: Colors.white),
+                    weekendTextStyle: TextStyle(color: Colors.white70),
+                    outsideTextStyle: TextStyle(color: Colors.white38),
+                  ),
+                  headerStyle: const HeaderStyle(
+                    formatButtonVisible: false,
+                    titleCentered: true,
+                    titleTextStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
+                    rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
+                  ),
+                  daysOfWeekStyle: const DaysOfWeekStyle(
+                    weekdayStyle: TextStyle(color: Colors.white),
+                    weekendStyle: TextStyle(color: Colors.white70),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Calendar Key:",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Icon(
+                    Icons.circle,
+                    color: Colors.white,
+                    size: 10,
+                  ),
+                  SizedBox(width: 4),
+                  Text(
+                    "Studied",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      
+      case 1: // Question of the day
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/images/qq.png",
+                  height: 60,
+                  width: 60,
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  "Question of the Day",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Complete today's featured question to maintain your streak!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.9),
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      
+      case 2: // 30 Day Streak
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [
+                const Icon(
+                  Icons.local_fire_department,
+                  color: Colors.orange,
+                  size: 60,
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  "30 Day Streak Challenge",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Study consistently for 30 days to complete this challenge!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.9),
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Current Streak: ",
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const Text(
+                      "5 Days 🔥",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      
+      default:
+        return const SizedBox.shrink();
+    }
   }
 
   Widget _buildQuizModeCard(String title, String imagePath, List<Color> gradientColors) {

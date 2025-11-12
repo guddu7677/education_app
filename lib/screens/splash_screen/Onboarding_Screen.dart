@@ -58,8 +58,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Positioned.fill(
             child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
           ),
-
-          // Skip button
           if (_currentPage < _pages.length - 1)
             Positioned(
               top: 60,
@@ -72,18 +70,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-
-          // PageView
           PageView.builder(
             controller: _pageController,
             onPageChanged: (index) => setState(() => _currentPage = index),
             itemCount: _pages.length,
             itemBuilder: (context, index) => _buildPage(_pages[index]),
           ),
-
-          // Indicators
           Positioned(
-            bottom: 340,
+            bottom: 310,
             left: 0,
             right: 0,
             child: Row(
@@ -186,7 +180,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _buildIndicator(bool isActive) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 3),
+      margin: EdgeInsets.symmetric(horizontal: 4),
       height: isActive ? 20 : 10,
       width: isActive ? 20 : 10,
       decoration: BoxDecoration(

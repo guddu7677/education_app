@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-class ReviewQuestionPage extends StatefulWidget {
-  const ReviewQuestionPage({super.key});
+import 'package:percent_indicator/circular_percent_indicator.dart';
+
+class QuickQuizResultPage extends StatefulWidget {
+  const QuickQuizResultPage({super.key});
 
   @override
-  State<ReviewQuestionPage> createState() => _ReviewQuestionPageState();
+  State<QuickQuizResultPage> createState() => _QuickQuizResultPageState();
 }
 
-class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
+class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
   int _selectedTabIndex = 0;
-  final List<String> _tabs = ['All', 'Flags', 'Incorrect', 'Correct'];
+  final List<String> _tabs = ['All (20)', 'Incorrect (19)', 'Correct(8)'];
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
         children: [
           _buildBackgroundImage(),
           _buildHeader(),
+          _quizeResult(),
           _buildMainContent(height),
         ],
       ),
@@ -28,10 +32,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
 
   Widget _buildBackgroundImage() {
     return Positioned.fill(
-      child: Image.asset(
-        "assets/images/BG.png",
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
     );
   }
 
@@ -44,7 +45,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
         children: [
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child:  Icon(
+            child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
               size: 20,
@@ -64,9 +65,149 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     );
   }
 
+  Widget _quizeResult() {
+    return Positioned(
+      top: 90,
+      left: 16,
+      right: 16,
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(8),
+            height: 210,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: const Color(0xFF4334B4).withOpacity(0.2),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.white.withOpacity(0.3)),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CircularPercentIndicator(
+                  radius: 70.0,
+                  lineWidth: 12.0,
+                  percent: 0.5, // 50% progress
+                  progressColor: const Color(0xFF01B91D),
+                  backgroundColor: Colors.white24,
+                  circularStrokeCap: CircularStrokeCap.round,
+                  center: Text(
+                    "50%",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  arcType: ArcType.HALF,
+                  arcBackgroundColor: Colors.white,
+                ),
+                Row(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/vec1.png"),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "5/10",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        Text(
+                          "Answered Correctly",
+                          style: TextStyle(color: Colors.white, fontSize: 10),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/vec.png"),
+                          ),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          "17s",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        Text(
+                          "Quiz Time",
+                          style: TextStyle(color: Colors.white, fontSize: 10),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(width: 8),
+
+                Row(
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Image.asset("assets/images/vec.png"),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      "2s",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    Text(
+                      "Average Time Per Question",
+                      style: TextStyle(color: Colors.white, fontSize: 10),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildMainContent(double height) {
     return Positioned(
-      top: height * 0.15,
+      top: height * 0.40,
       bottom: 0,
       right: 0,
       left: 0,
@@ -82,10 +223,8 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
           children: [
             _buildTabBar(),
             _buildTabIndicator(),
-           SizedBox(height: 20),
-            Expanded(
-              child: _buildQuestionsList(),
-            ),
+            const SizedBox(height: 20),
+            Expanded(child: _buildQuestionsList()),
           ],
         ),
       ),
@@ -161,13 +300,13 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
         children: [
           _buildQuestionCard(isCorrect: false),
           const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
+          _buildQuestionCard(isCorrect: true),
           const SizedBox(height: 12),
           _buildQuestionCard(isCorrect: false),
           const SizedBox(height: 12),
           _buildQuestionCard(isCorrect: true),
+          const SizedBox(height: 12),
+          _buildQuestionCard(isCorrect: false),
           const SizedBox(height: 20),
         ],
       ),

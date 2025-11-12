@@ -7,6 +7,14 @@ import 'package:education_app/screens/registerscreen/register_screen.dart';
 import 'package:education_app/screens/splash_screen/Onboarding_Screen.dart';
 import 'package:education_app/screens/splash_screen/login_singup_screen.dart';
 import 'package:education_app/screens/splash_screen/splash_screen.dart';
+// import 'package:education_app/widgets/DailyQuize/daily_quiz_page.dart';
+import 'package:education_app/widgets/DailyQuize/second_quiz_page.dart';
+import 'package:education_app/widgets/DailyQuize/third_quiz_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page1.dart';
+import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page2.dart';
+import 'package:education_app/widgets/ReviewQuestion/QuestionPage/quick_quiz_result_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/review_question_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/second_review_question_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,8 +33,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainScreen(
-      ),
+      home: QuickQuizResultPage(),
       routes: {
         "/SplashScreen":(context)=>SplashScreen(),
         "/OnboardinScreen":(context)=>OnboardingScreen(),
@@ -37,6 +44,15 @@ class _MyAppState extends State<MyApp> {
         "/PersnolDetails":(context)=>PersnolDetails(),
         "/ExamDetails":(context)=>ExamDetails(),
         "/MainScreen":(context)=>MainScreen(),
+        //  "/DailyQuizePage":(context)=>DailyQuizePage(),
+         "/SecondQuizPage":(context)=>SecondQuizPage(),
+         "/ThirdQuizPage":(context)=>ThirdQuizPage(),
+         "/ReviewQuestionPage":(context)=>ReviewQuestionPage(),
+         "/SecondReviewQuestionPage":(context)=>SecondReviewQuestionPage(),
+         "/QuestionPage1":(context)=>QuestionPage1(),
+         "/QuestionPage2":(context)=>QuestionPage2(),
+         "/QuickQuizResultPage":(context)=>QuickQuizResultPage(),
+
       },
     );
   }
