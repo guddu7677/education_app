@@ -10,11 +10,14 @@ import 'package:education_app/screens/splash_screen/splash_screen.dart';
 // import 'package:education_app/widgets/DailyQuize/daily_quiz_page.dart';
 import 'package:education_app/widgets/DailyQuize/second_quiz_page.dart';
 import 'package:education_app/widgets/DailyQuize/third_quiz_page.dart';
+import 'package:education_app/widgets/Leaderboard/leaderboard_page.dart';
+import 'package:education_app/widgets/ProgressTrack/progresstrack_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page1.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page2.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/quick_quiz_result_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/QuestionPage/view_quiz_details.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_page.dart';
-import 'package:education_app/widgets/ReviewQuestion/second_review_question_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/review_question_details_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: QuickQuizResultPage(),
+      home: SplashScreen(),
       routes: {
         "/SplashScreen":(context)=>SplashScreen(),
         "/OnboardinScreen":(context)=>OnboardingScreen(),
@@ -47,12 +50,14 @@ class _MyAppState extends State<MyApp> {
         //  "/DailyQuizePage":(context)=>DailyQuizePage(),
          "/SecondQuizPage":(context)=>SecondQuizPage(),
          "/ThirdQuizPage":(context)=>ThirdQuizPage(),
+         "/ViewQuizDetails":(context)=>ViewQuizDetails(),
          "/ReviewQuestionPage":(context)=>ReviewQuestionPage(),
          "/SecondReviewQuestionPage":(context)=>SecondReviewQuestionPage(),
          "/QuestionPage1":(context)=>QuestionPage1(),
          "/QuestionPage2":(context)=>QuestionPage2(),
          "/QuickQuizResultPage":(context)=>QuickQuizResultPage(),
-
+          "/ProgresstrackPage":(context)=>ProgresstrackPage(),
+          "/LeaderboardPage":(context)=>LeaderboardPage(),
       },
     );
   }

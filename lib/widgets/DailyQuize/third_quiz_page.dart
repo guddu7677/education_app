@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class ThirdQuizPage extends StatefulWidget {
@@ -226,21 +227,12 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/SecondQuizPage");
+                Navigator.pushNamed(context, "/MainScreen");
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4334B4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+              style:AppButtonStyles.elevatedButtonStyle,
               child: const Text(
                 "Back to Home",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                style: AppTextStyles.boldWhite16
               ),
             ),
           ),

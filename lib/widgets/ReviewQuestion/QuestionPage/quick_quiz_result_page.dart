@@ -1,7 +1,9 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:semicircle_indicator/semicircle_indicator.dart';
 
 class QuickQuizResultPage extends StatefulWidget {
   const QuickQuizResultPage({super.key});
@@ -19,6 +21,7 @@ class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           _buildBackgroundImage(),
@@ -27,6 +30,24 @@ class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
           _buildMainContent(height),
         ],
       ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/MainScreen");
+              },
+              style:AppButtonStyles.elevatedButtonStyle,
+              child: const Text(
+                "Back to Home",
+                style: AppTextStyles.boldWhite16
+              ),
+            ),
+          ),
+        ),),
     );
   }
 
@@ -84,25 +105,22 @@ class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircularPercentIndicator(
-                  radius: 70.0,
-                  lineWidth: 12.0,
-                  percent: 0.5, // 50% progress
-                  progressColor: const Color(0xFF01B91D),
-                  backgroundColor: Colors.white24,
-                  circularStrokeCap: CircularStrokeCap.round,
-                  center: Text(
-                    "50%",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SemicircularIndicator(
+                    radius: 80,
+                    progress: 0.50,
+                    color: Colors.green,
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      "50%",
+                      style: TextStyle(color: Colors.white, fontSize: 22),
                     ),
                   ),
-                  arcType: ArcType.HALF,
-                  arcBackgroundColor: Colors.white,
                 ),
+
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -119,18 +137,11 @@ class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
                           ),
                         ),
                         SizedBox(width: 8),
-                        Text(
-                          "5/10",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
+                        Text("5/10", style: AppTextStyles.smallWhite12bold),
+                        SizedBox(width: 2),
                         Text(
                           "Answered Correctly",
-                          style: TextStyle(color: Colors.white, fontSize: 10),
+                          style: AppTextStyles.smallWhite12,
                         ),
                       ],
                     ),
@@ -149,25 +160,15 @@ class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
                           ),
                         ),
                         SizedBox(width: 8),
-                        Text(
-                          "17s",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        Text("17s", style: AppTextStyles.smallWhite12bold),
+                        SizedBox(width: 2),
 
-                        Text(
-                          "Quiz Time",
-                          style: TextStyle(color: Colors.white, fontSize: 10),
-                        ),
+                        Text("Quiz Time", style: AppTextStyles.smallWhite12),
                       ],
                     ),
                   ],
                 ),
-                SizedBox(width: 8),
-
+                SizedBox(height: 16,),
                 Row(
                   children: [
                     Container(
@@ -184,16 +185,13 @@ class _QuickQuizResultPageState extends State<QuickQuizResultPage> {
                     SizedBox(width: 8),
                     Text(
                       "2s",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.smallWhite12bold
                     ),
+                        SizedBox(width: 2),
 
                     Text(
                       "Average Time Per Question",
-                      style: TextStyle(color: Colors.white, fontSize: 10),
+                      style: AppTextStyles.smallWhite12,
                     ),
                   ],
                 ),

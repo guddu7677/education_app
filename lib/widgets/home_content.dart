@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -25,7 +26,7 @@ class _HomeContentState extends State<HomeContent> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
+            child: Image.asset(AppImages.background, fit: BoxFit.cover),
           ),
           SafeArea(
             child: SingleChildScrollView(
@@ -38,16 +39,17 @@ class _HomeContentState extends State<HomeContent> {
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF4334B4).withOpacity(0.1),
+                            color: AppColors.primary.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: AppColors.lightGrey),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
+                            padding: EdgeInsets.only(bottom: 16.0),
                             child: Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -56,14 +58,17 @@ class _HomeContentState extends State<HomeContent> {
                                         width: 48,
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          border: Border.all(color: Colors.white),
+                                          border: Border.all(
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                        child: Image.asset("assets/images/rr.png"),
+                                        child: Image.asset(AppImages.profile),
                                       ),
                                     ),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           const Text(
                                             "Good Afternoon",
@@ -78,7 +83,9 @@ class _HomeContentState extends State<HomeContent> {
                                             "Time for tea or a quick study sesh?",
                                             style: TextStyle(
                                               fontSize: 12,
-                                              color: Colors.white.withOpacity(0.9),
+                                              color: Colors.white.withOpacity(
+                                                0.9,
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -94,11 +101,15 @@ class _HomeContentState extends State<HomeContent> {
                                     ),
                                   ],
                                 ),
-                               Divider(height: 2, color: Colors.grey),
-                               SizedBox(height: 8),
-                               Padding(
-                                  padding:  EdgeInsets.symmetric(horizontal: 4.0),
-                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                Divider(height: 2, color: Colors.grey),
+                                SizedBox(height: 8),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 4.0,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       _buildTab("All Studying", 0),
                                       const SizedBox(width: 12),
@@ -108,9 +119,9 @@ class _HomeContentState extends State<HomeContent> {
                                     ],
                                   ),
                                 ),
-                              
+
                                 const SizedBox(height: 16),
-                                
+
                                 // Tab Content
                                 _buildTabContent(),
                               ],
@@ -208,7 +219,7 @@ class _HomeContentState extends State<HomeContent> {
                       ],
                     ),
                   ),
-                  
+
                   // Quiz Modes Section
                   Container(
                     width: double.infinity,
@@ -236,7 +247,7 @@ class _HomeContentState extends State<HomeContent> {
                             Text(
                               "Quiz Settings",
                               style: TextStyle(
-                                color: Color(0xFF4334B4),
+                                color: AppColors.primary,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
@@ -244,20 +255,28 @@ class _HomeContentState extends State<HomeContent> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        
-                        // First Row of Quiz Modes
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _buildQuizModeCard(
-                              "Quick 10",
-                              "assets/images/1p.png",
-                              const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/QuestionPage1");
+                              },
+                              child: _buildQuizModeCard(
+                                "Quick 10",
+                                "assets/images/1p.png",
+                                const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
+                              ),
                             ),
-                            _buildQuizModeCard(
-                              "Timed Quiz",
-                              "assets/images/2p.png",
-                              const [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
+                            InkWell(
+                              onTap: () {
+                                _showQuickQuizPopup(context);
+                              },
+                              child: _buildQuizModeCard(
+                                "Timed Quiz",
+                                "assets/images/2p.png",
+                                const [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
+                              ),
                             ),
                             _buildQuizModeCard(
                               "Weak Subject",
@@ -267,8 +286,6 @@ class _HomeContentState extends State<HomeContent> {
                           ],
                         ),
                         const SizedBox(height: 12),
-                        
-                        // Second Row of Quiz Modes
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -376,8 +393,14 @@ class _HomeContentState extends State<HomeContent> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
-                    leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
-                    rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
+                    leftChevronIcon: Icon(
+                      Icons.chevron_left,
+                      color: Colors.white,
+                    ),
+                    rightChevronIcon: Icon(
+                      Icons.chevron_right,
+                      color: Colors.white,
+                    ),
                   ),
                   daysOfWeekStyle: const DaysOfWeekStyle(
                     weekdayStyle: TextStyle(color: Colors.white),
@@ -401,25 +424,18 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                   ),
                   SizedBox(width: 8),
-                  Icon(
-                    Icons.circle,
-                    color: Colors.white,
-                    size: 10,
-                  ),
+                  Icon(Icons.circle, color: Colors.white, size: 10),
                   SizedBox(width: 4),
                   Text(
                     "Studied",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ],
               ),
             ),
           ],
         );
-      
+
       case 1: // Question of the day
         return Padding(
           padding: const EdgeInsets.all(16.0),
@@ -431,11 +447,7 @@ class _HomeContentState extends State<HomeContent> {
             ),
             child: Column(
               children: [
-                Image.asset(
-                  "assets/images/qq.png",
-                  height: 60,
-                  width: 60,
-                ),
+                Image.asset("assets/images/qq.png", height: 60, width: 60),
                 const SizedBox(height: 16),
                 const Text(
                   "Question of the Day",
@@ -458,7 +470,7 @@ class _HomeContentState extends State<HomeContent> {
             ),
           ),
         );
-      
+
       case 2: // 30 Day Streak
         return Padding(
           padding: const EdgeInsets.all(16.0),
@@ -499,10 +511,7 @@ class _HomeContentState extends State<HomeContent> {
                   children: [
                     const Text(
                       "Current Streak: ",
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                      ),
+                      style: TextStyle(color: Colors.white70, fontSize: 14),
                     ),
                     const Text(
                       "5 Days 🔥",
@@ -518,13 +527,17 @@ class _HomeContentState extends State<HomeContent> {
             ),
           ),
         );
-      
+
       default:
         return const SizedBox.shrink();
     }
   }
 
-  Widget _buildQuizModeCard(String title, String imagePath, List<Color> gradientColors) {
+  Widget _buildQuizModeCard(
+    String title,
+    String imagePath,
+    List<Color> gradientColors,
+  ) {
     return Container(
       height: 125,
       width: 105,
@@ -544,10 +557,7 @@ class _HomeContentState extends State<HomeContent> {
             CircleAvatar(
               radius: 20,
               backgroundColor: Colors.white,
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset(imagePath, fit: BoxFit.cover),
             ),
             const SizedBox(height: 6),
             Text(
@@ -580,4 +590,188 @@ class _HomeContentState extends State<HomeContent> {
       ),
     );
   }
+}
+
+void _showQuickQuizPopup(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      String selectedDifficulty = "Easy";
+
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Dialog(
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 4),
+                Image.asset(AppImages.mode2, height: 80, width: 80),
+                const SizedBox(height: 16),
+
+                const Text(
+                  "Quick Quiz",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(height: 8),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Select Difficulty Level",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildDifficultyCircle(
+                      title: "Easy",
+                      isSelected: selectedDifficulty == "Easy",
+                      onTap: () => setState(() => selectedDifficulty = "Easy"),
+                    ),
+                    _buildDifficultyCircle(
+                      title: "Medium",
+                      isSelected: selectedDifficulty == "Medium",
+                      onTap: () =>
+                          setState(() => selectedDifficulty = "Medium"),
+                    ),
+                    _buildDifficultyCircle(
+                      title: "Hard",
+                      isSelected: selectedDifficulty == "Hard",
+                      onTap: () => setState(() => selectedDifficulty = "Hard"),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 24),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFEFF3FF), // light blue background
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0x33D70404), // 20% red
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            minimumSize: const Size(0, 48),
+                          ),
+                          child: const Text(
+                            "Close",
+                            style: TextStyle(
+                              color: Color(0xFFD70404),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/SecondQuizPage");
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            minimumSize: const Size(0, 48),
+                          ),
+                          child: const Text(
+                            "Start Quiz",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
+Widget _buildDifficultyCircle({
+  required String title,
+  required bool isSelected,
+  required VoidCallback onTap,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 20,
+          width: 20,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+            border: Border.all(color: AppColors.primary, width: 2),
+          ),
+          child: Center(
+            child: Container(
+              height: 12,
+              width: 12,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? AppColors.primary : Colors.transparent,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          title,
+          style: TextStyle(
+            color: isSelected ? AppColors.primary : Colors.black87,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    ),
+  );
 }

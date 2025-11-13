@@ -28,10 +28,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
 
   Widget _buildBackgroundImage() {
     return Positioned.fill(
-      child: Image.asset(
-        "assets/images/BG.png",
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
     );
   }
 
@@ -44,11 +41,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
         children: [
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child:  Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
-            ),
+            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
           ),
           const SizedBox(width: 80),
           const Text(
@@ -82,10 +75,8 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
           children: [
             _buildTabBar(),
             _buildTabIndicator(),
-           SizedBox(height: 20),
-            Expanded(
-              child: _buildQuestionsList(),
-            ),
+            SizedBox(height: 20),
+            Expanded(child: _buildQuestionsList()),
           ],
         ),
       ),
@@ -159,7 +150,12 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          _buildQuestionCard(isCorrect: false),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "/SecondReviewQuestionPage");
+            },
+            child: _buildQuestionCard(isCorrect: false),
+          ),
           const SizedBox(height: 12),
           _buildQuestionCard(isCorrect: false),
           const SizedBox(height: 12),

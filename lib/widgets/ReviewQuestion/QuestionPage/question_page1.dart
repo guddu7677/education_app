@@ -43,7 +43,7 @@ class _QuestionPage1State extends State<QuestionPage1> {
                 ),
                 const Spacer(),
                 const Text(
-                  "Review Question",
+                  "Quick Quiz",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,

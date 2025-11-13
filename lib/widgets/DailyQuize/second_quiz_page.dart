@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class SecondQuizPage extends StatefulWidget {
@@ -245,11 +246,7 @@ class _SecondQuizPageState extends State<SecondQuizPage> {
               ),
               child: const Text(
                 "Check Answer",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                style: AppTextStyles.boldWhite16
               ),
             ),
           ),
@@ -287,11 +284,7 @@ class _SecondQuizPageState extends State<SecondQuizPage> {
               child: Center(
                 child: Text(
                   label,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.boldblack16
                 ),
               ),
             ),
@@ -317,7 +310,6 @@ class _SecondQuizPageState extends State<SecondQuizPage> {
                       color: borderColor,
                       width: isSelected ? 2 : 1,
                     ),
-                    // 👉 No right border
                   ),
                 ),
                 child: Text(

@@ -43,7 +43,7 @@ class _QuestionPage2State extends State<QuestionPage2> {
                 ),
                 const Spacer(),
                 const Text(
-                  "Review Question",
+                  "Quick Quiz",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -175,7 +175,7 @@ class _QuestionPage2State extends State<QuestionPage2> {
             child: ElevatedButton(
               onPressed: 
                    () {
-                      Navigator.pushNamed(context, "/ThirdQuizPage");
+                      Navigator.pushNamed(context, "/QuickQuizResultPage");
                     },
                   
               style: ElevatedButton.styleFrom(
@@ -185,7 +185,7 @@ class _QuestionPage2State extends State<QuestionPage2> {
                 ),
               ),
               child: const Text(
-                "Next Question",
+                "View Result",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
