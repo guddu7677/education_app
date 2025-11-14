@@ -320,7 +320,7 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
             fontSize: 12,
             fontWeight: FontWeight.w600,

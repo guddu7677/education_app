@@ -1,5 +1,5 @@
 import 'package:education_app/screens/HomeScreens/home_screen.dart';
-import 'package:education_app/widgets/Notification/notidication_page.dart';
+import 'package:education_app/widgets/Notification/notification_page.dart';
 import 'package:education_app/widgets/Profile/profile_page.dart';
 import 'package:education_app/widgets/ProgressTrack/progresstrack_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_page.dart';
@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     ProgresstrackPage(),
     ReviewQuestionPage(),
-        NotidicationPage(),
+        NotificationPage(),
     ProfilePage(),
   ];
 

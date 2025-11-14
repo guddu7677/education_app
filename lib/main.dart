@@ -11,6 +11,12 @@ import 'package:education_app/screens/splash_screen/splash_screen.dart';
 import 'package:education_app/widgets/DailyQuize/second_quiz_page.dart';
 import 'package:education_app/widgets/DailyQuize/third_quiz_page.dart';
 import 'package:education_app/widgets/Leaderboard/leaderboard_page.dart';
+import 'package:education_app/widgets/Notification/notification_page.dart';
+import 'package:education_app/widgets/Profile/personal_information/personal_information.dart';
+import 'package:education_app/widgets/Profile/privacy_policy/privacy_policy.dart';
+import 'package:education_app/widgets/Profile/profile_page.dart';
+import 'package:education_app/widgets/Profile/purchage_history/purchage_history.dart';
+import 'package:education_app/widgets/Profile/term_condition/term_conditions.dart';
 import 'package:education_app/widgets/ProgressTrack/progresstrack_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page1.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page2.dart';
@@ -36,7 +42,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: ProfilePage(),
       routes: {
         "/SplashScreen":(context)=>SplashScreen(),
         "/OnboardinScreen":(context)=>OnboardingScreen(),
@@ -58,6 +64,12 @@ class _MyAppState extends State<MyApp> {
          "/QuickQuizResultPage":(context)=>QuickQuizResultPage(),
           "/ProgresstrackPage":(context)=>ProgresstrackPage(),
           "/LeaderboardPage":(context)=>LeaderboardPage(),
+          "/NotificationPage":(context)=>NotificationPage(),
+          "/ProfilePage":(context)=>ProfilePage(),
+          "/PersonalInformation":(context)=>PersonalInformation(),
+          "/PurchaseHistory":(context)=>PurchaseHistory(),
+          "/PrivacyPolicy":(context)=>PrivacyPolicy(),
+          "/TermConditions":(context)=>TermConditions(),
       },
     );
   }
