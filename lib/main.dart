@@ -12,6 +12,7 @@ import 'package:education_app/widgets/DailyQuize/second_quiz_page.dart';
 import 'package:education_app/widgets/DailyQuize/third_quiz_page.dart';
 import 'package:education_app/widgets/Leaderboard/leaderboard_page.dart';
 import 'package:education_app/widgets/Notification/notification_page.dart';
+import 'package:education_app/widgets/Profile/help&support/help_support.dart';
 import 'package:education_app/widgets/Profile/personal_information/personal_information.dart';
 import 'package:education_app/widgets/Profile/privacy_policy/privacy_policy.dart';
 import 'package:education_app/widgets/Profile/profile_page.dart';
@@ -42,7 +43,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
+      home: MainScreen(),
       routes: {
         "/SplashScreen":(context)=>SplashScreen(),
         "/OnboardinScreen":(context)=>OnboardingScreen(),
@@ -70,6 +71,7 @@ class _MyAppState extends State<MyApp> {
           "/PurchaseHistory":(context)=>PurchaseHistory(),
           "/PrivacyPolicy":(context)=>PrivacyPolicy(),
           "/TermConditions":(context)=>TermConditions(),
+          "/HelpSupport":(context)=>HelpSupport(),
       },
     );
   }

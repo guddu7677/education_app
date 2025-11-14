@@ -205,10 +205,15 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       child: Column(
         children: [
-          _profileTile(
-            icon: Icons.support_agent_outlined,
-            text: "Help & Support",
-            trailing: Icon(Icons.keyboard_arrow_right_outlined),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "/HelpSupport");
+            },
+            child: _profileTile(
+              icon: Icons.support_agent_outlined,
+              text: "Help & Support",
+              trailing: Icon(Icons.keyboard_arrow_right_outlined),
+            ),
           ),
 
           _divider(),

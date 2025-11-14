@@ -34,6 +34,8 @@ class AppImages {
   static const String base = "assets/images/Base.png";
     static const String profileinfo = "assets/images/profile.png";
         static const String purchageimages = "assets/images/purchage.png";
+                static const String examimage = "assets/images/exam.png";
+
 
 
 }

@@ -139,12 +139,17 @@ class _HomeContentState extends State<HomeContent> {
                                 fontSize: 16,
                               ),
                             ),
-                            const Text(
-                              "Add Exam",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                            InkWell(
+                              onTap: () {
+                                _showAddExamPopup(context);
+                              },
+                              child: const Text(
+                                "Add Exam",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
@@ -347,7 +352,7 @@ class _HomeContentState extends State<HomeContent> {
 
   Widget _buildTabContent() {
     switch (_selectedTabIndex) {
-      case 0: // All Studying - Show Calendar
+      case 0:
         return Column(
           children: [
             Padding(
@@ -436,7 +441,7 @@ class _HomeContentState extends State<HomeContent> {
           ],
         );
 
-      case 1: // Question of the day
+      case 1:
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
@@ -732,6 +737,161 @@ void _showQuickQuizPopup(BuildContext context) {
     },
   );
 }
+void _showAddExamPopup(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      return Dialog(
+        insetPadding: EdgeInsets.zero, // FULL WIDTH
+        backgroundColor: Colors.transparent, // So we can create custom full-width UI
+        child: Align(
+          alignment: Alignment.center,
+          child: SingleChildScrollView(
+            child: Container(
+              width: MediaQuery.of(context).size.width, // FULL WIDTH
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+              decoration: BoxDecoration(
+                color: Colors.white,               // FULL WIDTH BACKGROUND COLOR
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  )
+                ],
+              ),
+              // padding: const EdgeInsets.all(16),
+
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 4),
+
+                  // IMAGE
+                  Image.asset(AppImages.mode2, height: 80, width: 80),
+
+                  const SizedBox(height: 16),
+
+                  // TITLE
+                  const Text(
+                    "Add Exam",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: "Category",
+                        hintText: "Choose your exam category",
+                        suffixIcon: const Icon(Icons.arrow_drop_down_outlined),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 14),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: "Your Exam Date",
+                        hintText: "Select your exam date",
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: AppColors.primary),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFEFF3FF),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(18),
+                        bottomRight: Radius.circular(18),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0x33D70404),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              minimumSize: const Size(0, 48),
+                            ),
+                            child: Text(
+                              "Close",
+                              style: TextStyle(
+                                color: Color(0xFFD70404),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              minimumSize: Size(0, 48),
+                            ),
+                            child: Text(
+                              "Continue",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
 
 Widget _buildDifficultyCircle({
   required String title,
