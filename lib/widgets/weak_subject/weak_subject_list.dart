@@ -1,16 +1,14 @@
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
-class ReviewQuestionPage extends StatefulWidget {
-  const ReviewQuestionPage({super.key});
+class WeakSubjectList extends StatefulWidget {
+  const WeakSubjectList({super.key});
 
   @override
-  State<ReviewQuestionPage> createState() => _ReviewQuestionPageState();
+  State<WeakSubjectList> createState() => _WeakSubjectListState();
 }
 
-class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
-  int _selectedTabIndex = 0;
-  final List<String> _tabs = ['All', 'Flags', 'Incorrect', 'Correct'];
+class _WeakSubjectListState extends State<WeakSubjectList> {
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +72,6 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
         ),
         child: Column(
           children: [
-            _buildTabBar(),
-            _buildTabIndicator(),
             SizedBox(height: 20),
             Expanded(child: _buildQuestionsList()),
           ],
@@ -84,79 +80,26 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     );
   }
 
-  Widget _buildTabBar() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: _tabs.asMap().entries.map((entry) {
-          final index = entry.key;
-          final tab = entry.value;
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                _selectedTabIndex = index;
-              });
-            },
-            child: Text(
-              tab,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: _selectedTabIndex == index
-                    ? FontWeight.bold
-                    : FontWeight.normal,
-                fontSize: 16,
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-
-  Widget _buildTabIndicator() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 20),
-          child: Row(
-            children: [
-              Container(
-                height: 4,
-                width: 60,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF6A5AE0),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 12, left: 12),
-          child: Container(
-            height: 2,
-            width: double.infinity,
-            color: const Color(0xFF6A5AE0),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildQuestionsList() {
     return SingleChildScrollView(
       child: Column(
         children: [
+           Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 16),
+             child: Row(mainAxisAlignment: MainAxisAlignment.start,
+               children: [
+                 Text("Weak Subject List",style: AppTextStyles.black16,),
+               ],
+             ),
+           ),
+           SizedBox(height: 16,),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, "/SecondReviewQuestionPage");
+              // Navigator.pushNamed(context, "/SecondReviewQuestionPage");
             },
             child: _buildQuestionCard(isCorrect: false),
           ),
+          
           const SizedBox(height: 12),
           _buildQuestionCard(isCorrect: false),
           const SizedBox(height: 12),
@@ -197,7 +140,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Subject name here",
+                      "AACN CCRN (Adult)",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -219,9 +162,8 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
             Container(
               width: 40,
               decoration: BoxDecoration(
-                color: isCorrect
-                    ? const Color(0xFF01B91D).withOpacity(0.2)
-                    : const Color(0xFFD70404).withOpacity(0.2),
+                color:
+                     Color(0xFFD70404).withOpacity(0.2),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(12),
                   bottomRight: Radius.circular(12),
@@ -230,8 +172,8 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
               ),
               child: Center(
                 child: Icon(
-                  isCorrect ? Icons.check : Icons.close,
-                  color: isCorrect ? Colors.green : Colors.red,
+                   Icons.delete_outline_outlined,
+                  color:  Colors.red,
                   size: 30,
                 ),
               ),

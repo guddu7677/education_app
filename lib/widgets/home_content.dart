@@ -275,12 +275,12 @@ class _HomeContentState extends State<HomeContent> {
                             ),
                             InkWell(
                               onTap: () {
-                                _showQuickQuizPopup(context);
+                                _showTimeQuizPopup(context);
                               },
                               child: _buildQuizModeCard(
                                 "Timed Quiz",
                                 "assets/images/2p.png",
-                                const [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
+                                [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
                               ),
                             ),
                             _buildQuizModeCard(
@@ -387,7 +387,9 @@ class _HomeContentState extends State<HomeContent> {
                       fontWeight: FontWeight.bold,
                     ),
                     defaultTextStyle: TextStyle(color: Colors.white),
-                    weekendTextStyle: TextStyle(color: Colors.white70),
+                    weekendTextStyle: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.702),
+                    ),
                     outsideTextStyle: TextStyle(color: Colors.white38),
                   ),
                   headerStyle: const HeaderStyle(
@@ -443,9 +445,9 @@ class _HomeContentState extends State<HomeContent> {
 
       case 1:
         return Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
@@ -453,8 +455,8 @@ class _HomeContentState extends State<HomeContent> {
             child: Column(
               children: [
                 Image.asset("assets/images/qq.png", height: 60, width: 60),
-                const SizedBox(height: 16),
-                const Text(
+                SizedBox(height: 16),
+                Text(
                   "Question of the Day",
                   style: TextStyle(
                     color: Colors.white,
@@ -476,7 +478,7 @@ class _HomeContentState extends State<HomeContent> {
           ),
         );
 
-      case 2: // 30 Day Streak
+      case 2:
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
@@ -737,45 +739,234 @@ void _showQuickQuizPopup(BuildContext context) {
     },
   );
 }
+
+void _showTimeQuizPopup(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      String selectedDifficulty = "Easy";
+      double timeMinutes = 4; // default slider value
+
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Dialog(
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 4),
+                Image.asset(AppImages.mode2, height: 80, width: 80),
+
+                const SizedBox(height: 16),
+
+                const Text(
+                  "Time Quiz",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: const [
+                      Text(
+                        "Select Difficulty Level",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                /// Difficulty Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildDifficultyCircle(
+                      title: "Easy",
+                      isSelected: selectedDifficulty == "Easy",
+                      onTap: () => setState(() => selectedDifficulty = "Easy"),
+                    ),
+                    _buildDifficultyCircle(
+                      title: "Medium",
+                      isSelected: selectedDifficulty == "Medium",
+                      onTap: () =>
+                          setState(() => selectedDifficulty = "Medium"),
+                    ),
+                    _buildDifficultyCircle(
+                      title: "Hard",
+                      isSelected: selectedDifficulty == "Hard",
+                      onTap: () => setState(() => selectedDifficulty = "Hard"),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 24),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Row(
+                    children: const [
+                      Text(
+                        "How Many Minutes?",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                /// Display Box for Current Time
+                Container(
+                  height: 60,
+                  width: 100,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: AppColors.primary),
+                  ),
+                  child: Text(
+                    timeMinutes.toInt().toString(),
+                    style: AppTextStyles.black16,
+                  ),
+                ),
+
+                const SizedBox(height: 16),
+
+                /// Proper Slider
+                Slider(
+                  value: timeMinutes,
+                  min: 1,
+                  max: 60,
+                  divisions: 59,
+                  label: "${timeMinutes.toInt()} min",
+                  onChanged: (newValue) {
+                    setState(() {
+                      timeMinutes = newValue;
+                    });
+                  },
+                ),
+
+                const SizedBox(height: 8),
+
+                /// Bottom Buttons
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFEFF3FF),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0x33D70404),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text(
+                            "Close",
+                            style: TextStyle(
+                              color: Color(0xFFD70404),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/TimeQuizFirstPage");
+                            // Use timeMinutes.toInt()
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: const Text(
+                            "Start Quiz",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
 void _showAddExamPopup(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: true,
     builder: (context) {
       return Dialog(
-        insetPadding: EdgeInsets.zero, // FULL WIDTH
-        backgroundColor: Colors.transparent, // So we can create custom full-width UI
+        insetPadding: EdgeInsets.zero,
+        backgroundColor: Colors.transparent,
         child: Align(
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Container(
-              width: MediaQuery.of(context).size.width, // FULL WIDTH
+              width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
               decoration: BoxDecoration(
-                color: Colors.white,               // FULL WIDTH BACKGROUND COLOR
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  )
+                    offset: Offset(0, 4),
+                  ),
                 ],
               ),
-              // padding: const EdgeInsets.all(16),
-
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 4),
-
-                  // IMAGE
+                  SizedBox(height: 4),
                   Image.asset(AppImages.mode2, height: 80, width: 80),
-
-                  const SizedBox(height: 16),
-
-                  // TITLE
-                  const Text(
+                  SizedBox(height: 16),
+                  Text(
                     "Add Exam",
                     style: TextStyle(
                       fontSize: 20,
@@ -795,8 +986,10 @@ void _showAddExamPopup(BuildContext context) {
                         suffixIcon: const Icon(Icons.arrow_drop_down_outlined),
                         filled: true,
                         fillColor: Colors.white,
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 14,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -891,7 +1084,6 @@ void _showAddExamPopup(BuildContext context) {
     },
   );
 }
-
 
 Widget _buildDifficultyCircle({
   required String title,

@@ -32,12 +32,10 @@ class AppImages {
   static const String second = "assets/images/second.png";
   static const String third = "assets/images/third.png";
   static const String base = "assets/images/Base.png";
-    static const String profileinfo = "assets/images/profile.png";
-        static const String purchageimages = "assets/images/purchage.png";
-                static const String examimage = "assets/images/exam.png";
-
-
-
+  static const String profileinfo = "assets/images/profile.png";
+  static const String purchageimages = "assets/images/purchage.png";
+  static const String examimage = "assets/images/exam.png";
+  static const String bookimage = "assets/images/book.png";
 }
 
 class AppTextStyles {
@@ -54,7 +52,7 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
-  
+
   static const TextStyle boldblblack14 = TextStyle(
     color: Colors.black,
     fontSize: 14,

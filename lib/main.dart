@@ -23,8 +23,13 @@ import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page1
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page2.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/quick_quiz_result_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/view_quiz_details.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_result.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_second_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_details_page.dart';
+import 'package:education_app/widgets/weak_subject/weak_subject.dart';
+import 'package:education_app/widgets/weak_subject/weak_subject_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,33 +50,38 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
       routes: {
-        "/SplashScreen":(context)=>SplashScreen(),
-        "/OnboardinScreen":(context)=>OnboardingScreen(),
-        "/LoginSingupScreen":(context)=>LoginSingupScreen(),
-        "/LoginScreen":(context)=>LoginScreen(),
-        "/RegisterScreen":(context)=>RegisterScreen(),
-        "/OtpScreen":(context)=>OtpScreen(),
-        "/PersnolDetails":(context)=>PersnolDetails(),
-        "/ExamDetails":(context)=>ExamDetails(),
-        "/MainScreen":(context)=>MainScreen(),
+        "/SplashScreen": (context) => SplashScreen(),
+        "/OnboardinScreen": (context) => OnboardingScreen(),
+        "/LoginSingupScreen": (context) => LoginSingupScreen(),
+        "/LoginScreen": (context) => LoginScreen(),
+        "/RegisterScreen": (context) => RegisterScreen(),
+        "/OtpScreen": (context) => OtpScreen(),
+        "/PersnolDetails": (context) => PersnolDetails(),
+        "/ExamDetails": (context) => ExamDetails(),
+        "/MainScreen": (context) => MainScreen(),
         //  "/DailyQuizePage":(context)=>DailyQuizePage(),
-         "/SecondQuizPage":(context)=>SecondQuizPage(),
-         "/ThirdQuizPage":(context)=>ThirdQuizPage(),
-         "/ViewQuizDetails":(context)=>ViewQuizDetails(),
-         "/ReviewQuestionPage":(context)=>ReviewQuestionPage(),
-         "/SecondReviewQuestionPage":(context)=>SecondReviewQuestionPage(),
-         "/QuestionPage1":(context)=>QuestionPage1(),
-         "/QuestionPage2":(context)=>QuestionPage2(),
-         "/QuickQuizResultPage":(context)=>QuickQuizResultPage(),
-          "/ProgresstrackPage":(context)=>ProgresstrackPage(),
-          "/LeaderboardPage":(context)=>LeaderboardPage(),
-          "/NotificationPage":(context)=>NotificationPage(),
-          "/ProfilePage":(context)=>ProfilePage(),
-          "/PersonalInformation":(context)=>PersonalInformation(),
-          "/PurchaseHistory":(context)=>PurchaseHistory(),
-          "/PrivacyPolicy":(context)=>PrivacyPolicy(),
-          "/TermConditions":(context)=>TermConditions(),
-          "/HelpSupport":(context)=>HelpSupport(),
+        "/SecondQuizPage": (context) => SecondQuizPage(),
+        "/ThirdQuizPage": (context) => ThirdQuizPage(),
+        "/ViewQuizDetails": (context) => ViewQuizDetails(),
+        "/ReviewQuestionPage": (context) => ReviewQuestionPage(),
+        "/SecondReviewQuestionPage": (context) => SecondReviewQuestionPage(),
+        "/QuestionPage1": (context) => QuestionPage1(),
+        "/QuestionPage2": (context) => QuestionPage2(),
+        "/QuickQuizResultPage": (context) => QuickQuizResultPage(),
+        "/ProgresstrackPage": (context) => ProgresstrackPage(),
+        "/LeaderboardPage": (context) => LeaderboardPage(),
+        "/NotificationPage": (context) => NotificationPage(),
+        "/ProfilePage": (context) => ProfilePage(),
+        "/PersonalInformation": (context) => PersonalInformation(),
+        "/PurchaseHistory": (context) => PurchaseHistory(),
+        "/PrivacyPolicy": (context) => PrivacyPolicy(),
+        "/TermConditions": (context) => TermConditions(),
+        "/HelpSupport": (context) => HelpSupport(),
+        "/WeakSubject": (context) => WeakSubject(),
+        "/WeakSubjectList": (context) => WeakSubjectList(),
+        "/TimeQuizSecondPage": (context) => TimeQuizSecondPage(),
+        "/TimeQuizFirstPage": (context) => TimeQuizFirstPage(),
+        "/TimeQuizResult":(context)=>TimeQuizResult()
       },
     );
   }
