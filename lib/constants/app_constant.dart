@@ -36,6 +36,8 @@ class AppImages {
   static const String purchageimages = "assets/images/purchage.png";
   static const String examimage = "assets/images/exam.png";
   static const String bookimage = "assets/images/book.png";
+    static const String primiumImage = "assets/images/primium.png";
+
 }
 
 class AppTextStyles {

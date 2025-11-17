@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
           onTap: _onItemTapped,
           elevation: 0,
           showUnselectedLabels: true,
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               activeIcon: Icon(Icons.home),

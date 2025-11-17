@@ -15,6 +15,7 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           _buildBackgroundImage(),
@@ -22,6 +23,24 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
           _buildMainContent(height),
         ],
       ),
+       bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style:AppButtonStyles.elevatedButtonStyle,
+              child: const Text(
+                "Add Weak Subject",
+                style: AppTextStyles.boldWhite16
+              ),
+            ),
+          ),
+        ),),
     );
   }
 
@@ -42,9 +61,9 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
             onTap: () => Navigator.pop(context),
             child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
           ),
-          const SizedBox(width: 80),
-          const Text(
-            "Review Question",
+           SizedBox(width: 80),
+           Text(
+            "Weak Subject",
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,

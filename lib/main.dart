@@ -7,11 +7,11 @@ import 'package:education_app/screens/registerscreen/register_screen.dart';
 import 'package:education_app/screens/splash_screen/Onboarding_Screen.dart';
 import 'package:education_app/screens/splash_screen/login_singup_screen.dart';
 import 'package:education_app/screens/splash_screen/splash_screen.dart';
-// import 'package:education_app/widgets/DailyQuize/daily_quiz_page.dart';
 import 'package:education_app/widgets/DailyQuize/second_quiz_page.dart';
 import 'package:education_app/widgets/DailyQuize/third_quiz_page.dart';
 import 'package:education_app/widgets/Leaderboard/leaderboard_page.dart';
 import 'package:education_app/widgets/Notification/notification_page.dart';
+import 'package:education_app/widgets/Profile/Subscription/subscription_page.dart';
 import 'package:education_app/widgets/Profile/help&support/help_support.dart';
 import 'package:education_app/widgets/Profile/personal_information/personal_information.dart';
 import 'package:education_app/widgets/Profile/privacy_policy/privacy_policy.dart';
@@ -19,9 +19,7 @@ import 'package:education_app/widgets/Profile/profile_page.dart';
 import 'package:education_app/widgets/Profile/purchage_history/purchage_history.dart';
 import 'package:education_app/widgets/Profile/term_condition/term_conditions.dart';
 import 'package:education_app/widgets/ProgressTrack/progresstrack_page.dart';
-import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page1.dart';
-import 'package:education_app/widgets/ReviewQuestion/QuestionPage/question_page2.dart';
-import 'package:education_app/widgets/ReviewQuestion/QuestionPage/quick_quiz_result_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/view_quiz_details.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_result.dart';
@@ -60,14 +58,12 @@ class _MyAppState extends State<MyApp> {
         "/ExamDetails": (context) => ExamDetails(),
         "/MainScreen": (context) => MainScreen(),
         //  "/DailyQuizePage":(context)=>DailyQuizePage(),
-        "/SecondQuizPage": (context) => SecondQuizPage(),
+        "/QuizPageView": (context) => QuizPageView(),
         "/ThirdQuizPage": (context) => ThirdQuizPage(),
         "/ViewQuizDetails": (context) => ViewQuizDetails(),
         "/ReviewQuestionPage": (context) => ReviewQuestionPage(),
         "/SecondReviewQuestionPage": (context) => SecondReviewQuestionPage(),
-        "/QuestionPage1": (context) => QuestionPage1(),
-        "/QuestionPage2": (context) => QuestionPage2(),
-        "/QuickQuizResultPage": (context) => QuickQuizResultPage(),
+        "/QuizPage": (context) => QuizPage(),
         "/ProgresstrackPage": (context) => ProgresstrackPage(),
         "/LeaderboardPage": (context) => LeaderboardPage(),
         "/NotificationPage": (context) => NotificationPage(),
@@ -79,9 +75,10 @@ class _MyAppState extends State<MyApp> {
         "/HelpSupport": (context) => HelpSupport(),
         "/WeakSubject": (context) => WeakSubject(),
         "/WeakSubjectList": (context) => WeakSubjectList(),
-        "/TimeQuizSecondPage": (context) => TimeQuizSecondPage(),
-        "/TimeQuizFirstPage": (context) => TimeQuizFirstPage(),
-        "/TimeQuizResult":(context)=>TimeQuizResult()
+        // "/TimeQuizSecondPage": (context) => TimeQuizSecondPage(),
+        "/TimeQuizPage": (context) => TimeQuizPage(),
+        "/TimeQuizResult":(context)=>TimeQuizResult(answers: [],),
+        "/SubscriptionPage":(context)=>SubscriptionPage(),
       },
     );
   }

@@ -120,9 +120,7 @@ class _HomeContentState extends State<HomeContent> {
                                   ),
                                 ),
 
-                                const SizedBox(height: 16),
-
-                                // Tab Content
+                                 SizedBox(height: 16),
                                 _buildTabContent(),
                               ],
                             ),
@@ -181,7 +179,7 @@ class _HomeContentState extends State<HomeContent> {
                         const SizedBox(height: 16),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, "/SecondQuizPage");
+                            Navigator.pushNamed(context, "/QuizPageView");
                           },
                           child: Container(
                             height: 60,
@@ -224,8 +222,6 @@ class _HomeContentState extends State<HomeContent> {
                       ],
                     ),
                   ),
-
-                  // Quiz Modes Section
                   Container(
                     width: double.infinity,
                     decoration: const BoxDecoration(
@@ -265,7 +261,7 @@ class _HomeContentState extends State<HomeContent> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, "/QuestionPage1");
+                                Navigator.pushNamed(context, "/QuizPage");
                               },
                               child: _buildQuizModeCard(
                                 "Quick 10",
@@ -283,10 +279,15 @@ class _HomeContentState extends State<HomeContent> {
                                 [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
                               ),
                             ),
-                            _buildQuizModeCard(
-                              "Weak Subject",
-                              "assets/images/3p.png",
-                              const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/WeakSubject");
+                              },
+                              child: _buildQuizModeCard(
+                                "Weak Subject",
+                                "assets/images/3p.png",
+                                const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
+                              ),
                             ),
                           ],
                         ),
@@ -709,7 +710,7 @@ void _showQuickQuizPopup(BuildContext context) {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            Navigator.pushNamed(context, "/SecondQuizPage");
+                            Navigator.pushNamed(context, "/QuizPageView");
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary,
@@ -838,8 +839,8 @@ void _showTimeQuizPopup(BuildContext context) {
 
                 /// Display Box for Current Time
                 Container(
-                  height: 60,
-                  width: 100,
+                  height: 50,
+                  width: 80,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -904,7 +905,7 @@ void _showTimeQuizPopup(BuildContext context) {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/TimeQuizFirstPage");
+                            Navigator.pushNamed(context, "/TimeQuizPage");
                             // Use timeMinutes.toInt()
                           },
                           style: ElevatedButton.styleFrom(

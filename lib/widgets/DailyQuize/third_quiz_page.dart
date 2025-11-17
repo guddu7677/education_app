@@ -284,7 +284,7 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
               ),
               child: Text(
                 description,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Color(0xFF212121),
                   fontSize: 14,
                   height: 1.4,
@@ -297,7 +297,6 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
     );
   }
 
-  /// Correct answer card (Option A) - Green container
   Widget _buildCorrectAnswerCard(String label, String description) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -305,7 +304,6 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
         IntrinsicHeight(
           child: Row(
             children: [
-              /// Green left container with label
               Container(
                 width: 40,
                 decoration: BoxDecoration(
@@ -327,9 +325,7 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
                   ),
                 ),
               ),
-              
-              /// Right content container
-              Expanded(
+            Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -355,9 +351,7 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      
-                      /// Show Explanation toggle
-                      GestureDetector(
+                   GestureDetector(
                         onTap: () {
                           setState(() {
                             showExplanation = !showExplanation;
@@ -383,8 +377,6 @@ class _ThirdQuizPageState extends State<ThirdQuizPage> {
                           ],
                         ),
                       ),
-                      
-                      /// Explanation text (collapsible)
                       if (showExplanation) ...[
                         const SizedBox(height: 12),
                         const Text(

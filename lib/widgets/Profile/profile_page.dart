@@ -126,10 +126,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
           _divider(),
 
-          _profileTile(
-            icon: Icons.leaderboard,
-            text: "Leaderboard",
-            trailing: Icon(Icons.keyboard_arrow_right_outlined),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/LeaderboardPage");
+            },
+            child: _profileTile(
+              icon: Icons.leaderboard,
+              text: "Leaderboard",
+              trailing: Icon(Icons.keyboard_arrow_right_outlined),
+            ),
           ),
 
           _divider(),
@@ -145,10 +150,15 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           _divider(),
-          _profileTile(
-            icon: Icons.subscriptions_outlined,
-            text: "Subscription",
-            trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "/SubscriptionPage");
+            },
+            child: _profileTile(
+              icon: Icons.subscriptions_outlined,
+              text: "Subscription",
+              trailing: const Icon(Icons.keyboard_arrow_right_outlined),
+            ),
           ),
           _divider(),
           InkWell(

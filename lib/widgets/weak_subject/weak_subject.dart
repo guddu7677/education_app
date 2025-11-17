@@ -51,9 +51,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                             height: 245,
                             width: 325,
                           ),
-
                           const SizedBox(height: 16),
-
                           const Text(
                             "Boost Your Weak Subjects with Fun Quizzes!",
                             style: TextStyle(
@@ -63,18 +61,13 @@ class _WeakSubjectState extends State<WeakSubject> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-
                           const SizedBox(height: 16),
-
                           Text(
                             "Struggling with a tricky topic? Our quiz app turns studying into a game, making it easy to tackle weak subjects and track your progress. Practice with customized quizzes, review answers instantly, and see your improvement with each session. Ready to make learning fun and focused?",
                             style: AppTextStyles.white16,
                             textAlign: TextAlign.center,
                           ),
-
                           const SizedBox(height: 24),
-
-                          /// ADD BUTTON
                           GestureDetector(
                             onTap: _addWeakSubject,
                             child: Container(
@@ -108,7 +101,6 @@ class _WeakSubjectState extends State<WeakSubject> {
     );
   }
 
-  /// HEADER WIDGET
   Widget _buildHeader() {
     return Row(
       children: [
@@ -147,7 +139,7 @@ class _WeakSubjectState extends State<WeakSubject> {
             child: SingleChildScrollView(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(
+                margin: EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 40,
                 ),
@@ -158,7 +150,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.12),
                       blurRadius: 12,
-                      offset: const Offset(0, 4),
+                      offset: Offset(0, 4),
                     ),
                   ],
                 ),
@@ -167,13 +159,8 @@ class _WeakSubjectState extends State<WeakSubject> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 18),
-
-                    /// TOP IMAGE
                     Image.asset(AppImages.mode3, height: 80, width: 80),
-
                     const SizedBox(height: 16),
-
-                    /// TITLE
                     const Text(
                       "Add Exam",
                       style: TextStyle(
@@ -182,10 +169,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-
                     const SizedBox(height: 16),
-
-                    /// SELECT EXAM FIELD
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
@@ -207,13 +191,11 @@ class _WeakSubjectState extends State<WeakSubject> {
                         ),
                       ),
                     ),
-
-                    const SizedBox(height: 20),
-
-                    /// SUBJECT HEADING
+                   SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             "Select Subjects",
@@ -223,10 +205,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 14),
-
-                    /// SUBJECT LIST
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
@@ -240,10 +219,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                         ],
                       ),
                     ),
-
-                    const SizedBox(height: 20),
-
-                    /// BUTTON SECTION
+                   SizedBox(height: 20),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
@@ -258,15 +234,20 @@ class _WeakSubjectState extends State<WeakSubject> {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  "/WeakSubjectList",
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.primary,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                minimumSize: const Size(0, 48),
+                                minimumSize:  Size(0, 48),
                               ),
-                              child: const Text(
+                              child: Text(
                                 "Add Weak Subject",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -287,8 +268,6 @@ class _WeakSubjectState extends State<WeakSubject> {
       },
     );
   }
-
-  /// CLEAN SUBJECT ROW WIDGET
   Widget _subjectItem(String title) {
     return Row(
       children: [

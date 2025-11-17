@@ -35,8 +35,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                   _buildpercent(),
                   SizedBox(height: 10),
                   _buildLeaderbord(),
-                  SizedBox(height: 20),
-
                 ],
               ),
             ),

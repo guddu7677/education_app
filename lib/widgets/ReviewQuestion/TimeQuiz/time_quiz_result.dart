@@ -1,12 +1,10 @@
-import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
-
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:semicircle_indicator/semicircle_indicator.dart';
 
 class TimeQuizResult extends StatefulWidget {
-  const TimeQuizResult({super.key});
+  final List<QuizAnswer> answers;
+
+  const TimeQuizResult({super.key, required this.answers});
 
   @override
   State<TimeQuizResult> createState() => _TimeQuizResultState();
@@ -14,7 +12,35 @@ class TimeQuizResult extends StatefulWidget {
 
 class _TimeQuizResultState extends State<TimeQuizResult> {
   int _selectedTabIndex = 0;
-  final List<String> _tabs = ['All (20)', 'Incorrect (19)', 'Correct(8)'];
+  late List<String> _tabs;
+  late int correctCount;
+  late int incorrectCount;
+  late int totalQuestions;
+  late double percentage;
+
+  @override
+  void initState() {
+    super.initState();
+    totalQuestions = widget.answers.length;
+    correctCount = widget.answers.where((a) => a.isCorrect).length;
+    incorrectCount = totalQuestions - correctCount;
+    percentage = correctCount / totalQuestions;
+
+    _tabs = [
+      'All ($totalQuestions)',
+      'Incorrect ($incorrectCount)',
+      'Correct ($correctCount)'
+    ];
+  }
+
+  List<QuizAnswer> get filteredAnswers {
+    if (_selectedTabIndex == 1) {
+      return widget.answers.where((a) => !a.isCorrect).toList();
+    } else if (_selectedTabIndex == 2) {
+      return widget.answers.where((a) => a.isCorrect).toList();
+    }
+    return widget.answers;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +52,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
         children: [
           _buildBackgroundImage(),
           _buildHeader(),
-          _quizeResult(),
+          _quizResult(),
           _buildMainContent(height),
         ],
       ),
@@ -37,17 +63,25 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
             width: double.infinity,
             height: 50,
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/MainScreen");
-              },
-              style:AppButtonStyles.elevatedButtonStyle,
+              onPressed: () => Navigator.pushNamed(context, "/MainScreen"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF4334B4),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               child: const Text(
                 "Back to Home",
-                style: AppTextStyles.boldWhite16
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
-        ),),
+        ),
+      ),
     );
   }
 
@@ -72,7 +106,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
               size: 20,
             ),
           ),
-          const SizedBox(width: 80),
+          const Spacer(),
           const Text(
             "Time Quiz Result",
             style: TextStyle(
@@ -81,124 +115,167 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
               fontWeight: FontWeight.w600,
             ),
           ),
+          const Spacer(),
         ],
       ),
     );
   }
 
-  Widget _quizeResult() {
+ Widget _quizResult() {
     return Positioned(
       top: 90,
       left: 16,
       right: 16,
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8),
-            height: 210,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color(0xFF4334B4).withOpacity(0.2),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white.withOpacity(0.3)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: const Color(0xFF4334B4).withOpacity(0.2),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white.withOpacity(0.3)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              alignment: Alignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SemicircularIndicator(
-                    radius: 80,
-                    progress: 0.50,
-                    color: Colors.green,
-                    backgroundColor: Colors.white,
-                    child: Text(
-                      "50%",
-                      style: TextStyle(color: Colors.white, fontSize: 22),
-                    ),
+                SizedBox(
+                  height: 70,
+                  width: 70,
+                  child: CircularProgressIndicator(
+                    value: percentage,
+                    strokeWidth: 6,
+                    backgroundColor: Colors.white.withOpacity(0.3),
+                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                   ),
                 ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Center(
-                            child: Image.asset("assets/images/vec1.png"),
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Text("5/10", style: AppTextStyles.smallWhite12bold),
-                        SizedBox(width: 2),
-                        Text(
-                          "Answered Correctly",
-                          style: AppTextStyles.smallWhite12,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Center(
-                            child: Image.asset("assets/images/vec.png"),
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Text("17s", style: AppTextStyles.smallWhite12bold),
-                        SizedBox(width: 2),
-
-                        Text("Quiz Time", style: AppTextStyles.smallWhite12),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16,),
-                Row(
-                  children: [
-                    Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Center(
-                        child: Image.asset("assets/images/vec.png"),
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      "2s",
-                      style: AppTextStyles.smallWhite12bold
-                    ),
-                        SizedBox(width: 2),
-
-                    Text(
-                      "Average Time Per Question",
-                      style: AppTextStyles.smallWhite12,
-                    ),
-                  ],
+                Text(
+                  "${(percentage * 100).toInt()}%",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 28,
+                        width: 28,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Icon(Icons.check_circle, color: Colors.green, size: 16),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        "$correctCount/$totalQuestions",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 3),
+                      const Flexible(
+                        child: Text(
+                          "Answered Correctly",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+               SizedBox(width: 8),
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 28,
+                        width: 28,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Icon(Icons.access_time, color: Color(0xFF4334B4), size: 16),
+                      ),
+                     SizedBox(width: 6),
+                     Text(
+                        "17s",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 3),
+                      const Flexible(
+                        child: Text(
+                          "Quiz Time",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            Row(
+              children: [
+                Container(
+                  height: 28,
+                  width: 28,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Icon(Icons.timer, color: Color(0xFF4334B4), size: 16),
+                ),
+                const SizedBox(width: 6),
+                const Text(
+                  "2s",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 3),
+                const Flexible(
+                  child: Text(
+                    "Average Time Per Question",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 11,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }
@@ -260,32 +337,32 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
   }
 
   Widget _buildTabIndicator() {
-    return Column(
+    double tabWidth = MediaQuery.of(context).size.width / 3;
+    double indicatorPosition = _selectedTabIndex * tabWidth;
+
+    return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 16, right: 20),
-          child: Row(
-            children: [
-              Container(
-                height: 4,
-                width: 60,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF6A5AE0),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 12, left: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Container(
             height: 2,
             width: double.infinity,
-            color: const Color(0xFF6A5AE0),
+            color: const Color(0xFF6A5AE0).withOpacity(0.2),
+          ),
+        ),
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 300),
+          left: indicatorPosition + 16,
+          child: Container(
+            height: 4,
+            width: 60,
+            decoration: const BoxDecoration(
+              color: Color(0xFF6A5AE0),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
+            ),
           ),
         ),
       ],
@@ -293,25 +370,33 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
   }
 
   Widget _buildQuestionsList() {
+    final displayAnswers = filteredAnswers;
+
+    if (displayAnswers.isEmpty) {
+      return const Center(
+        child: Text(
+          "No questions in this category",
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      );
+    }
+
     return SingleChildScrollView(
       child: Column(
         children: [
-          _buildQuestionCard(isCorrect: false),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: true),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: true),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
+          ...displayAnswers.map((answer) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _buildQuestionCard(answer),
+              )),
           const SizedBox(height: 20),
         ],
       ),
     );
   }
 
-  Widget _buildQuestionCard({required bool isCorrect}) {
+  Widget _buildQuestionCard(QuizAnswer answer) {
+    final question = QuickQuiz[answer.questionIndex];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: IntrinsicHeight(
@@ -332,21 +417,22 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Subject name here",
-                      style: TextStyle(
+                      question["subject"] ?? "Subject",
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
-                      "Please select your exam as per your industry. Or you can skip it for now and add later from setting.",
-                      style: TextStyle(
+                      question["title"] ?? "Question",
+                      style: const TextStyle(
                         color: Color(0xFF212121),
                         fontSize: 14,
                         height: 1.4,
@@ -359,7 +445,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
             Container(
               width: 40,
               decoration: BoxDecoration(
-                color: isCorrect
+                color: answer.isCorrect
                     ? const Color(0xFF01B91D).withOpacity(0.2)
                     : const Color(0xFFD70404).withOpacity(0.2),
                 borderRadius: const BorderRadius.only(
@@ -370,8 +456,8 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
               ),
               child: Center(
                 child: Icon(
-                  isCorrect ? Icons.check : Icons.close,
-                  color: isCorrect ? Colors.green : Colors.red,
+                  answer.isCorrect ? Icons.check : Icons.close,
+                  color: answer.isCorrect ? Colors.green : Colors.red,
                   size: 30,
                 ),
               ),
