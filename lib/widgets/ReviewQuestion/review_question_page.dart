@@ -84,7 +84,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     );
   }
 
-  Widget _buildTabBar() {
+   Widget _buildTabBar() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
@@ -114,25 +114,35 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     );
   }
 
-  Widget _buildTabIndicator() {
+   Widget _buildTabIndicator() {
+    double tabWidth = MediaQuery.of(context).size.width / _tabs.length;
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 20),
-          child: Row(
-            children: [
-              Container(
-                height: 4,
-                width: 60,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF6A5AE0),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
+          child: SizedBox(
+            height: 4,
+            child: Stack(
+              children: [
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  left: (tabWidth * _selectedTabIndex),
+                  child: Container(
+                    height: 4,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF6A5AE0),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Padding(

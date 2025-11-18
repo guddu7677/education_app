@@ -7,8 +7,7 @@ import 'package:education_app/screens/registerscreen/register_screen.dart';
 import 'package:education_app/screens/splash_screen/Onboarding_Screen.dart';
 import 'package:education_app/screens/splash_screen/login_singup_screen.dart';
 import 'package:education_app/screens/splash_screen/splash_screen.dart';
-import 'package:education_app/widgets/DailyQuize/second_quiz_page.dart';
-import 'package:education_app/widgets/DailyQuize/third_quiz_page.dart';
+import 'package:education_app/widgets/DailyQuize/daily_quiz_page.dart';
 import 'package:education_app/widgets/Leaderboard/leaderboard_page.dart';
 import 'package:education_app/widgets/Notification/notification_page.dart';
 import 'package:education_app/widgets/Profile/Subscription/subscription_page.dart';
@@ -23,7 +22,6 @@ import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_page.dart
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/view_quiz_details.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_result.dart';
-import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_second_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_details_page.dart';
 import 'package:education_app/widgets/weak_subject/weak_subject.dart';
@@ -46,7 +44,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      home: SplashScreen(),
       routes: {
         "/SplashScreen": (context) => SplashScreen(),
         "/OnboardinScreen": (context) => OnboardingScreen(),
@@ -57,9 +55,7 @@ class _MyAppState extends State<MyApp> {
         "/PersnolDetails": (context) => PersnolDetails(),
         "/ExamDetails": (context) => ExamDetails(),
         "/MainScreen": (context) => MainScreen(),
-        //  "/DailyQuizePage":(context)=>DailyQuizePage(),
         "/QuizPageView": (context) => QuizPageView(),
-        "/ThirdQuizPage": (context) => ThirdQuizPage(),
         "/ViewQuizDetails": (context) => ViewQuizDetails(),
         "/ReviewQuestionPage": (context) => ReviewQuestionPage(),
         "/SecondReviewQuestionPage": (context) => SecondReviewQuestionPage(),
@@ -75,7 +71,6 @@ class _MyAppState extends State<MyApp> {
         "/HelpSupport": (context) => HelpSupport(),
         "/WeakSubject": (context) => WeakSubject(),
         "/WeakSubjectList": (context) => WeakSubjectList(),
-        // "/TimeQuizSecondPage": (context) => TimeQuizSecondPage(),
         "/TimeQuizPage": (context) => TimeQuizPage(),
         "/TimeQuizResult":(context)=>TimeQuizResult(answers: [],),
         "/SubscriptionPage":(context)=>SubscriptionPage(),

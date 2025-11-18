@@ -58,11 +58,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         const Spacer(),
         const Text(
           "Leaderboard",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.White20bold
         ),
         const Spacer(flex: 2),
       ],
@@ -126,11 +122,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             child: Center(
               child: Text(
                 "#4",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTextStyles.boldWhite16,
               ),
             ),
           ),
@@ -154,7 +146,6 @@ Widget _buildLeaderbord() {
     width: double.infinity,
     child: Stack(
       children: [
-        // TOP 3 PODIUM
         Positioned(
           top: 0,
           left: 0,
@@ -167,28 +158,24 @@ Widget _buildLeaderbord() {
             ],
           ),
         ),
-
-        // BASE IMAGE WITH SCROLLABLE TEXT
         Positioned(
           left: 0,
           right: 0,
           bottom: 0,
           child: Stack(
             children: [
-              // Base image - full width
               Image.asset(
                 AppImages.base,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
-              
               Positioned(
                 left: 16,
                 right: 16,
                 top: 20,
                 bottom: 20,
                 child: ListView.builder(
-                  itemCount: 10, // Number of leaderboard entries
+                  itemCount: 10, 
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.only(bottom: 12),
@@ -211,17 +198,11 @@ Widget _buildLeaderbord() {
                             child: Center(
                               child: Text(
                                 "${index + 4}",
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
+                                style: AppTextStyles.boldblblack14,
                               ),
                             ),
                           ),
                           const SizedBox(width: 12),
-                          
-                          // User info
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,9 +224,7 @@ Widget _buildLeaderbord() {
                               ],
                             ),
                           ),
-                          
-                          // Points
-                          Text(
+                         Text(
                             "${1000 - (index * 50)} pts",
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
@@ -266,6 +245,4 @@ Widget _buildLeaderbord() {
     ),
   );
 }
-
-
 }

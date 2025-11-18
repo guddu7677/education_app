@@ -1,5 +1,7 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_page.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class QuizResultPage extends StatefulWidget {
   final List<int?> userAnswers;
@@ -149,70 +151,69 @@ class _QuizResultPageState extends State<QuizResultPage> {
     );
   }
 
-  Widget _buildQuizResult(int percentage, int avgTime) {
-    return Positioned(
-      top: 90,
-      left: 16,
-      right: 16,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: const Color(0xFF4334B4).withOpacity(0.2),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withOpacity(0.3)),
-        ),
-        child: Column(
-          children: [
-            // Score Circle
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 8),
-              ),
-              child: Center(
-                child: Text(
-                  "$percentage%",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Stats Row 1
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildStatItem(
-                  Icons.check_circle_outline,
-                  "$correctCount/10",
-                  "Answered Correctly",
-                ),
-                _buildStatItem(
-                  Icons.timer_outlined,
-                  "${widget.quizDuration.inSeconds}s",
-                  "Quiz Time",
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-
-            // Stats Row 2
-            _buildStatItem(
-              Icons.av_timer,
-              "${avgTime}s",
-              "Average Time Per Question",
-            ),
-          ],
-        ),
+Widget _buildQuizResult(int percentage, int avgTime) {
+  return Positioned(
+    top: 90,
+    left: 16,
+    right: 16,
+    child: Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFF4334B4).withOpacity(0.2),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white.withOpacity(0.3)),
       ),
-    );
-  }
+      child: Column(
+        children: [
+          // Circular Percentage Indicator
+          CircularPercentIndicator(
+            radius: 60.0, // 👈 Circle Size
+            lineWidth: 10.0,
+            animation: true,
+            percent: percentage / 100, // 👈 Convert to decimal (e.g., 80 -> 0.8)
+            center: Text(
+              "$percentage%",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24.0,
+                color: Colors.green,
+              ),
+            ),
+            circularStrokeCap: CircularStrokeCap.round,
+            progressColor: Colors.green, // 👈 Filled area color
+            backgroundColor: Colors.white.withOpacity(0.2), // 👈 Unfilled area
+          ),
+
+          const SizedBox(height: 20),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildStatItem(
+                Icons.check_circle_outline,
+                "$correctCount/${widget.userAnswers.length}",
+                "Answered Correctly",
+              ),
+              _buildStatItem(
+                Icons.timer_outlined,
+                "${widget.quizDuration.inSeconds}s",
+                "Quiz Time",
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+
+          _buildStatItem(
+            Icons.av_timer,
+            "${avgTime}s",
+            "Average Time Per Question",
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 
   Widget _buildStatItem(IconData icon, String value, String label) {
     return Row(
@@ -231,18 +232,11 @@ class _QuizResultPageState extends State<QuizResultPage> {
           children: [
             Text(
               value,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppTextStyles.White14bold,
             ),
             Text(
               label,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-              ),
+              style: AppTextStyles.smallWhite12,
             ),
           ],
         ),
@@ -278,7 +272,7 @@ class _QuizResultPageState extends State<QuizResultPage> {
 
   Widget _buildTabBar() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: _tabs.asMap().entries.map((entry) {
@@ -399,22 +393,14 @@ class _QuizResultPageState extends State<QuizResultPage> {
                       const SizedBox(width: 8),
                       Text(
                         question.subject,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppTextStyles.boldblblack14,
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Text(
                     question.question,
-                    style: const TextStyle(
-                      color: Color(0xFF212121),
-                      fontSize: 14,
-                      height: 1.4,
-                    ),
+                    style: AppTextStyles.subtile14black2121,
                   ),
                 ],
               ),

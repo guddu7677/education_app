@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class ExamDetails extends StatefulWidget {
@@ -21,7 +22,7 @@ class _ExamDetailsState extends State<ExamDetails> {
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 18,
-            color: Color(0xFF4334B4),
+            color: AppColors.primary,
           ),
         ),
         elevation: 0,
@@ -29,11 +30,7 @@ class _ExamDetailsState extends State<ExamDetails> {
         centerTitle: true,
         title: const Text(
           "Exam Details",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.semiboldblack18
         ),
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
@@ -51,17 +48,13 @@ class _ExamDetailsState extends State<ExamDetails> {
 
               const Text(
                 "Select your exam",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                style: AppTextStyles.boldblblack22,
               ),
               const SizedBox(height: 8),
 
               const Text(
                 "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
-                style: TextStyle(fontSize: 16, color: Color(0xFF212121)),
+                style: TextStyle(fontSize: 16, color: AppColors.balcksemibColor),
               ),
               const SizedBox(height: 20),
 
@@ -71,22 +64,19 @@ class _ExamDetailsState extends State<ExamDetails> {
                   labelText: "Selected Category",
                   hintText: "IT & Cybersecurity",
                   hintStyle: const TextStyle(color: Colors.grey),
-                  labelStyle: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  labelStyle:AppTextStyles.boldblack16,
                   suffixIcon: const Icon(
                     Icons.arrow_drop_down,
-                    color: Color(0xFF4334B4),
+                    color: AppColors.primary
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF4334B4)),
+                    borderSide: const BorderSide(color: BorderColor.borderPrimary,),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(
-                      color: Color(0xFF4334B4),
+                      color: BorderColor.borderPrimary,
                       width: 2,
                     ),
                   ),
@@ -106,12 +96,12 @@ class _ExamDetailsState extends State<ExamDetails> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF4334B4)),
+                    borderSide: const BorderSide(color: BorderColor.borderPrimary,)
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(
-                      color: Color(0xFF4334B4),
+                      color: BorderColor.borderPrimary,
                       width: 2,
                     ),
                   ),
@@ -119,13 +109,12 @@ class _ExamDetailsState extends State<ExamDetails> {
               ),
               const SizedBox(height: 25),
 
-              // Exam Card
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFF4334B4)),
+                  border: Border.all(color: BorderColor.borderPrimary,),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,32 +126,27 @@ class _ExamDetailsState extends State<ExamDetails> {
                           width: 20,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xFF4334B4)),
+                            border: Border.all(color: BorderColor.borderPrimary,),
                           ),
                           child: Container(
                             margin: const EdgeInsets.all(4),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xFF4334B4),
+                              color: AppColors.primary,
                             ),
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
                           "Cisco CCNA",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF212121),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                          style: AppTextStyles.smibold16black2121,)
                       ],
                     ),
                     const SizedBox(height: 10),
 
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
-                      style: TextStyle(fontSize: 12, color: Color(0xFF212121)),
+                      style: TextStyle(fontSize: 12, color: AppColors.balcksemibColor),
                     ),
                     const SizedBox(height: 12),
 
@@ -185,7 +169,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFF4334B4)),
+                  border: Border.all(color: BorderColor.borderPrimary),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,24 +182,20 @@ class _ExamDetailsState extends State<ExamDetails> {
                           width: 20,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xFF4334B4)),
+                            border: Border.all(color: BorderColor.borderPrimary),
                           ),
                           child: Container(
                             margin: const EdgeInsets.all(4),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xFF4334B4),
+                              color: AppColors.primary,
                             ),
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
                           "Cisco CCNA",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF212121),
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: AppTextStyles.smibold16black2121
                         ),
                       ],
                     ),
@@ -223,7 +203,7 @@ class _ExamDetailsState extends State<ExamDetails> {
 
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
-                      style: TextStyle(fontSize: 12, color: Color(0xFF212121)),
+                      style: TextStyle(fontSize: 12, color: AppColors.balcksemibColor),
                     ),
                     const SizedBox(height: 12),
 
@@ -247,12 +227,11 @@ class _ExamDetailsState extends State<ExamDetails> {
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFF4334B4)),
+                  border: Border.all(color: AppColors.balcksemibColor),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header with radio and title
                     Row(
                       children: [
                         Container(
@@ -260,24 +239,20 @@ class _ExamDetailsState extends State<ExamDetails> {
                           width: 20,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: const Color(0xFF4334B4)),
+                            border: Border.all(color: BorderColor.borderPrimary),
                           ),
                           child: Container(
                             margin: const EdgeInsets.all(4),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xFF4334B4),
+                              color: AppColors.primary,
                             ),
                           ),
                         ),
                         const SizedBox(width: 10),
                         const Text(
                           "Cisco CCNA",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color(0xFF212121),
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style:AppTextStyles.smibold16black2121
                         ),
                       ],
                     ),
@@ -285,7 +260,7 @@ class _ExamDetailsState extends State<ExamDetails> {
 
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
-                      style: TextStyle(fontSize: 12, color: Color(0xFF212121)),
+                      style: TextStyle(fontSize: 12, color: AppColors.balcksemibColor),
                     ),
                     const SizedBox(height: 12),
 
@@ -318,7 +293,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Color(0xFF4334B4).withOpacity(0.1),
-                    side: BorderSide(color: Color(0xFF4334B4)),
+                    side: BorderSide(color: BorderColor.borderPrimary),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -326,11 +301,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   ),
                   child: Text(
                     "Skip",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF4334B4),
-                    ),
+                    style: AppTextStyles.primarysemiBold16,
                   ),
                 ),
               ),
@@ -344,7 +315,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   Navigator.pushNamed(context, "/MainScreen");
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4334B4),
+                    backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -352,11 +323,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   ),
                   child: Text(
                     "Continue",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyles.boldWhite16,
                   ),
                 ),
               ),
@@ -378,13 +345,13 @@ class _ExamDetailsState extends State<ExamDetails> {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
-            child: Icon(icon, color: const Color(0xFF4334B4), size: 16),
+            child: Icon(icon, color: AppColors.primary, size: 16),
           ),
         ),
         const SizedBox(width: 8),
         Text(
           text,
-          style: const TextStyle(fontSize: 12, color: Color(0xFF212121)),
+          style: const TextStyle(fontSize: 12, color:AppColors.balcksemibColor),
         ),
       ],
     );

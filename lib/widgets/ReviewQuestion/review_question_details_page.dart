@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class SecondReviewQuestionPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
+            child: Image.asset(AppImages.background, fit: BoxFit.cover),
           ),
           Positioned(
             top: 50,
@@ -35,11 +36,7 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
                 const Spacer(),
                 const Text(
                   "Review Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppTextStyles.White20bold
                 ),
                 const Spacer(flex: 2),
               ],
@@ -68,11 +65,7 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
                     /// 🔸 Question Section
                     const Text(
                       "Subject name here",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.boldblack16,
                     ),
                     const SizedBox(height: 8),
                     const Text(

@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -17,7 +18,7 @@ class _OtpScreenState extends State<OtpScreen> {
     final double totalHeight = MediaQuery.of(context).size.height;
         final double minBodyHeight = totalHeight - appBarHeight - topPadding - 32;
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor:BackGroundColor.white,
       appBar: AppBar(scrolledUnderElevation: 0,
         automaticallyImplyLeading: true,
         leading: IconButton(
@@ -29,15 +30,11 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
         ),
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor:BackGroundColor.white,
         centerTitle: true,
         title: Text(
           "OTP",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.semiboldblack18,
         ),
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
@@ -55,17 +52,13 @@ class _OtpScreenState extends State<OtpScreen> {
                SizedBox(height: 30),
                Text(
                   "Enter OTP",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                  style:AppTextStyles.boldblblack22,
                 ),
                SizedBox(height: 8),
 
                Text(
                   "Please enter the OTP that has been sent to your phone number.",
-                  style: TextStyle(fontSize: 16, color: Color(0xFF212121)),
+                  style: TextStyle(fontSize: 16, color: AppColors.subtilecolor),
                 ),
                  SizedBox(height: 16),
                  Text.rich(
@@ -75,11 +68,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     children: [
                       TextSpan(
                         text: "Edit",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF4334B4),
-                        ),
+                        style: AppTextStyles.primarysemiBold16
                       ),
                     ],
                   ),
@@ -91,11 +80,8 @@ class _OtpScreenState extends State<OtpScreen> {
                     defaultPinTheme: PinTheme(
                       width: 50,
                       height: 50,
-                      textStyle: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      textStyle: AppTextStyles.semiboldblack18,
+                      
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(10),
@@ -108,7 +94,7 @@ class _OtpScreenState extends State<OtpScreen> {
                Center(
                   child: Text(
                     "Resend OTP (59s)",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    style: AppTextStyles.black16,
                   ),
                 ),
                  Spacer(),
@@ -120,18 +106,14 @@ class _OtpScreenState extends State<OtpScreen> {
                       Navigator.pushNamed(context, "/PersnolDetails");
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4334B4),
+                      backgroundColor:ButtonBackgroundColor.buttonBackgroundColor ,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                     child: Text(
                       "Continue",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
+                      style: AppTextStyles.semiboldWhite16
                     ),
                   ),
                 ),

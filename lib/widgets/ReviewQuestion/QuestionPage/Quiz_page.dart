@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_result_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class QuizQuestion {
     required this.correctAnswerIndex,
   });
 }
+
 final List<QuizQuestion> quizData = [
   QuizQuestion(
     subject: "subject",
@@ -77,7 +79,6 @@ final List<QuizQuestion> quizData = [
   ),
 ];
 
-
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
 
@@ -90,6 +91,7 @@ class _QuizPageState extends State<QuizPage> {
   int currentPage = 0;
   List<int?> userAnswers = List.filled(10, null);
   DateTime? quizStartTime;
+  bool isSubmitted = false;
 
   @override
   void initState() {
@@ -104,20 +106,29 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _selectAnswer(int questionIndex, int optionIndex) {
-    setState(() {
-      userAnswers[questionIndex] = optionIndex;
-    });
-  }
-
-  void _nextPage() {
-    if (currentPage < 9) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      _showResultPage();
+    if (!isSubmitted) {
+      setState(() {
+        userAnswers[questionIndex] = optionIndex;
+      });
     }
+  }
+void _nextPage() {
+  if (currentPage < 9) {
+    setState(() {
+      isSubmitted = false; 
+    });
+    
+    _pageController.jumpToPage(currentPage + 1);
+    
+  } else {
+    _showResultPage();
+  }
+}
+
+  void _submitAnswer() {
+    setState(() {
+      isSubmitted = true;
+    });
   }
 
   void _showResultPage() {
@@ -140,7 +151,7 @@ class _QuizPageState extends State<QuizPage> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: BackGroundColor.white,
       body: Stack(
         children: [
           Positioned.fill(
@@ -239,11 +250,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               child: PageView.builder(
-               physics:  NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _pageController,
                 onPageChanged: (index) {
                   setState(() {
                     currentPage = index;
+                    isSubmitted = false;
                   });
                 },
                 itemCount: 10,
@@ -262,7 +274,9 @@ class _QuizPageState extends State<QuizPage> {
             width: double.infinity,
             height: 50,
             child: ElevatedButton(
-              onPressed: _canProceed() ? _nextPage : null,
+              onPressed: _canProceed() 
+                  ? (isSubmitted ? _nextPage : _submitAnswer)
+                  : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: _canProceed()
                     ? const Color(0xFF4334B4)
@@ -274,7 +288,9 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               child: Text(
-                currentPage == 9 ? "Submit" : "Next",
+                isSubmitted
+                    ? (currentPage == 9 ? "View Results" : "Next")
+                    : "Submit",
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -339,10 +355,9 @@ class _QuizPageState extends State<QuizPage> {
           ],
         ),
         const SizedBox(height: 12),
-
         Text(
           question.question,
-          style: const TextStyle(
+          style: TextStyle(
             color: Color(0xFF212121),
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -350,7 +365,6 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         const SizedBox(height: 16),
-
         ...List.generate(4, (optionIndex) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
@@ -359,6 +373,8 @@ class _QuizPageState extends State<QuizPage> {
               question.options[optionIndex],
               userAnswers[questionIndex] == optionIndex,
               () => _selectAnswer(questionIndex, optionIndex),
+              questionIndex,
+              optionIndex,
             ),
           );
         }),
@@ -367,75 +383,154 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   Widget _buildOptionCard(
-      String label, String description, bool isSelected, VoidCallback onTap) {
-    Color borderColor = isSelected ? const Color(0xFF4334B4) : Colors.grey.shade300;
+    String label,
+    String description,
+    bool isSelected,
+    VoidCallback onTap,
+    int questionIndex,
+    int optionIndex,
+  ) {
+    final correctAnswerIndex = quizData[questionIndex].correctAnswerIndex;
+    final isCorrectAnswer = optionIndex == correctAnswerIndex;
+    final isUserAnswer = userAnswers[questionIndex] == optionIndex;
+
+    Color borderColor;
+    Color backgroundColor;
+    Color textColor;
+
+    if (isSubmitted) {
+      if (isCorrectAnswer) {
+        borderColor = Colors.green;
+        backgroundColor = Colors.green;
+        textColor = Colors.white;
+      } else if (isUserAnswer) {
+        borderColor = Colors.red;
+        backgroundColor = Colors.red;
+        textColor = Colors.white;
+      } else {
+        borderColor = Colors.grey.shade300;
+        backgroundColor = const Color(0xFFF8F9FD);
+        textColor = Colors.black;
+      }
+    } else {
+      if (isSelected) {
+        borderColor = Colors.grey.shade600;
+        backgroundColor = const Color(0xFFF8F9FD);
+        textColor = Colors.black;
+      } else {
+        borderColor = Colors.grey.shade300;
+        backgroundColor = const Color(0xFFF8F9FD);
+        textColor = Colors.black;
+      }
+    }
 
     return GestureDetector(
-      onTap: onTap,
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? const Color(0xFF4334B4)
-                    : const Color(0xFFF8F9FD),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                ),
-                border: Border.all(
-                  color: borderColor,
-                  width: isSelected ? 2 : 1,
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+      onTap: isSubmitted ? null : onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: backgroundColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: const Radius.circular(12),
+                      
+                      bottomLeft: Radius.circular(
+                        isSubmitted && (isCorrectAnswer || isUserAnswer) ? 12 : 12,
+                      ),
+                    ),
+                    border: Border.all( 
+                      color: borderColor,
+                      width: (isSubmitted && (isCorrectAnswer || isUserAnswer)) ? 2 : 
+                              (isSelected && !isSubmitted) ? 2 : 1,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF8F9FD),
+                      borderRadius: BorderRadius.only(
+                        topRight: const Radius.circular(12),
+                        bottomRight: Radius.circular(
+                          isSubmitted && (isCorrectAnswer || isUserAnswer) ? 0 : 12,
+                        ),
+                      ),
+                      border: Border(
+                        left: BorderSide.none,
+                        top: BorderSide(
+                          color: borderColor,
+                          width: (isSubmitted && (isCorrectAnswer || isUserAnswer)) ? 2 : 
+                                  (isSelected && !isSubmitted) ? 2 : 1,
+                        ),
+                        right: BorderSide(
+                          color: borderColor,
+                          width: (isSubmitted && (isCorrectAnswer || isUserAnswer)) ? 2 : 
+                                  (isSelected && !isSubmitted) ? 2 : 1,
+                        ),
+                        bottom: BorderSide(
+                          color: borderColor,
+                          width: (isSubmitted && (isCorrectAnswer || isUserAnswer)) ? 2 : 
+                                  (isSelected && !isSubmitted) ? 2 : 1,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      description,
+                      style: const TextStyle(
+                        color: Color(0xFF212121),
+                        fontSize: 14,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FD),
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                  ),
-                  border: Border(
-                    top: BorderSide(
-                      color: borderColor,
-                      width: isSelected ? 2 : 1,
-                    ),
-                    right: BorderSide(
-                      color: borderColor,
-                      width: isSelected ? 2 : 1,
-                    ),
-                    bottom: BorderSide(
-                      color: borderColor,
-                      width: isSelected ? 2 : 1,
-                    ),
-                  ),
-                ),
-                child: Text(
-                  description,
-                  style: const TextStyle(
-                    color: Color(0xFF212121),
-                    fontSize: 14,
-                    height: 1.4,
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
+          if (isSubmitted && isCorrectAnswer)
+            _buildAnswerTag("Correct Answer", Colors.green),
+          if (isSubmitted && isUserAnswer && !isCorrectAnswer)
+            _buildAnswerTag("Your Answer", Colors.red),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnswerTag(String text, Color color) {
+    return Container(
+      height: 25,
+      width: 100,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(12),
+          bottomRight: Radius.circular(12),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

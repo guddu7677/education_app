@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -63,10 +64,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               top: 60,
               right: 20,
               child: GestureDetector(
-                onTap: () => Navigator.pushReplacementNamed(context, "/LoginSingupScreen"),
+                onTap: () {
+                  Navigator.pushNamed(context, "/LoginSingupScreen");
+                },
                 child: const Text(
                   "Skip",
-                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+                  style: AppTextStyles.semiboldWhite16,
                 ),
               ),
             ),
@@ -135,16 +138,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Text(
                     data.title,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style:AppTextStyles.boldblblack22,
                   ),
                   Text(
                     data.description,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.black54, fontSize: 16),
+                    style:AppTextStyles.smibold16black2121
                   ),
                   GestureDetector(
                     onTap: _onContinue,
@@ -160,11 +159,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           _currentPage == _pages.length - 1
                               ? "Get Started"
                               : "Continue",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: AppTextStyles.boldWhite16,
                         ),
                       ),
                     ),

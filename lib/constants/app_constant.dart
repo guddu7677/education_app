@@ -9,6 +9,29 @@ class AppColors {
   static const Color greyBorder = Color(0xFFE0E0E0);
   static const Color buttonbackgroundcolor = Color(0x33D70404);
   static const Color iconBGcolor = Color(0XFFF4F6F9);
+  static const Color subtilecolor = Color(0xFF212121);
+  static const Color redColor = Colors.red;
+  static const Color balcksemibColor = Color(0xFF212121);
+}
+
+class BackGroundColor {
+  static const Color white = Colors.white;
+}
+
+class BorderColor {
+  static const Color borderPrimary = Color(0xFF4334B4);
+}
+
+class ButtonBackgroundColor {
+  static const Color buttonBackgroundColor = Color(0xFF4334B4);
+}
+
+class GreenBorder {
+  static const Color greenBorder = Colors.green;
+}
+
+class RedBordersidecolor {
+  static const Color redBorderdSide = Colors.red;
 }
 
 class AppImages {
@@ -36,8 +59,9 @@ class AppImages {
   static const String purchageimages = "assets/images/purchage.png";
   static const String examimage = "assets/images/exam.png";
   static const String bookimage = "assets/images/book.png";
-    static const String primiumImage = "assets/images/primium.png";
-
+  static const String primiumImage = "assets/images/primium.png";
+  static const String settingImage = "assets/images/setting.png";
+  static const String calenderImage = "assets/images/gp.png";
 }
 
 class AppTextStyles {
@@ -49,15 +73,31 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  static const TextStyle semiboldWhite16 = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle boldblack16 = TextStyle(
     color: Colors.black,
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle semiboldblack18 = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
 
   static const TextStyle boldblblack14 = TextStyle(
     color: Colors.black,
     fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle boldblblack22 = TextStyle(
+    color: Colors.black,
+    fontSize: 22,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle black16 = TextStyle(
@@ -84,6 +124,16 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle White20bold = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle White14bold = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
   static const TextStyle smallblack12bold = TextStyle(
     color: Colors.black,
     fontSize: 12,
@@ -94,10 +144,26 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.normal,
   );
+  static const TextStyle subtile14black2121 = TextStyle(
+    color: Color(0xFF212121),
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.4,
+  );
+  static const TextStyle smibold16black2121 = TextStyle(
+    color: Color(0xFF212121),
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
 
   static const TextStyle primaryBold16 = TextStyle(
     color: AppColors.primary,
     fontWeight: FontWeight.bold,
+    fontSize: 16,
+  );
+  static const TextStyle primarysemiBold16 = TextStyle(
+    color: AppColors.primary,
+    fontWeight: FontWeight.w600,
     fontSize: 16,
   );
 }
@@ -109,6 +175,36 @@ class AppButtonStyles {
     foregroundColor: Colors.white,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     minimumSize: const Size(double.infinity, 50),
+  );
+}
+
+class BottomNavButton {
+  static final SafeArea bottomButton = SafeArea(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        width: double.infinity,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF4334B4),
+            disabledBackgroundColor: const Color(0xFF4334B4).withOpacity(0.4),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          child: Text(
+            "submit",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }
 

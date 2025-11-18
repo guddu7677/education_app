@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class PersnolDetails extends StatefulWidget {
@@ -19,7 +20,7 @@ class _PersnolDetailsState extends State<PersnolDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: BackGroundColor.white,
 
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -32,15 +33,11 @@ class _PersnolDetailsState extends State<PersnolDetails> {
           ),
         ),
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor:BackGroundColor.white,
         centerTitle: true,
         title: const Text(
           "Personal Details",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style:AppTextStyles.semiboldblack18,
         ),
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
@@ -60,21 +57,15 @@ class _PersnolDetailsState extends State<PersnolDetails> {
 
                 const Text(
                   "Enter your personal details",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                  style: AppTextStyles.boldblblack22,
                 ),
                 const SizedBox(height: 8),
 
                 const Text(
                   "Enter your details in the below fields",
-                  style: TextStyle(fontSize: 16, color: Color(0xFF212121)),
+                  style: TextStyle(fontSize: 16, color: AppColors.balcksemibColor),
                 ),
                 const SizedBox(height: 20),
-
-                // First Name
                 TextFormField(
                   controller: _firstNameController,
                   decoration: _inputDecoration("First Name", "Loren"),
@@ -83,8 +74,6 @@ class _PersnolDetailsState extends State<PersnolDetails> {
                       : null,
                 ),
                 const SizedBox(height: 20),
-
-                // Last Name
                 TextFormField(
                   controller: _lastNameController,
                   decoration: _inputDecoration("Last Name", "Ipsum"),
@@ -93,8 +82,6 @@ class _PersnolDetailsState extends State<PersnolDetails> {
                       : null,
                 ),
                 const SizedBox(height: 20),
-
-                // Alternate Mobile Number (optional)
                 TextFormField(
                   controller: _mobileController,
                   keyboardType: TextInputType.phone,
@@ -104,9 +91,7 @@ class _PersnolDetailsState extends State<PersnolDetails> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // Email
-                TextFormField(
+                  TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: _inputDecoration("Email", "example@gmail.com"),
@@ -145,7 +130,7 @@ class _PersnolDetailsState extends State<PersnolDetails> {
                   height: 55,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4334B4),
+                      backgroundColor: ButtonBackgroundColor.buttonBackgroundColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -162,11 +147,7 @@ class _PersnolDetailsState extends State<PersnolDetails> {
                     },
                     child: Text(
                       "Continue",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.boldWhite16,
                     ),
                   ),
                 ),
@@ -191,11 +172,11 @@ class _PersnolDetailsState extends State<PersnolDetails> {
       suffixIcon: suffixIcon,
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Color(0xFF4334B4)),
+        borderSide: BorderSide(color: BorderColor.borderPrimary),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Color(0xFF4334B4), width: 2),
+        borderSide: BorderSide(color:BorderColor.borderPrimary, width: 2),
       ),
     );
   }

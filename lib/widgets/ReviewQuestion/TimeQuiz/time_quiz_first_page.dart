@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_second_page.dart';
 import 'package:flutter/material.dart';
 
@@ -163,11 +164,11 @@ class _TimeQuizPageState extends State<TimeQuizPage> {
     }
   }
   void _goToNextQuestion() {
-    _pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
-  }
+  setState(() {
+    _pageController.jumpToPage(_currentIndex + 1); 
+  });
+}
+
 
   void _navigateToReview() {
     Navigator.pushReplacement(
@@ -223,7 +224,7 @@ class _TimeQuizPageState extends State<TimeQuizPage> {
   Widget _buildBackground() {
     return Positioned.fill(
       child: Image.asset(
-        "assets/images/BG.png",
+        AppImages.background,
         fit: BoxFit.cover,
       ),
     );
@@ -246,11 +247,7 @@ class _TimeQuizPageState extends State<TimeQuizPage> {
            Spacer(),
            Text(
             "Quick Quiz",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+            style:AppTextStyles.White20bold,
           ),
            Spacer(flex: 2),
         ],
@@ -300,7 +297,7 @@ Widget _buildProgressBar() {
 
  Widget _buildQuizIcon() {
     return Image.asset(
-      "assets/images/1p.png",
+      AppImages.mode2,
       height: 50,
       width: 50,
     );
@@ -311,19 +308,11 @@ Widget _buildProgressBar() {
       children: [
         Text(
           "Question ${_currentIndex + 1}/$_totalQuestions",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: AppTextStyles.White20bold,
         ),
         Text(
           _currentQuestion["time"] ?? "00:00",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: AppTextStyles.White20bold,
         ),
       ],
     );
@@ -356,34 +345,30 @@ Widget _buildProgressBar() {
     final question = QuickQuiz[index];
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             question["subject"] ?? "Subject",
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.boldblack16,
           ),
-          const SizedBox(height: 8),
+         SizedBox(height: 8),
           Text(
             question["title"] ?? "Question",
-            style: const TextStyle(
+            style: TextStyle(
               color: Color(0xFF212121),
               fontSize: 16,
               height: 1.4,
             ),
           ),
-          const SizedBox(height: 24),
+           SizedBox(height: 24),
           _buildOptionCard(index, "A", question["questionOne"] ?? ""),
-          const SizedBox(height: 12),
+           SizedBox(height: 12),
           _buildOptionCard(index, "B", question["questionTwo"] ?? ""),
-          const SizedBox(height: 12),
+           SizedBox(height: 12),
           _buildOptionCard(index, "C", question["questionThree"] ?? ""),
-          const SizedBox(height: 12),
+           SizedBox(height: 12),
           _buildOptionCard(index, "D", question["questionFour"] ?? ""),
         ],
       ),
@@ -399,8 +384,8 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
             Container(
               width: 40,
               decoration: BoxDecoration(
-                color: const Color(0xFFF8F9FD),
-                borderRadius: const BorderRadius.only(
+                color: Color(0xFFF8F9FD),
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12),
                 ),
@@ -412,20 +397,16 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
               child: Center(
                 child: Text(
                   label,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style:AppTextStyles.boldblack16,
                 ),
               ),
             ),
           Expanded(
               child: Container(
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF8F9FD),
-                  borderRadius: const BorderRadius.only(
+                  color:Color(0xFFF8F9FD),
+                  borderRadius: BorderRadius.only(
                     topRight: Radius.circular(12),
                     bottomRight: Radius.circular(12),
                   ),
@@ -436,7 +417,7 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
                 ),
                 child: Text(
                   description,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Color(0xFF212121),
                     fontSize: 14,
                     height: 1.4,
@@ -453,7 +434,7 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
   Widget _buildBottomButtons() {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Row(
           children: [
             Expanded(
@@ -467,13 +448,9 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Quit Quiz",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyles.semiboldWhite16,
                   ),
                 ),
               ),
@@ -492,11 +469,8 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
                   ),
                   child: Text(
                     _isLastQuestion ? "Submit" : "Next",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                 style: AppTextStyles.semiboldWhite16,
+
                   ),
                 ),
               ),

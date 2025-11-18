@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -166,11 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Text(
                 "Continue",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                style:AppTextStyles.semiboldWhite16
               ),
             ),
           ),

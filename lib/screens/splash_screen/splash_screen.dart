@@ -1,5 +1,6 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
-import 'onboarding_screen.dart'; // ✅ Make sure this path is correct
+import 'onboarding_screen.dart'; 
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -8,14 +9,28 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
+    
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat(); 
+    
     _navigateToOnboarding();
   }
 
-  /// Wait 3 seconds then navigate
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   void _navigateToOnboarding() async {
     await Future.delayed(const Duration(seconds: 3));
     if (!mounted) return;
@@ -30,21 +45,18 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          /// Background image
           Positioned.fill(
             child: Image.asset(
-              "assets/images/BG.png",
+              AppImages.background,
               fit: BoxFit.cover,
             ),
           ),
-
-          /// Center logo + loader
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  "assets/images/image1.png",
+                  AppImages.image1,
                   width: 200,
                   height: 200,
                 ),
@@ -56,8 +68,6 @@ class _SplashScreenState extends State<SplashScreen> {
               ],
             ),
           ),
-
-          /// Bottom dots
           Positioned(
             bottom: 40,
             left: 0,
@@ -65,11 +75,11 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildDot(),
+                _buildAnimatedDot(delay: 0.0),
                 const SizedBox(width: 6),
-                _buildDot(),
+                _buildAnimatedDot(delay: 0.2),
                 const SizedBox(width: 6),
-                _buildDot(),
+                _buildAnimatedDot(delay: 0.4),
               ],
             ),
           ),
@@ -78,14 +88,25 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  /// Small white dot
-  Widget _buildDot() {
-    return Container(
-      height: 10,
-      width: 10,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
+  Widget _buildAnimatedDot({required double delay}) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        double animValue = (_animationController.value - delay) % 1.0;
+        double offset = 10 * (0.5 - (0.5 * (1 - (animValue * 2 - 1).abs())));
+        
+        return Transform.translate(
+          offset: Offset(0, -offset),
+          child: child,
+        );
+      },
+      child: Container(
+        height: 10,
+        width: 10,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+        ),
       ),
     );
   }

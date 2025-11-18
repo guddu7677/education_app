@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
     _tabs = [
       'All ($totalQuestions)',
       'Incorrect ($incorrectCount)',
-      'Correct ($correctCount)'
+      'Correct ($correctCount)',
     ];
   }
 
@@ -121,7 +122,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
     );
   }
 
- Widget _quizResult() {
+  Widget _quizResult() {
     return Positioned(
       top: 90,
       left: 16,
@@ -146,20 +147,18 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
                     value: percentage,
                     strokeWidth: 6,
                     backgroundColor: Colors.white.withOpacity(0.3),
-                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Colors.green,
+                    ),
                   ),
                 ),
                 Text(
                   "${(percentage * 100).toInt()}%",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.White20bold,
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+           SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -174,32 +173,29 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Icon(Icons.check_circle, color: Colors.green, size: 16),
+                        child: Icon(
+                          Icons.check_circle,
+                          color: Colors.green,
+                          size: 16,
+                        ),
                       ),
-                      const SizedBox(width: 6),
+                      SizedBox(width: 6),
                       Text(
                         "$correctCount/$totalQuestions",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:AppTextStyles.smallWhite12bold,
                       ),
                       const SizedBox(width: 3),
                       const Flexible(
                         child: Text(
                           "Answered Correctly",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 11),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
                   ),
                 ),
-               SizedBox(width: 8),
+                SizedBox(width: 8),
                 Expanded(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -211,25 +207,22 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: Icon(Icons.access_time, color: Color(0xFF4334B4), size: 16),
-                      ),
-                     SizedBox(width: 6),
-                     Text(
-                        "17s",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
+                        child: Icon(
+                          Icons.access_time,
+                          color: Color(0xFF4334B4),
+                          size: 16,
                         ),
+                      ),
+                      SizedBox(width: 6),
+                      Text(
+                        "17s",
+                        style: AppTextStyles.smallWhite12bold,
                       ),
                       const SizedBox(width: 3),
                       const Flexible(
                         child: Text(
                           "Quiz Time",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                          ),
+                          style: AppTextStyles.smallWhite12,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -249,25 +242,22 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: const Icon(Icons.timer, color: Color(0xFF4334B4), size: 16),
+                  child: const Icon(
+                    Icons.timer,
+                    color: Color(0xFF4334B4),
+                    size: 16,
+                  ),
                 ),
                 const SizedBox(width: 6),
                 const Text(
                   "2s",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.smallWhite12bold,
                 ),
                 const SizedBox(width: 3),
                 const Flexible(
                   child: Text(
                     "Average Time Per Question",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 11,
-                    ),
+                    style: AppTextStyles.smallWhite12,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -384,11 +374,13 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ...displayAnswers.map((answer) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: _buildQuestionCard(answer),
-              )),
-          const SizedBox(height: 20),
+          ...displayAnswers.map(
+            (answer) => Padding(
+              padding: EdgeInsets.only(bottom: 12),
+              child: _buildQuestionCard(answer),
+            ),
+          ),
+          SizedBox(height: 20),
         ],
       ),
     );
@@ -398,14 +390,14 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
     final question = QuickQuiz[answer.questionIndex];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: IntrinsicHeight(
         child: Row(
           children: [
             Expanded(
               child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
                   color: Color(0xFFF8F9FD),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12),
@@ -423,16 +415,12 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
                   children: [
                     Text(
                       question["subject"] ?? "Subject",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style:AppTextStyles.boldblblack14,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
                       question["title"] ?? "Question",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Color(0xFF212121),
                         fontSize: 14,
                         height: 1.4,

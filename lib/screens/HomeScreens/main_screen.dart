@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/screens/HomeScreens/home_screen.dart';
 import 'package:education_app/widgets/Notification/notification_page.dart';
 import 'package:education_app/widgets/Profile/profile_page.dart';
@@ -39,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
           highlightColor: Colors.transparent,
         ),
         child: BottomNavigationBar(
-          backgroundColor: Colors.white,
+          backgroundColor: BackGroundColor.white,
           type: BottomNavigationBarType.fixed,
           selectedItemColor: const Color(0xFF4334B4),
           unselectedItemColor: Colors.grey,

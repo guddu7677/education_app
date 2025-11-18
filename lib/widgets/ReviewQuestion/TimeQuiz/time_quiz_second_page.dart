@@ -42,11 +42,11 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
     }
   }
   void _moveToNextPage() {
-    _pageController.nextPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
-  }
+  setState(() {
+    _pageController.jumpToPage(_currentIndex + 1); 
+  });
+}
+
 
   void _navigateToResults() {
     Navigator.pushReplacement(
@@ -237,23 +237,23 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
     final question = QuickQuiz[answer.questionIndex];
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             question["subject"] ?? "Subject",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
+         SizedBox(height: 8),
 
           Text(
             question["title"] ?? "Question",
-            style: const TextStyle(
+            style: TextStyle(
               color: Color(0xFF212121),
               fontSize: 16,
               height: 1.4,
@@ -262,7 +262,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
           const SizedBox(height: 24),
 
           _buildOptionCard(answer, "A", question["questionOne"] ?? ""),
-          const SizedBox(height: 12),
+         SizedBox(height: 12),
           _buildOptionCard(answer, "B", question["questionTwo"] ?? ""),
           const SizedBox(height: 12),
           _buildOptionCard(answer, "C", question["questionThree"] ?? ""),
@@ -300,7 +300,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: const Color(0xFFF8F9FD),
                 borderRadius: const BorderRadius.only(
@@ -311,7 +311,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
               ),
               child: Text(
                 description,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Color(0xFF212121),
                   fontSize: 14,
                   height: 1.4,
@@ -339,17 +339,17 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
               ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF8F9FD),
-                    borderRadius: const BorderRadius.only(
+                    color: Color(0xFFF8F9FD),
+                    borderRadius: BorderRadius.only(
                       topRight: Radius.circular(12),
                     ),
                     border: Border.all(color: Colors.green, width: 2),
                   ),
                   child: Text(
                     description,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Color(0xFF212121),
                       fontSize: 14,
                       height: 1.4,
@@ -365,7 +365,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
     );
   }
 
-  // Build wrong answer card (red)
+
   Widget _buildWrongAnswerCard(String label, String description) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -381,17 +381,17 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
               ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF8F9FD),
-                    borderRadius: const BorderRadius.only(
+                    color: Color(0xFFF8F9FD),
+                    borderRadius: BorderRadius.only(
                       topRight: Radius.circular(12),
                     ),
                     border: Border.all(color: Colors.red, width: 2),
                   ),
                   child: Text(
                     description,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Color(0xFF212121),
                       fontSize: 14,
                       height: 1.4,
@@ -417,7 +417,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
       width: 40,
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(12),
           bottomLeft: Radius.circular(12),
         ),

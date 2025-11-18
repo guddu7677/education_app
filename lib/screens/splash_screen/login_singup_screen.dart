@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class LoginSingupScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
+            child: Image.asset(AppImages.background, fit: BoxFit.cover),
           ),
           Positioned(
             top: 100,
@@ -30,7 +31,7 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Image.asset(
-                    "assets/images/books.png",
+                    AppImages.bookimage,
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -62,11 +63,7 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                     Text(
                       "Login Or Sign Up",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style:AppTextStyles.boldblblack22,
                     ),
                     Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -87,11 +84,7 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                         child: Center(
                           child: Text(
                             "Create An Account!",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style:AppTextStyles.boldWhite16,
                           ),
                         ),
                       ),
@@ -121,11 +114,7 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                         child: const Center(
                           child: Text(
                             "Login",
-                            style: TextStyle(
-                              color: Color(0xFF4334B4),
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppTextStyles.primaryBold16,
                           ),
                         ),
                       ),

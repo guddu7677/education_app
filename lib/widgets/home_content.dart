@@ -36,286 +36,108 @@ class _HomeContentState extends State<HomeContent> {
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: AppColors.lightGrey),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 16.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: 48,
-                                        width: 48,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        child: Image.asset(AppImages.profile),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "Good Afternoon",
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            "Time for tea or a quick study sesh?",
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.white.withOpacity(
-                                                0.9,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Image.asset(
-                                        "assets/images/sun.png",
-                                        height: 58,
-                                        width: 47,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Divider(height: 2, color: Colors.grey),
-                                SizedBox(height: 8),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 4.0,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      _buildTab("All Studying", 0),
-                                      const SizedBox(width: 12),
-                                      _buildTab("Question of the day", 1),
-                                      const SizedBox(width: 24),
-                                      _buildTab("30 Day Streak", 2),
-                                    ],
-                                  ),
-                                ),
-
-                                 SizedBox(height: 16),
-                                _buildTabContent(),
-                              ],
-                            ),
-                          ),
-                        ),
+                        _buildTopCard(),
                         const SizedBox(height: 24),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              "Select Exam",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                _showAddExamPopup(context);
-                              },
-                              child: const Text(
-                                "Add Exam",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        _buildExamSection(),
                         const SizedBox(height: 16),
-                        Container(
-                          height: 60,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF4334B4).withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.white24),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "AACN CCRN (Adult)",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Icon(Icons.arrow_drop_down, color: Colors.white),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/QuizPageView");
-                          },
-                          child: Container(
-                            height: 60,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF4334B4).withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.white24),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/qq.png",
-                                      height: 41,
-                                      width: 31,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    const Text(
-                                      "Question of the day",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Icon(
-                                  Icons.arrow_forward_outlined,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        _buildQuestionOfTheDayButton(),
                       ],
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 12),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Quiz Modes",
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                              ),
-                            ),
-                            Text(
-                              "Quiz Settings",
-                              style: TextStyle(
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/QuizPage");
-                              },
-                              child: _buildQuizModeCard(
-                                "Quick 10",
-                                "assets/images/1p.png",
-                                const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                _showTimeQuizPopup(context);
-                              },
-                              child: _buildQuizModeCard(
-                                "Timed Quiz",
-                                "assets/images/2p.png",
-                                [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context, "/WeakSubject");
-                              },
-                              child: _buildQuizModeCard(
-                                "Weak Subject",
-                                "assets/images/3p.png",
-                                const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            _buildQuizModeCard(
-                              "Mock Test",
-                              "assets/images/4p.png",
-                              const [Color(0xFFCDDAFD), Color(0xFFFFF1E6)],
-                            ),
-                            const SizedBox(width: 8),
-                            _buildQuizModeCard(
-                              "Missed Question",
-                              "assets/images/5p.png",
-                              const [Color(0xFFEFD0D4), Color(0xFFDCFCF5)],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  ),
+                  _buildQuizModesSection(),
                 ],
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTopCard() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: AppColors.primary.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.lightGrey),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: Column(
+          children: [
+            _buildProfileHeader(),
+            const Divider(height: 2, color: Colors.grey),
+            const SizedBox(height: 8),
+            _buildTabs(),
+            const SizedBox(height: 16),
+            _buildTabContent(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 48,
+            width: 48,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white),
+            ),
+            child: ClipOval(
+              child: Image.asset(AppImages.profile, fit: BoxFit.cover),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Good Afternoon",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                "Time for tea or a quick study sesh?",
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white.withOpacity(0.9),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset("assets/images/sun.png", height: 58, width: 47),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTabs() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildTab("All Studying", 0),
+          const SizedBox(width: 12),
+          _buildTab("Question of the day", 1),
+          const SizedBox(width: 12),
+          _buildTab("30 Day Streak", 2),
         ],
       ),
     );
@@ -323,30 +145,37 @@ class _HomeContentState extends State<HomeContent> {
 
   Widget _buildTab(String title, int index) {
     bool isSelected = _selectedTabIndex == index;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedTabIndex = index;
-        });
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected ? Colors.white : Colors.white.withOpacity(0.7),
-              fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedTabIndex = index;
+          });
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12,
+                color: isSelected
+                    ? Colors.white
+                    : Colors.white.withOpacity(0.7),
+                fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Container(
-            height: 3,
-            width: title == "All Studying" ? 80 : title.length * 6.0,
-            color: isSelected ? Colors.white : Colors.transparent,
-          ),
-        ],
+            const SizedBox(height: 4),
+            Container(
+              height: 3,
+              decoration: BoxDecoration(
+                color: isSelected ? Colors.white : Colors.transparent,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -354,191 +183,365 @@ class _HomeContentState extends State<HomeContent> {
   Widget _buildTabContent() {
     switch (_selectedTabIndex) {
       case 0:
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: TableCalendar(
-                  firstDay: DateTime.utc(2020, 1, 1),
-                  lastDay: DateTime.utc(2030, 12, 31),
-                  focusedDay: _focusedDay,
-                  selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                  onDaySelected: (selectedDay, focusedDay) {
-                    setState(() {
-                      _selectedDay = selectedDay;
-                      _focusedDay = focusedDay;
-                    });
-                  },
-                  calendarStyle: const CalendarStyle(
-                    todayDecoration: BoxDecoration(
-                      color: Color(0xFF4334B4),
-                      shape: BoxShape.circle,
-                    ),
-                    selectedDecoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    selectedTextStyle: TextStyle(
-                      color: Color(0xFF4334B4),
-                      fontWeight: FontWeight.bold,
-                    ),
-                    defaultTextStyle: TextStyle(color: Colors.white),
-                    weekendTextStyle: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 0.702),
-                    ),
-                    outsideTextStyle: TextStyle(color: Colors.white38),
-                  ),
-                  headerStyle: const HeaderStyle(
-                    formatButtonVisible: false,
-                    titleCentered: true,
-                    titleTextStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    leftChevronIcon: Icon(
-                      Icons.chevron_left,
-                      color: Colors.white,
-                    ),
-                    rightChevronIcon: Icon(
-                      Icons.chevron_right,
-                      color: Colors.white,
-                    ),
-                  ),
-                  daysOfWeekStyle: const DaysOfWeekStyle(
-                    weekdayStyle: TextStyle(color: Colors.white),
-                    weekendStyle: TextStyle(color: Colors.white70),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Calendar Key:",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Icon(Icons.circle, color: Colors.white, size: 10),
-                  SizedBox(width: 4),
-                  Text(
-                    "Studied",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-
+        return _buildCalendarTab();
       case 1:
-        return Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Container(
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              children: [
-                Image.asset("assets/images/qq.png", height: 60, width: 60),
-                SizedBox(height: 16),
-                Text(
-                  "Question of the Day",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  "Complete today's featured question to maintain your streak!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-
+        return _buildQuestionOfTheDayTab();
       case 2:
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              children: [
-                const Icon(
-                  Icons.local_fire_department,
-                  color: Colors.orange,
-                  size: 60,
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  "30 Day Streak Challenge",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  "Study consistently for 30 days to complete this challenge!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Current Streak: ",
-                      style: TextStyle(color: Colors.white70, fontSize: 14),
-                    ),
-                    const Text(
-                      "5 Days 🔥",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-
+        return _buildStreakTab();
       default:
         return const SizedBox.shrink();
     }
+  }
+Widget _buildCalendarTab() {
+  return Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: TableCalendar(
+            firstDay: DateTime.utc(2020, 1, 1),
+            lastDay: DateTime.utc(2030, 12, 31),
+            focusedDay: _focusedDay,
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay;
+              });
+            },
+            calendarStyle: const CalendarStyle(
+              todayDecoration: BoxDecoration(
+                color: Color(0xFF4334B4),
+                shape: BoxShape.circle,
+              ),
+              selectedDecoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              selectedTextStyle: TextStyle(
+                color: Color(0xFF4334B4),
+                fontWeight: FontWeight.bold,
+              ),
+              defaultTextStyle: TextStyle(color: Colors.white),
+              weekendTextStyle: TextStyle(
+                color: Color.fromRGBO(255, 255, 255, 0.7),
+              ),
+              outsideTextStyle: TextStyle(color: Colors.white38),
+            ),
+            headerStyle: const HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+              titleTextStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
+              rightChevronIcon: Icon(
+                Icons.chevron_right,
+                color: Colors.white,
+              ),
+            ),
+            daysOfWeekStyle: const DaysOfWeekStyle(
+              weekdayStyle: TextStyle(color: Colors.white),
+              weekendStyle: TextStyle(color: Colors.white70),
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(height: 12),
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Calendar Key:",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(width: 8),
+            Icon(Icons.circle, color: Colors.white, size: 10),
+            SizedBox(width: 4),
+            Text(
+              "Studied",
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+  Widget _buildQuestionOfTheDayTab() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            Image.asset(AppImages.questionIcon, height: 60, width: 60),
+            const SizedBox(height: 16),
+            const Text(
+              "Question of the Day",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "Complete today's featured question to maintain your streak!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.9),
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStreakTab() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            const Icon(
+              Icons.local_fire_department,
+              color: Colors.orange,
+              size: 60,
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "30 Day Streak Challenge",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "Study consistently for 30 days to complete this challenge!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.9),
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "Current Streak: ",
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+                Text(
+                  "5 Days 🔥",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExamSection() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "Select Exam",
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+            InkWell(
+              onTap: () => _showAddExamPopup(context),
+              child: const Text(
+                "Add Exam",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Container(
+          height: 60,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: const Color(0xFF4334B4).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.white24),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "AACN CCRN (Adult)",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              Icon(Icons.arrow_drop_down, color: Colors.white),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildQuestionOfTheDayButton() {
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, "/QuizPageView"),
+      child: Container(
+        height: 60,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: const Color(0xFF4334B4).withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white24),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Image.asset("assets/images/qq.png", height: 41, width: 31),
+                const SizedBox(width: 12),
+                const Text(
+                  "Question of the day",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const Icon(Icons.arrow_forward_outlined, color: Colors.white),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQuizModesSection() {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Quiz Modes",
+                style: TextStyle(color: Colors.black87, fontSize: 16),
+              ),
+              InkWell(
+                onTap: () => _showQuizSettingsPopup(context),
+                child: const Text(
+                  "Quiz Settings",
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () => Navigator.pushNamed(context, "/QuizPage"),
+                child: _buildQuizModeCard(
+                  "Quick 10",
+                  "assets/images/1p.png",
+                  const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
+                ),
+              ),
+              InkWell(
+                onTap: () => _showTimeQuizPopup(context),
+                child: _buildQuizModeCard(
+                  "Timed Quiz",
+                  "assets/images/2p.png",
+                  const [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
+                ),
+              ),
+              InkWell(
+                onTap: () => Navigator.pushNamed(context, "/WeakSubject"),
+                child: _buildQuizModeCard(
+                  "Weak Subject",
+                  "assets/images/3p.png",
+                  const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              _buildQuizModeCard("Mock Test", "assets/images/4p.png", const [
+                Color(0xFFCDDAFD),
+                Color(0xFFFFF1E6),
+              ]),
+              const SizedBox(width: 8),
+              _buildQuizModeCard(
+                "Missed Question",
+                "assets/images/5p.png",
+                const [Color(0xFFEFD0D4), Color(0xFFDCFCF5)],
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
   }
 
   Widget _buildQuizModeCard(
@@ -600,12 +603,13 @@ class _HomeContentState extends State<HomeContent> {
   }
 }
 
-void _showQuickQuizPopup(BuildContext context) {
+void _showTimeQuizPopup(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: true,
     builder: (context) {
       String selectedDifficulty = "Easy";
+      double timeMinutes = 4;
 
       return StatefulBuilder(
         builder: (context, setState) {
@@ -618,67 +622,109 @@ void _showQuickQuizPopup(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 4),
+                const SizedBox(height: 16),
                 Image.asset(AppImages.mode2, height: 80, width: 80),
                 const SizedBox(height: 16),
-
                 const Text(
-                  "Quick Quiz",
+                  "Time Quiz",
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
-                const SizedBox(height: 8),
-
+                const SizedBox(height: 16),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Select Difficulty Level",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Select Difficulty Level",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      _buildDifficultyOption(
+                        "Easy",
+                        selectedDifficulty == "Easy",
+                        () => setState(() => selectedDifficulty = "Easy"),
+                      ),
+                      _buildDifficultyOption(
+                        "Medium",
+                        selectedDifficulty == "Medium",
+                        () => setState(() => selectedDifficulty = "Medium"),
+                      ),
+                      _buildDifficultyOption(
+                        "Hard",
+                        selectedDifficulty == "Hard",
+                        () => setState(() => selectedDifficulty = "Hard"),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildDifficultyCircle(
-                      title: "Easy",
-                      isSelected: selectedDifficulty == "Easy",
-                      onTap: () => setState(() => selectedDifficulty = "Easy"),
-                    ),
-                    _buildDifficultyCircle(
-                      title: "Medium",
-                      isSelected: selectedDifficulty == "Medium",
-                      onTap: () =>
-                          setState(() => selectedDifficulty = "Medium"),
-                    ),
-                    _buildDifficultyCircle(
-                      title: "Hard",
-                      isSelected: selectedDifficulty == "Hard",
-                      onTap: () => setState(() => selectedDifficulty = "Hard"),
-                    ),
-                  ],
-                ),
-
                 const SizedBox(height: 24),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "How Many Minutes?",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  height: 50,
+                  width: 80,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: AppColors.primary),
+                  ),
+                  child: Text(
+                    timeMinutes.toInt().toString(),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Slider(
+                    value: timeMinutes,
+                    min: 1,
+                    max: 60,
+                    divisions: 59,
+                    label: "${timeMinutes.toInt()} min",
+                    activeColor: AppColors.primary,
+                    onChanged: (newValue) {
+                      setState(() => timeMinutes = newValue);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFEFF3FF), // light blue background
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFEFF3FF),
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),
                     ),
@@ -689,7 +735,7 @@ void _showQuickQuizPopup(BuildContext context) {
                         child: ElevatedButton(
                           onPressed: () => Navigator.pop(context),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0x33D70404), // 20% red
+                            backgroundColor: const Color(0x33D70404),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -710,7 +756,7 @@ void _showQuickQuizPopup(BuildContext context) {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            Navigator.pushNamed(context, "/QuizPageView");
+                            Navigator.pushNamed(context, "/TimeQuizPage");
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary,
@@ -741,284 +787,262 @@ void _showQuickQuizPopup(BuildContext context) {
   );
 }
 
-void _showTimeQuizPopup(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierDismissible: true,
-    builder: (context) {
-      String selectedDifficulty = "Easy";
-      double timeMinutes = 4; // default slider value
-
-      return StatefulBuilder(
-        builder: (context, setState) {
-          return Dialog(
-            backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 4),
-                Image.asset(AppImages.mode2, height: 80, width: 80),
-
-                const SizedBox(height: 16),
-
-                const Text(
-                  "Time Quiz",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-
-                const SizedBox(height: 12),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    children: const [
-                      Text(
-                        "Select Difficulty Level",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                /// Difficulty Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildDifficultyCircle(
-                      title: "Easy",
-                      isSelected: selectedDifficulty == "Easy",
-                      onTap: () => setState(() => selectedDifficulty = "Easy"),
-                    ),
-                    _buildDifficultyCircle(
-                      title: "Medium",
-                      isSelected: selectedDifficulty == "Medium",
-                      onTap: () =>
-                          setState(() => selectedDifficulty = "Medium"),
-                    ),
-                    _buildDifficultyCircle(
-                      title: "Hard",
-                      isSelected: selectedDifficulty == "Hard",
-                      onTap: () => setState(() => selectedDifficulty = "Hard"),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 24),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 8),
-                  child: Row(
-                    children: const [
-                      Text(
-                        "How Many Minutes?",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                /// Display Box for Current Time
-                Container(
-                  height: 50,
-                  width: 80,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: AppColors.primary),
-                  ),
-                  child: Text(
-                    timeMinutes.toInt().toString(),
-                    style: AppTextStyles.black16,
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                /// Proper Slider
-                Slider(
-                  value: timeMinutes,
-                  min: 1,
-                  max: 60,
-                  divisions: 59,
-                  label: "${timeMinutes.toInt()} min",
-                  onChanged: (newValue) {
-                    setState(() {
-                      timeMinutes = newValue;
-                    });
-                  },
-                ),
-
-                const SizedBox(height: 8),
-
-                /// Bottom Buttons
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFEFF3FF),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () => Navigator.pop(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0x33D70404),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Text(
-                            "Close",
-                            style: TextStyle(
-                              color: Color(0xFFD70404),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/TimeQuizPage");
-                            // Use timeMinutes.toInt()
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Text(
-                            "Start Quiz",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    },
-  );
-}
-
+// Add Exam Popup
 void _showAddExamPopup(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: true,
     builder: (context) {
       return Dialog(
-        insetPadding: EdgeInsets.zero,
-        backgroundColor: Colors.transparent,
-        child: Align(
-          alignment: Alignment.center,
-          child: SingleChildScrollView(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(18),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    offset: Offset(0, 4),
-                  ),
-                ],
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 16),
+              Image.asset(AppImages.mode2, height: 80, width: 80),
+              const SizedBox(height: 16),
+              const Text(
+                "Add Exam",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: "Category",
+                    hintText: "Choose your exam category",
+                    suffixIcon: const Icon(Icons.arrow_drop_down_outlined),
+                    filled: true,
+                    fillColor: Colors.white,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 14,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: "Your Exam Date",
+                    hintText: "Select your exam date",
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.primary),
+                    ),
+                  ),
+                ),
+              ),
+             SizedBox(height: 24),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Color(0xFFEFF3FF),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(18),
+                    bottomRight: Radius.circular(18),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0x33D70404),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          minimumSize: Size(0, 48),
+                        ),
+                        child: Text(
+                          "Close",
+                          style: TextStyle(
+                            color: Color(0xFFD70404),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                   SizedBox(width: 14),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          minimumSize: Size(0, 48),
+                        ),
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void _showQuizSettingsPopup(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) {
+      bool showAnswersAsIGo = true;
+      bool manualSubmit = true;
+
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Dialog(
+            insetPadding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 40,
+            ),
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(height: 4),
-                  Image.asset(AppImages.mode2, height: 80, width: 80),
-                  SizedBox(height: 16),
-                  Text(
-                    "Add Exam",
+                  const SizedBox(height: 18),
+                  Image.asset(AppImages.settingImage, height: 80, width: 80),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Quiz Settings",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      "These controls will be default settings for all of your quiz modes.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14, color: Colors.black87),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Category",
-                        hintText: "Choose your exam category",
-                        suffixIcon: const Icon(Icons.arrow_drop_down_outlined),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 14,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildSettingOption(
+                          "Show answers as I go",
+                          showAnswersAsIGo,
+                          () => setState(() => showAnswersAsIGo = true),
                         ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        const SizedBox(height: 16),
+                        _buildSettingOption(
+                          "Show answers at the end",
+                          !showAnswersAsIGo,
+                          () => setState(() => showAnswersAsIGo = false),
+                        ),
+                        const Divider(height: 32),
+                        _buildSettingOption(
+                          'Manual submit (Click "check answer" Button)',
+                          manualSubmit,
+                          () => setState(() => manualSubmit = true),
+                        ),
+                        const SizedBox(height: 16),
+                        _buildSettingOption(
+                          "Automatic submit (Click Answer)",
+                          !manualSubmit,
+                          () => setState(() => manualSubmit = false),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Adjust Subject",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                     ),
                   ),
-
+                  const SizedBox(height: 8),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      "Turn off a subject to hide all questions for that subject. It's helpful if your exam has optional subjects that you don't need to study for.",
+                      style: TextStyle(fontSize: 12, color: Colors.black87),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "All Subjects",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 14),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Your Exam Date",
-                        hintText: "Select your exam date",
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(color: AppColors.primary),
-                        ),
-                      ),
+                    child: Column(
+                      children: [
+                        _buildSubjectItem("IA. Cardiovascular", true),
+                        const SizedBox(height: 12),
+                        _buildSubjectItem("IB. Hematology", true),
+                        SizedBox(height: 12),
+                        _buildSubjectItem("IC. Pulmonary", false),
+                        SizedBox(height: 12),
+                        _buildSubjectItem("ID. Neurology", true),
+                      ],
                     ),
                   ),
-
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 20),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
@@ -1033,39 +1057,45 @@ void _showAddExamPopup(BuildContext context) {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              Navigator.pop(
+                                context,
+                              ); 
+                            },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0x33D70404),
+                              backgroundColor: AppColors.buttonbackgroundcolor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               minimumSize: const Size(0, 48),
                             ),
-                            child: Text(
+                            child: const Text(
                               "Close",
                               style: TextStyle(
-                                color: Color(0xFFD70404),
+                                color: AppColors.redColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                         ),
-
-                        const SizedBox(width: 14),
+                        const SizedBox(width: 12), 
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              
+                              Navigator.pop(
+                                context,
+                              ); 
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              minimumSize: Size(0, 48),
+                              minimumSize: const Size(0, 48),
                             ),
-                            child: Text(
-                              "Continue",
+                            child: const Text(
+                              "Save Setting",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -1079,22 +1109,22 @@ void _showAddExamPopup(BuildContext context) {
                 ],
               ),
             ),
-          ),
-        ),
+          );
+        },
       );
     },
   );
 }
 
-Widget _buildDifficultyCircle({
-  required String title,
-  required bool isSelected,
-  required VoidCallback onTap,
-}) {
+Widget _buildDifficultyOption(
+  String title,
+  bool isSelected,
+  VoidCallback onTap,
+) {
   return GestureDetector(
     onTap: onTap,
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           height: 20,
@@ -1126,5 +1156,63 @@ Widget _buildDifficultyCircle({
         ),
       ],
     ),
+  );
+}
+
+// Setting Option (Radio Button Style)
+Widget _buildSettingOption(String title, bool isSelected, VoidCallback onTap) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Row(
+      children: [
+        Container(
+          height: 20,
+          width: 20,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white,
+            border: Border.all(color: AppColors.primary, width: 2),
+          ),
+          child: Center(
+            child: Container(
+              height: 12,
+              width: 12,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? AppColors.primary : Colors.transparent,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 14, color: Colors.black87),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+// Subject Item (Checkbox Style)
+Widget _buildSubjectItem(String title, bool isChecked) {
+  return Row(
+    children: [
+      Container(
+        height: 20,
+        width: 20,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.primary, width: 1.4),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: isChecked
+            ? const Icon(Icons.check, size: 16, color: AppColors.primary)
+            : null,
+      ),
+      const SizedBox(width: 10),
+      Text(title, style: const TextStyle(fontSize: 14, color: Colors.black87)),
+    ],
   );
 }
