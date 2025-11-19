@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -145,29 +146,19 @@ class _QuizPageViewState extends State<QuizPageView> {
           ),
         ],
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: _getButtonAction(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _getButtonColor(),
-                disabledBackgroundColor:
-                     Color(0xFF4334B4).withOpacity(0.4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                _getButtonText(),
-                style: AppTextStyles.boldWhite16,
-              ),
-            ),
-          ),
-        ),
+     bottomNavigationBar: SafeArea(
+  child: Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: AppButton(
+      title: _getButtonText(),
+      onTap: _getButtonAction(),
+      width: double.infinity,
+      color: _getButtonColor(),
+      textColor: Colors.white,
+      isDisabled: _getButtonAction() == null, 
+    ),
+  ),
+
       ),
     );
   }

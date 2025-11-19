@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -280,44 +281,38 @@ class _ExamDetailsState extends State<ExamDetails> {
           child: Row(
             children: [
               Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/MainScreen");
-                  },
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color(0xFF4334B4).withOpacity(0.1),
-                    side: BorderSide(color: BorderColor.borderPrimary),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 48,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/MainScreen");
+                    },
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Color(0xFF4334B4).withOpacity(0.1),
+                      side: BorderSide(color: BorderColor.borderPrimary),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 14),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 14),
-                  ),
-                  child: Text(
-                    "Skip",
-                    style: AppTextStyles.primarysemiBold16,
+                    child: Text(
+                      
+                      "Skip",
+                      style: AppTextStyles.primarysemiBold16,
+                    ),
                   ),
                 ),
               ),
 
               const SizedBox(width: 12),
-
-              // Continue Button
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                  Navigator.pushNamed(context, "/MainScreen");
+                child:  AppButton(
+                  height: 48,
+                  title: "Continue",
+                  onTap: () {
+                    Navigator.pushNamed(context, "/MainScreen");
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                  ),
-                  child: Text(
-                    "Continue",
-                    style: AppTextStyles.boldWhite16,
-                  ),
+                  color: AppColors.primary,
                 ),
               ),
             ],

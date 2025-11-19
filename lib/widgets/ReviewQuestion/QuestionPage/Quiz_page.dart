@@ -1,4 +1,5 @@
 import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_result_page.dart';
 import 'package:flutter/material.dart';
 
@@ -259,36 +260,19 @@ void _nextPage() {
           ),
         ],
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: _canProceed() 
-                  ? (isSubmitted ? _nextPage : _submitAnswer)
-                  : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _canProceed()
-                    ? AppColors.primary
-                    : AppColors.primary.withOpacity(0.4),
-                disabledBackgroundColor:
-                    AppColors.primary.withOpacity(0.4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                isSubmitted
-                    ? (currentPage == 9 ? "View Results" : "Next")
-                    : "Submit",
-                style: AppTextStyles.semiboldWhite16,
-              ),
-            ),
-          ),
-        ),
-      ),
+     bottomNavigationBar: SafeArea(
+  child: Padding(
+    padding:  EdgeInsets.all(16),
+    child: AppButton(
+      title: isSubmitted ? "Next" : "Submit",
+      onTap: _canProceed()
+          ? (isSubmitted ? _nextPage : _submitAnswer)
+          : null,
+      isDisabled: !_canProceed(),
+    ),
+  ),
+),
+
     );
   }
 

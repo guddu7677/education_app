@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_page.dart';
 import 'package:flutter/material.dart';
@@ -76,34 +77,21 @@ class _QuizResultPageState extends State<QuizResultPage> {
           _buildMainContent(height),
         ],
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4334B4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                "Back to Home",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+     bottomNavigationBar: SafeArea(
+  child: Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: AppButton(
+      title: "Back to Home",
+      onTap: () {
+        Navigator.pop(context);
+      },
+      color: const Color(0xFF4334B4),
+      textColor: Colors.white,
+      width: double.infinity,
+    ),
+  ),
+),
+
     );
   }
 

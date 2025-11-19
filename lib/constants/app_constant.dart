@@ -12,6 +12,8 @@ class AppColors {
   static const Color subtilecolor = Color(0xFF212121);
   static const Color redColor = Colors.red;
   static const Color balcksemibColor = Color(0xFF212121);
+  static const Color closebuttonbackgroundcolor = Color(0x33D70404); // 20% opaque red
+
 }
 
 class BackGroundColor {
@@ -201,46 +203,6 @@ class AppTextStyles {
     color: AppColors.primary,
     fontWeight: FontWeight.w600,
     fontSize: 16,
-  );
-}
-
-class AppButtonStyles {
-  static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
-    backgroundColor: const Color(0xFF4334B4),
-    disabledBackgroundColor: const Color(0xFF4334B4).withOpacity(0.4),
-    foregroundColor: Colors.white,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    minimumSize: const Size(double.infinity, 50),
-  );
-}
-
-class BottomNavButton {
-  static final SafeArea bottomButton = SafeArea(
-    child: Padding(
-      padding: EdgeInsets.all(16.0),
-      child: SizedBox(
-        width: double.infinity,
-        height: 50,
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF4334B4),
-            disabledBackgroundColor: const Color(0xFF4334B4).withOpacity(0.4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          child: Text(
-            "submit",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-    ),
   );
 }
 

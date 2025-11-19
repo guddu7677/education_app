@@ -1,4 +1,5 @@
 import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:flutter/material.dart';
 
 class WeakSubjectList extends StatefulWidget {
@@ -23,24 +24,16 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
           _buildMainContent(height),
         ],
       ),
-       bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style:AppButtonStyles.elevatedButtonStyle,
-              child: const Text(
-                "Add Weak Subject",
-                style: AppTextStyles.boldWhite16
-              ),
-            ),
-          ),
-        ),),
+     bottomNavigationBar: SafeArea(
+  child: Padding(
+    padding: const EdgeInsets.all(16),
+    child: AppButton(
+      title: "Add Weak Subject",
+      onTap: () => Navigator.pop(context),
+    ),
+  ),
+),
+
     );
   }
 

@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,6 @@ class _WeakSubjectState extends State<WeakSubject> {
             children: [
               const SizedBox(height: 35),
 
-              /// HEADER
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -68,26 +68,14 @@ class _WeakSubjectState extends State<WeakSubject> {
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 24),
-                          GestureDetector(
-                            onTap: _addWeakSubject,
-                            child: Container(
-                              height: 55,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Add Weak Subject",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                            ),
-                          ),
+                         AppButton(
+  title: "Add Weak Subject",
+  onTap: _addWeakSubject,
+  height: 48,
+  color: Colors.white,
+  textColor: AppColors.primary,
+),
+
                         ],
                       ),
                     ),
@@ -113,10 +101,7 @@ class _WeakSubjectState extends State<WeakSubject> {
           ),
         ),
         const Spacer(),
-        const Text(
-          "Weak Subjects",
-          style: AppTextStyles.semiboldWhite20
-        ),
+        const Text("Weak Subjects", style: AppTextStyles.semiboldWhite20),
         const Spacer(flex: 2),
       ],
     );
@@ -135,10 +120,7 @@ class _WeakSubjectState extends State<WeakSubject> {
             child: SingleChildScrollView(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 40,
-                ),
+                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 40),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(18),
@@ -159,7 +141,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                     const SizedBox(height: 16),
                     const Text(
                       "Add Exam",
-                      style:AppTextStyles.semiboldblack20
+                      style: AppTextStyles.semiboldblack20,
                     ),
                     const SizedBox(height: 16),
                     Padding(
@@ -183,7 +165,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                         ),
                       ),
                     ),
-                   SizedBox(height: 20),
+                    SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
@@ -211,7 +193,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                         ],
                       ),
                     ),
-                   SizedBox(height: 20),
+                    SizedBox(height: 20),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
@@ -225,27 +207,14 @@ class _WeakSubjectState extends State<WeakSubject> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
+                            child: AppButton(
+                              title: "Add Weak Subject",
+                              onTap: () {
                                 Navigator.pushNamed(
                                   context,
                                   "/WeakSubjectList",
                                 );
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primary,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                minimumSize:  Size(0, 48),
-                              ),
-                              child: Text(
-                                "Add Weak Subject",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
                             ),
                           ),
                         ],
@@ -260,6 +229,7 @@ class _WeakSubjectState extends State<WeakSubject> {
       },
     );
   }
+
   Widget _subjectItem(String title) {
     return Row(
       children: [

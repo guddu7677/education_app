@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_page.dart';
 import 'package:flutter/material.dart';
@@ -60,23 +61,13 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "/MainScreen"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.backgroundDark,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                "Back to Home",
-                style: AppTextStyles.semiboldWhite16,
-              ),
-            ),
-          ),
+         child: AppButton(
+  title: "Back to Home",
+  onTap: () => Navigator.pushNamed(context, "/MainScreen"),
+
+  color: AppColors.backgroundDark,
+),
+
         ),
       ),
     );
@@ -84,7 +75,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
 
   Widget _buildBackgroundImage() {
     return Positioned.fill(
-      child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
+      child: Image.asset(AppImages.background, fit: BoxFit.cover),
     );
   }
 
@@ -106,11 +97,7 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
           const Spacer(),
           const Text(
             "Time Quiz Result",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+            style:AppTextStyles.semiboldWhite20,
           ),
           const Spacer(),
         ],

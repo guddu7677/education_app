@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -151,23 +152,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: _handleContinue,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4334B4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                "Continue",
-                style: AppTextStyles.semiboldWhite16  ,
-              ),
-            ),
-          ),
+          child:AppButton(
+  title: "Continue",
+  onTap: _handleContinue,
+  color: const Color(0xFF4334B4),
+  
+)
+
         ),
       ),
     );

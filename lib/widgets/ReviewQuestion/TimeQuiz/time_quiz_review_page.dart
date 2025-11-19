@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_result.dart';
@@ -6,10 +7,7 @@ import 'package:flutter/material.dart';
 class TimeQuizReviewPage extends StatefulWidget {
   final List<QuizAnswer> answers;
 
-  const TimeQuizReviewPage({
-    super.key,
-    required this.answers,
-  });
+  const TimeQuizReviewPage({super.key, required this.answers});
 
   @override
   State<TimeQuizReviewPage> createState() => _TimeQuizReviewPageState();
@@ -32,7 +30,8 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
   }
 
   QuizAnswer get _currentAnswer => widget.answers[_currentIndex];
-  Map<String, dynamic> get _currentQuestion => QuickQuiz[_currentAnswer.questionIndex];
+  Map<String, dynamic> get _currentQuestion =>
+      QuickQuiz[_currentAnswer.questionIndex];
   int get _totalQuestions => widget.answers.length;
   bool get _isLastQuestion => _currentIndex >= _totalQuestions - 1;
   void _goToNextQuestion() {
@@ -42,12 +41,12 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
       _moveToNextPage();
     }
   }
-  void _moveToNextPage() {
-  setState(() {
-    _pageController.jumpToPage(_currentIndex + 1); 
-  });
-}
 
+  void _moveToNextPage() {
+    setState(() {
+      _pageController.jumpToPage(_currentIndex + 1);
+    });
+  }
 
   void _navigateToResults() {
     Navigator.pushReplacement(
@@ -58,8 +57,14 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
         },
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const curve = Curves.easeInOut;
-          final scaleTween = Tween(begin: 0.8, end: 1.0).chain(CurveTween(curve: curve));
-          final fadeTween = Tween(begin: 0.0, end: 1.0).chain(CurveTween(curve: curve));
+          final scaleTween = Tween(
+            begin: 0.8,
+            end: 1.0,
+          ).chain(CurveTween(curve: curve));
+          final fadeTween = Tween(
+            begin: 0.0,
+            end: 1.0,
+          ).chain(CurveTween(curve: curve));
 
           return FadeTransition(
             opacity: animation.drive(fadeTween),
@@ -97,14 +102,13 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
       bottomNavigationBar: _buildBottomButtons(),
     );
   }
+
   Widget _buildBackground() {
     return Positioned.fill(
-      child: Image.asset(
-AppImages.background,
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(AppImages.background, fit: BoxFit.cover),
     );
   }
+
   Widget _buildHeader() {
     return Positioned(
       top: 50,
@@ -121,15 +125,13 @@ AppImages.background,
             ),
           ),
           const Spacer(),
-          const Text(
-            "Review Question",
-            style:AppTextStyles.semiboldWhite20,
-          ),
+          const Text("Review Question", style: AppTextStyles.semiboldWhite20),
           const Spacer(flex: 2),
         ],
       ),
     );
   }
+
   Widget _buildProgressSection() {
     return Positioned(
       top: 100,
@@ -173,11 +175,7 @@ AppImages.background,
   }
 
   Widget _buildQuizIcon() {
-    return Image.asset(
-      AppImages.mode1,
-      height: 50,
-      width: 50,
-    );
+    return Image.asset(AppImages.mode1, height: 50, width: 50);
   }
 
   Widget _buildQuestionInfo() {
@@ -191,7 +189,6 @@ AppImages.background,
         Text(
           _currentQuestion["time"] ?? "00:00",
           style: AppTextStyles.White20bold,
-
         ),
       ],
     );
@@ -213,7 +210,7 @@ AppImages.background,
         ),
         child: PageView.builder(
           controller: _pageController,
-          physics:  NeverScrollableScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           onPageChanged: _onPageChanged,
           itemCount: _totalQuestions,
           itemBuilder: (context, index) => _buildReviewPage(index),
@@ -235,7 +232,7 @@ AppImages.background,
             question["subject"] ?? "Subject",
             style: AppTextStyles.boldblack16,
           ),
-         SizedBox(height: 8),
+          SizedBox(height: 8),
 
           Text(
             question["title"] ?? "Question",
@@ -248,7 +245,7 @@ AppImages.background,
           const SizedBox(height: 24),
 
           _buildOptionCard(answer, "A", question["questionOne"] ?? ""),
-         SizedBox(height: 12),
+          SizedBox(height: 12),
           _buildOptionCard(answer, "B", question["questionTwo"] ?? ""),
           const SizedBox(height: 12),
           _buildOptionCard(answer, "C", question["questionThree"] ?? ""),
@@ -274,6 +271,7 @@ AppImages.background,
       return _buildNeutralOptionCard(label, description);
     }
   }
+
   Widget _buildNeutralOptionCard(String label, String description) {
     return IntrinsicHeight(
       child: Row(
@@ -351,7 +349,6 @@ AppImages.background,
     );
   }
 
-
   Widget _buildWrongAnswerCard(String label, String description) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -409,12 +406,7 @@ AppImages.background,
         ),
         border: Border.all(color: borderColor, width: 2),
       ),
-      child: Center(
-        child: Text(
-          label,
-          style:AppTextStyles.boldblack16,
-        ),
-      ),
+      child: Center(child: Text(label, style: AppTextStyles.boldblack16)),
     );
   }
 
@@ -429,12 +421,7 @@ AppImages.background,
           bottomRight: Radius.circular(12),
         ),
       ),
-      child: Center(
-        child: Text(
-          text,
-          style: AppTextStyles.semilWhite12,
-        ),
-      ),
+      child: Center(child: Text(text, style: AppTextStyles.semilWhite12)),
     );
   }
 
@@ -445,41 +432,22 @@ AppImages.background,
         child: Row(
           children: [
             Expanded(
-              child: SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, "/MainScreen"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text(
-                    "Quit Quiz",
-                    style:AppTextStyles.semiboldWhite16,
-                  ),
-                ),
+              child: AppButton(
+                title: "Quit Quiz",
+                onTap: () => Navigator.pushNamed(context, "/MainScreen"),
+                color: Colors.red,
+                textColor: Colors.white,
+              
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _goToNextQuestion,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4334B4),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    _isLastQuestion ? "View Results" : "Next Question",
-                      style:AppTextStyles.semiboldWhite16,
-
-                  ),
-                ),
+              child: AppButton(
+                title: _isLastQuestion ? "View Results" : "Next Question",
+                onTap: _goToNextQuestion,
+                color: const Color(0xFF4334B4),
+                textColor: Colors.white,
+              
               ),
             ),
           ],

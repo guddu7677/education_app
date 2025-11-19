@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_review_page.dart';
 import 'package:flutter/material.dart';
@@ -417,11 +418,7 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
                 ),
                 child: Text(
                   description,
-                  style: TextStyle(
-                    color: Color(0xFF212121),
-                    fontSize: 14,
-                    height: 1.4,
-                  ),
+                  style: AppTextStyles.subtile14black2121
                 ),
               ),
             ),
@@ -433,48 +430,25 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
 
   Widget _buildBottomButtons() {
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Expanded(
-              child: SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, "/MainScreen"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    "Quit Quiz",
-                    style: AppTextStyles.semiboldWhite16,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: _submitAnswer,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    _isLastQuestion ? "Submit" : "Next",
-                 style: AppTextStyles.semiboldWhite16,
-
-                  ),
-                ),
-              ),
-            ),
+  child: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Row(
+      children: [
+        Expanded(
+          child: AppButton(
+            title: "Quit Quiz",
+            color: Colors.red,
+            onTap: () => Navigator.pushNamed(context, "/MainScreen"),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: AppButton(
+            title: _isLastQuestion ? "Submit" : "Next",
+            color: AppColors.primary,
+            onTap: _submitAnswer,
+          ),
+        ),
           ],
         ),
       ),

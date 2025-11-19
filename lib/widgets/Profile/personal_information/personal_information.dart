@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -145,38 +146,21 @@ class _PersonalInformationState extends State<PersonalInformation> {
           ),
         ],
       ),
-        bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed:
-                   () {
-                      Navigator.pushNamed(context, "/MainScreen");
-                    },
-                  
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
- 
-              
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                "Delete Account",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
+       bottomNavigationBar: SafeArea(
+  child: Padding(
+    padding:  EdgeInsets.all(16.0),
+    child: AppButton(
+      title: "Delete Account",
+      onTap: () {
+        Navigator.pushNamed(context, "/MainScreen");
+      },
+      color: Colors.red,
+      textColor: Colors.white,
       
-          )  ),
+    ),
+  ),
+),
+
     );
   }
   Widget _buildHeader() {

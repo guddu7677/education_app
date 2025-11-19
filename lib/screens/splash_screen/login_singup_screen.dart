@@ -75,11 +75,11 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                         Navigator.pushNamed(context, "/RegisterScreen");
                       },
                       child: Container(
-                        height: 50,
+                        height: 48,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: const Color(0xFF4334B4),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: Center(
                           child: Text(
@@ -105,11 +105,11 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                         Navigator.pushNamed(context, "/LoginScreen");
                       },
                       child: Container(
-                        height: 50,
+                        height: 48,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: const Color(0xFF4334B4).withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: const Center(
                           child: Text(

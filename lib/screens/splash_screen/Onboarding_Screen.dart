@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           // Background
           Positioned.fill(
-            child: Image.asset("assets/images/BG.png", fit: BoxFit.cover),
+            child: Image.asset(AppImages.background, fit: BoxFit.cover),
           ),
           if (_currentPage < _pages.length - 1)
             Positioned(
@@ -145,25 +146,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     textAlign: TextAlign.center,
                     style:AppTextStyles.smibold16black2121
                   ),
-                  GestureDetector(
-                    onTap: _onContinue,
-                    child: Container(
-                      height: 50,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF4334B4),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Text(
-                          _currentPage == _pages.length - 1
-                              ? "Get Started"
-                              : "Continue",
-                          style: AppTextStyles.boldWhite16,
-                        ),
-                      ),
-                    ),
-                  ),
+                 AppButton(
+  title: _currentPage == _pages.length - 1
+      ? "Get Started"
+      : "Continue",
+  onTap: _onContinue,
+  color: const Color(0xFF4334B4),
+  textColor: Colors.white,
+
+  width: double.infinity,
+),
+
                 ],
               ),
             ),

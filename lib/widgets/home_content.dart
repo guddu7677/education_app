@@ -1,4 +1,5 @@
 import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -192,86 +193,85 @@ class _HomeContentState extends State<HomeContent> {
         return const SizedBox.shrink();
     }
   }
-Widget _buildCalendarTab() {
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: TableCalendar(
-            firstDay: DateTime.utc(2020, 1, 1),
-            lastDay: DateTime.utc(2030, 12, 31),
-            focusedDay: _focusedDay,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-              });
-            },
-            calendarStyle: const CalendarStyle(
-              todayDecoration: BoxDecoration(
-                color: Color(0xFF4334B4),
-                shape: BoxShape.circle,
-              ),
-              selectedDecoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              selectedTextStyle: TextStyle(
-                color: Color(0xFF4334B4),
-                fontWeight: FontWeight.bold,
-              ),
-              defaultTextStyle: TextStyle(color: Colors.white),
-              weekendTextStyle: TextStyle(
-                color: Color.fromRGBO(255, 255, 255, 0.7),
-              ),
-              outsideTextStyle: TextStyle(color: Colors.white38),
+
+  Widget _buildCalendarTab() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
             ),
-            headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-              titleTextStyle:AppTextStyles.boldWhite16,
-              leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
-              rightChevronIcon: Icon(
-                Icons.chevron_right,
-                color: Colors.white,
+            child: TableCalendar(
+              firstDay: DateTime.utc(2020, 1, 1),
+              lastDay: DateTime.utc(2030, 12, 31),
+              focusedDay: _focusedDay,
+              selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+              onDaySelected: (selectedDay, focusedDay) {
+                setState(() {
+                  _selectedDay = selectedDay;
+                  _focusedDay = focusedDay;
+                });
+              },
+              calendarStyle: const CalendarStyle(
+                todayDecoration: BoxDecoration(
+                  color: Color(0xFF4334B4),
+                  shape: BoxShape.circle,
+                ),
+                selectedDecoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                selectedTextStyle: TextStyle(
+                  color: Color(0xFF4334B4),
+                  fontWeight: FontWeight.bold,
+                ),
+                defaultTextStyle: TextStyle(color: Colors.white),
+                weekendTextStyle: TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, 0.7),
+                ),
+                outsideTextStyle: TextStyle(color: Colors.white38),
               ),
-            ),
-            daysOfWeekStyle: const DaysOfWeekStyle(
-              weekdayStyle: TextStyle(color: Colors.white),
-              weekendStyle: TextStyle(color: Colors.white70),
+              headerStyle: const HeaderStyle(
+                formatButtonVisible: false,
+                titleCentered: true,
+                titleTextStyle: AppTextStyles.boldWhite16,
+                leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
+                rightChevronIcon: Icon(
+                  Icons.chevron_right,
+                  color: Colors.white,
+                ),
+              ),
+              daysOfWeekStyle: const DaysOfWeekStyle(
+                weekdayStyle: TextStyle(color: Colors.white),
+                weekendStyle: TextStyle(color: Colors.white70),
+              ),
             ),
           ),
         ),
-      ),
-      const SizedBox(height: 12),
-      const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Calendar Key:",
-              style: AppTextStyles.smallWhite12bold,
-            ),
-            SizedBox(width: 8),
-            Icon(Icons.circle, color: Colors.white, size: 10),
-            SizedBox(width: 4),
-            Text(
-              "Studied",
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          ],
+        const SizedBox(height: 12),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text("Calendar Key:", style: AppTextStyles.smallWhite12bold),
+              SizedBox(width: 8),
+              Icon(Icons.circle, color: Colors.white, size: 10),
+              SizedBox(width: 4),
+              Text(
+                "Studied",
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
+            ],
+          ),
         ),
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
+
   Widget _buildQuestionOfTheDayTab() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -285,10 +285,7 @@ Widget _buildCalendarTab() {
           children: [
             Image.asset(AppImages.questionIcon, height: 60, width: 60),
             const SizedBox(height: 16),
-            const Text(
-              "Question of the Day",
-              style:AppTextStyles.boldWhite18,
-            ),
+            const Text("Question of the Day", style: AppTextStyles.boldWhite18),
             const SizedBox(height: 8),
             Text(
               "Complete today's featured question to maintain your streak!",
@@ -323,7 +320,7 @@ Widget _buildCalendarTab() {
             const SizedBox(height: 16),
             const Text(
               "30 Day Streak Challenge",
-              style:AppTextStyles.boldWhite18,
+              style: AppTextStyles.boldWhite18,
             ),
             const SizedBox(height: 8),
             Text(
@@ -342,10 +339,7 @@ Widget _buildCalendarTab() {
                   "Current Streak: ",
                   style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
-                Text(
-                  "5 Days 🔥",
-                  style: AppTextStyles.boldWhite16,
-                ),
+                Text("5 Days 🔥", style: AppTextStyles.boldWhite16),
               ],
             ),
           ],
@@ -360,16 +354,10 @@ Widget _buildCalendarTab() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Select Exam",
-              style: AppTextStyles.white16
-            ),
+            Text("Select Exam", style: AppTextStyles.white16),
             InkWell(
               onTap: () => _showAddExamPopup(context),
-              child: Text(
-                "Add Exam",
-                style: AppTextStyles.boldWhite16,
-              ),
+              child: Text("Add Exam", style: AppTextStyles.boldWhite16),
             ),
           ],
         ),
@@ -386,10 +374,7 @@ Widget _buildCalendarTab() {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "AACN CCRN (Adult)",
-                style: AppTextStyles.white16,
-              ),
+              Text("AACN CCRN (Adult)", style: AppTextStyles.white16),
               Icon(Icons.arrow_drop_down, color: Colors.white),
             ],
           ),
@@ -415,12 +400,9 @@ Widget _buildCalendarTab() {
           children: [
             Row(
               children: [
-                Image.asset("assets/images/qq.png", height: 41, width: 31),
+                Image.asset(AppImages.questionIcon, height: 41, width: 31),
                 const SizedBox(width: 12),
-                 Text(
-                  "Question of the day",
-                  style: AppTextStyles.boldWhite16
-                ),
+                Text("Question of the day", style: AppTextStyles.boldWhite16),
               ],
             ),
             const Icon(Icons.arrow_forward_outlined, color: Colors.white),
@@ -447,15 +429,12 @@ Widget _buildCalendarTab() {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Quiz Modes",
-                style: AppTextStyles.black16,
-              ),
+              const Text("Quiz Modes", style: AppTextStyles.black16),
               InkWell(
                 onTap: () => _showQuizSettingsPopup(context),
                 child: const Text(
                   "Quiz Settings",
-                  style:AppTextStyles.primaryBold16,
+                  style: AppTextStyles.primaryBold16,
                 ),
               ),
             ],
@@ -466,25 +445,24 @@ Widget _buildCalendarTab() {
             children: [
               InkWell(
                 onTap: () => Navigator.pushNamed(context, "/QuizPage"),
-                child: _buildQuizModeCard(
-                  "Quick 10",
-                  "assets/images/1p.png",
-                  const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
-                ),
+                child: _buildQuizModeCard("Quick 10", AppImages.mode1, const [
+                  Color(0xFFDCFCF5),
+                  Color(0xFFE2E4FC),
+                ]),
               ),
               InkWell(
                 onTap: () => _showTimeQuizPopup(context),
-                child: _buildQuizModeCard(
-                  "Timed Quiz",
-                  "assets/images/2p.png",
-                  const [Color(0xFFFFFFFF), Color(0xFFFFE3E5)],
-                ),
+                child: _buildQuizModeCard("Timed Quiz", AppImages.mode2, const [
+                  Color(0xFFFFFFFF),
+                  Color(0xFFFFE3E5),
+                ]),
               ),
               InkWell(
                 onTap: () => Navigator.pushNamed(context, "/WeakSubject"),
                 child: _buildQuizModeCard(
                   "Weak Subject",
-                  "assets/images/3p.png",
+                  AppImages.mode3,
+
                   const [Color(0xFFDCFCF5), Color(0xFFE2E4FC)],
                 ),
               ),
@@ -494,16 +472,15 @@ Widget _buildCalendarTab() {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _buildQuizModeCard("Mock Test", "assets/images/4p.png", const [
+              _buildQuizModeCard("Mock Test", AppImages.mode4,  [
                 Color(0xFFCDDAFD),
                 Color(0xFFFFF1E6),
               ]),
               const SizedBox(width: 8),
-              _buildQuizModeCard(
-                "Missed Question",
-                "assets/images/5p.png",
-                const [Color(0xFFEFD0D4), Color(0xFFDCFCF5)],
-              ),
+              _buildQuizModeCard("Missed Question", AppImages.mode5, const [
+                Color(0xFFEFD0D4),
+                Color(0xFFDCFCF5),
+              ]),
             ],
           ),
           const SizedBox(height: 20),
@@ -512,7 +489,8 @@ Widget _buildCalendarTab() {
     );
   }
 
-  Widget _buildQuizModeCard(
+  Widget 
+  _buildQuizModeCard(
     String title,
     String imagePath,
     List<Color> gradientColors,
@@ -593,10 +571,7 @@ void _showTimeQuizPopup(BuildContext context) {
                 const SizedBox(height: 16),
                 Image.asset(AppImages.mode2, height: 80, width: 80),
                 const SizedBox(height: 16),
-                const Text(
-                  "Time Quiz",
-                  style:AppTextStyles.boldblack18,
-                ),
+                const Text("Time Quiz", style: AppTextStyles.boldblack18),
                 const SizedBox(height: 16),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
@@ -654,10 +629,7 @@ void _showTimeQuizPopup(BuildContext context) {
                   ),
                   child: Text(
                     timeMinutes.toInt().toString(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppTextStyles.boldblack16,
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -688,42 +660,23 @@ void _showTimeQuizPopup(BuildContext context) {
                   child: Row(
                     children: [
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () => Navigator.pop(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0x33D70404),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            minimumSize: const Size(0, 48),
-                          ),
-                          child: const Text(
-                            "Close",
-                            style: TextStyle(
-                              color: Color(0xFFD70404),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                        child: AppButton(
+                          title: "Close",
+                          color: AppColors.closebuttonbackgroundcolor,
+                          textColor: AppColors.redColor,
+                          onTap: () => Navigator.pop(context),
                         ),
                       ),
-                      const SizedBox(width: 12),
+
+                      const SizedBox(width: 8),
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "/TimeQuizPage");
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            minimumSize: const Size(0, 48),
-                          ),
-                          child: const Text(
-                            "Start Quiz",
-                            style:AppTextStyles.White14bold
+                        child: Center(
+                          child: AppButton(
+                            title: "Start Quiz",
+                            onTap: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, "/TimeQuizPage");
+                            },
                           ),
                         ),
                       ),
@@ -739,7 +692,6 @@ void _showTimeQuizPopup(BuildContext context) {
   );
 }
 
-// Add Exam Popup
 void _showAddExamPopup(BuildContext context) {
   showDialog(
     context: context,
@@ -786,7 +738,7 @@ void _showAddExamPopup(BuildContext context) {
               ),
               const SizedBox(height: 14),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: "Your Exam Date",
@@ -803,7 +755,7 @@ void _showAddExamPopup(BuildContext context) {
                   ),
                 ),
               ),
-             SizedBox(height: 24),
+              SizedBox(height: 24),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(16),
@@ -817,39 +769,19 @@ void _showAddExamPopup(BuildContext context) {
                 child: Row(
                   children: [
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0x33D70404),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          minimumSize: Size(0, 48),
-                        ),
-                        child: Text(
-                          "Close",
-                          style: TextStyle(
-                            color: Color(0xFFD70404),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      child: AppButton(
+                        title: "Close",
+                        color: AppColors.closebuttonbackgroundcolor,
+                        textColor: AppColors.redColor,
+                        onTap: () => Navigator.pop(context),
                       ),
                     ),
-                   SizedBox(width: 14),
+
+                    SizedBox(width: 14),
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          minimumSize: Size(0, 48),
-                        ),
-                        child: Text(
-                          "Continue",
-                          style:  AppTextStyles.boldblack18
-                        ),
+                      child: AppButton(
+                        title: "Continue",
+                        onTap: () => Navigator.pop(context),
                       ),
                     ),
                   ],
@@ -891,7 +823,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                   const SizedBox(height: 16),
                   const Text(
                     "Quiz Settings",
-                    style:  AppTextStyles.semiboldblack20,
+                    style: AppTextStyles.semiboldblack20,
                   ),
                   const SizedBox(height: 16),
                   const Padding(
@@ -899,7 +831,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                     child: Text(
                       "These controls will be default settings for all of your quiz modes.",
                       textAlign: TextAlign.center,
-                      style:  AppTextStyles.black14normal,
+                      style: AppTextStyles.black14normal,
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -993,48 +925,20 @@ void _showQuizSettingsPopup(BuildContext context) {
                     child: Row(
                       children: [
                         Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(
-                                context,
-                              ); 
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.buttonbackgroundcolor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              minimumSize: const Size(0, 48),
-                            ),
-                            child: const Text(
-                              "Close",
-                              style: TextStyle(
-                                color: AppColors.redColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          child: AppButton(
+                            title: "Close",
+                            color: AppColors.redColor.withOpacity(0.20),
+                            textColor: AppColors.redColor,
+
+                            onTap: () => Navigator.pop(context),
                           ),
                         ),
-                        const SizedBox(width: 12), 
+
+                        const SizedBox(width: 12),
                         Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              
-                              Navigator.pop(
-                                context,
-                              ); 
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primary,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              minimumSize: const Size(0, 48),
-                            ),
-                            child: const Text(
-                              "Save Setting",
-                              style: AppTextStyles.boldWhite18,
-                            ),
+                          child: AppButton(
+                            title: "Save Setting",
+                            onTap: () => Navigator.pop(context),
                           ),
                         ),
                       ],
@@ -1119,18 +1023,12 @@ Widget _buildSettingOption(String title, bool isSelected, VoidCallback onTap) {
           ),
         ),
         const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            title,
-            style:  AppTextStyles.black14normal,
-          ),
-        ),
+        Expanded(child: Text(title, style: AppTextStyles.black14normal)),
       ],
     ),
   );
 }
 
-// Subject Item (Checkbox Style)
 Widget _buildSubjectItem(String title, bool isChecked) {
   return Row(
     children: [
