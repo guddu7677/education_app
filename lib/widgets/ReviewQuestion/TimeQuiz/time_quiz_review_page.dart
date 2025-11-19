@@ -1,4 +1,5 @@
-import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
+import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_result.dart';
 import 'package:flutter/material.dart';
 
@@ -99,7 +100,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
   Widget _buildBackground() {
     return Positioned.fill(
       child: Image.asset(
-        "assets/images/BG.png",
+AppImages.background,
         fit: BoxFit.cover,
       ),
     );
@@ -122,11 +123,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
           const Spacer(),
           const Text(
             "Review Question",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+            style:AppTextStyles.semiboldWhite20,
           ),
           const Spacer(flex: 2),
         ],
@@ -142,7 +139,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
         padding: const EdgeInsets.all(16),
         height: 140,
         decoration: BoxDecoration(
-          color: const Color(0xFF4334B4).withOpacity(0.15),
+          color: AppColors.primary.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: Colors.white.withOpacity(0.3)),
         ),
@@ -177,7 +174,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
 
   Widget _buildQuizIcon() {
     return Image.asset(
-      "assets/images/1p.png",
+      AppImages.mode1,
       height: 50,
       width: 50,
     );
@@ -189,19 +186,12 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
       children: [
         Text(
           "Question ${_currentIndex + 1}/$_totalQuestions",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: AppTextStyles.White20bold,
         ),
         Text(
           _currentQuestion["time"] ?? "00:00",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: AppTextStyles.White20bold,
+
         ),
       ],
     );
@@ -243,11 +233,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
         children: [
           Text(
             question["subject"] ?? "Subject",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppTextStyles.boldblack16,
           ),
          SizedBox(height: 8),
 
@@ -426,11 +412,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
       child: Center(
         child: Text(
           label,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style:AppTextStyles.boldblack16,
         ),
       ),
     );
@@ -450,11 +432,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.semilWhite12,
         ),
       ),
     );
@@ -479,11 +457,7 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
                   ),
                   child: const Text(
                     "Quit Quiz",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                    style:AppTextStyles.semiboldWhite16,
                   ),
                 ),
               ),
@@ -502,11 +476,8 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
                   ),
                   child: Text(
                     _isLastQuestion ? "View Results" : "Next Question",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                      style:AppTextStyles.semiboldWhite16,
+
                   ),
                 ),
               ),

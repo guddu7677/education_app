@@ -64,11 +64,7 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
            SizedBox(width: 80),
            Text(
             "Weak Subject",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.semiboldWhite20,
           ),
         ],
       ),
@@ -160,11 +156,7 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
                   children: [
                     Text(
                       "AACN CCRN (Adult)",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.boldblblack14
                     ),
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from setting.",

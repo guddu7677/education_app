@@ -20,7 +20,7 @@ import 'package:education_app/widgets/Profile/term_condition/term_conditions.dar
 import 'package:education_app/widgets/ProgressTrack/progresstrack_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/Quiz_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/QuestionPage/view_quiz_details.dart';
-import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_result.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_page.dart';
 import 'package:education_app/widgets/ReviewQuestion/review_question_details_page.dart';
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: MainScreen(),
       routes: {
         "/SplashScreen": (context) => SplashScreen(),
         "/OnboardinScreen": (context) => OnboardingScreen(),

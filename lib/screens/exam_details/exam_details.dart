@@ -19,7 +19,7 @@ class _ExamDetailsState extends State<ExamDetails> {
         automaticallyImplyLeading: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios,
             size: 18,
             color: AppColors.primary,
@@ -28,86 +28,79 @@ class _ExamDetailsState extends State<ExamDetails> {
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "Exam Details",
           style: AppTextStyles.semiboldblack18
         ),
-        bottom: const PreferredSize(
+        bottom: PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(height: 1, thickness: 1, color: Colors.grey),
         ),
       ),
-
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
-
-              const Text(
+             SizedBox(height: 10),
+               Text(
                 "Select your exam",
                 style: AppTextStyles.boldblblack22,
               ),
-              const SizedBox(height: 8),
-
-              const Text(
+             SizedBox(height: 8),
+               Text(
                 "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
                 style: TextStyle(fontSize: 16, color: AppColors.balcksemibColor),
               ),
-              const SizedBox(height: 20),
-
-              // Selected Category
+             SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Selected Category",
                   hintText: "IT & Cybersecurity",
-                  hintStyle: const TextStyle(color: Colors.grey),
+                  hintStyle: TextStyle(color: Colors.grey),
                   labelStyle:AppTextStyles.boldblack16,
-                  suffixIcon: const Icon(
+                  suffixIcon: Icon(
                     Icons.arrow_drop_down,
                     color: AppColors.primary
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: BorderColor.borderPrimary,),
+                    borderSide: BorderSide(color: BorderColor.borderPrimary,),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: BorderColor.borderPrimary,
                       width: 2,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-
-              // Exam Date
+             SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Your Exam Date",
                   hintText: "Select your exam date",
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  labelStyle: const TextStyle(
+                  hintStyle: TextStyle(color: Colors.grey),
+                  labelStyle: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: BorderColor.borderPrimary,)
+                    borderSide: BorderSide(color: BorderColor.borderPrimary,)
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
+                    borderSide:  BorderSide(
                       color: BorderColor.borderPrimary,
                       width: 2,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+             SizedBox(height: 25),
 
               Container(
                 width: double.infinity,

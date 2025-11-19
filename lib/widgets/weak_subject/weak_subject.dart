@@ -115,11 +115,7 @@ class _WeakSubjectState extends State<WeakSubject> {
         const Spacer(),
         const Text(
           "Weak Subjects",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.semiboldWhite20
         ),
         const Spacer(flex: 2),
       ],
@@ -163,11 +159,7 @@ class _WeakSubjectState extends State<WeakSubject> {
                     const SizedBox(height: 16),
                     const Text(
                       "Add Exam",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style:AppTextStyles.semiboldblack20
                     ),
                     const SizedBox(height: 16),
                     Padding(

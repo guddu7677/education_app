@@ -1,5 +1,5 @@
 import 'package:education_app/constants/app_constant.dart';
-import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_second_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_review_page.dart';
 import 'package:flutter/material.dart';
 
 class QuizAnswer {
@@ -462,7 +462,7 @@ Widget _buildOptionCard(int questionIndex, String label, String description) {
                 child: ElevatedButton(
                   onPressed: _submitAnswer,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4334B4),
+                    backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

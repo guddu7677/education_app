@@ -89,6 +89,16 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
+   static const TextStyle boldblack18 = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle boldWhite18 = TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
 
   static const TextStyle boldblblack14 = TextStyle(
     color: Colors.black,
@@ -115,6 +125,12 @@ class AppTextStyles {
     color: Colors.white,
     fontSize: 12,
   );
+  static const TextStyle semilWhite12 = TextStyle(
+    color: Colors.white,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle smallblack14 = TextStyle(
     color: Colors.black,
     fontSize: 12,
@@ -129,10 +145,30 @@ class AppTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle semiboldWhite20 = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle semiboldblack20 = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
   static const TextStyle White14bold = TextStyle(
     color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.bold,
+  );
+  static const TextStyle black14normal = TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+  static const TextStyle semiblack14 = TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
   );
   static const TextStyle smallblack12bold = TextStyle(
     color: Colors.black,
@@ -181,7 +217,7 @@ class AppButtonStyles {
 class BottomNavButton {
   static final SafeArea bottomButton = SafeArea(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
       child: SizedBox(
         width: double.infinity,
         height: 50,

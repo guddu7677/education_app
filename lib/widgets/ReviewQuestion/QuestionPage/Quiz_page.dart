@@ -18,10 +18,22 @@ class QuizQuestion {
 
 final List<QuizQuestion> quizData = [
   QuizQuestion(
+    subject: "General Knowladge",
+    question: "what is your name",
+    options: ["Nawal kishor", "fhjjfgj gjg jghjg", "uykiyky kkuk ky kh", "gjuggk yky kyk liy"],
+    correctAnswerIndex: 0,
+  ),
+  QuizQuestion(
     subject: "subject",
     question: "question",
     options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 3,
+  ),
+  QuizQuestion(
+    subject: "subject",
+    question: "question",
+    options: ["questtrterion", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
+    correctAnswerIndex: 2,
   ),
   QuizQuestion(
     subject: "subject",
@@ -33,43 +45,31 @@ final List<QuizQuestion> quizData = [
     subject: "subject",
     question: "question",
     options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 2,
   ),
   QuizQuestion(
     subject: "subject",
     question: "question",
     options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 1,
   ),
   QuizQuestion(
     subject: "subject",
     question: "question",
     options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 3,
   ),
   QuizQuestion(
     subject: "subject",
     question: "question",
     options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 1,
   ),
   QuizQuestion(
     subject: "subject",
     question: "question",
     options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
-  ),
-  QuizQuestion(
-    subject: "subject",
-    question: "question",
-    options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
-  ),
-  QuizQuestion(
-    subject: "subject",
-    question: "question",
-    options: ["question", "fhjjfgj gjg jghjg", "uykiyky kkuk ky ku", "gjuggk yky kyk liy"],
-    correctAnswerIndex: 0,
+    correctAnswerIndex: 2,
   ),
   QuizQuestion(
     subject: "subject",
@@ -156,7 +156,7 @@ void _nextPage() {
         children: [
           Positioned.fill(
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -173,7 +173,7 @@ void _nextPage() {
               children: [
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
-                  child: const Icon(
+                  child: Icon(
                     Icons.arrow_back_ios,
                     color: Colors.white,
                     size: 20,
@@ -182,11 +182,7 @@ void _nextPage() {
                 const Spacer(),
                 const Text(
                   "Quick Quiz",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppTextStyles.semiboldWhite20
                 ),
                 const Spacer(flex: 2),
               ],
@@ -200,7 +196,7 @@ void _nextPage() {
               padding: const EdgeInsets.all(16),
               height: 100,
               decoration: BoxDecoration(
-                color: const Color(0xFF4334B4).withOpacity(0.15),
+                color: AppColors.primary.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: Colors.white.withOpacity(0.3)),
               ),
@@ -226,11 +222,7 @@ void _nextPage() {
                   const SizedBox(height: 16),
                   Text(
                     "Question ${currentPage + 1}/10",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+                    style: AppTextStyles.boldWhite18,
                   ),
                 ],
               ),
@@ -279,10 +271,10 @@ void _nextPage() {
                   : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: _canProceed()
-                    ? const Color(0xFF4334B4)
-                    : const Color(0xFF4334B4).withOpacity(0.4),
+                    ? AppColors.primary
+                    : AppColors.primary.withOpacity(0.4),
                 disabledBackgroundColor:
-                    const Color(0xFF4334B4).withOpacity(0.4),
+                    AppColors.primary.withOpacity(0.4),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -291,11 +283,7 @@ void _nextPage() {
                 isSubmitted
                     ? (currentPage == 9 ? "View Results" : "Next")
                     : "Submit",
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                style: AppTextStyles.semiboldWhite16,
               ),
             ),
           ),
@@ -346,23 +334,14 @@ void _nextPage() {
             const SizedBox(width: 8),
             Text(
               question.subject,
-              style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              style: AppTextStyles.subtile14black2121,
             ),
           ],
         ),
         const SizedBox(height: 12),
         Text(
           question.question,
-          style: TextStyle(
-            color: Color(0xFF212121),
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            height: 1.4,
-          ),
+          style:AppTextStyles.smibold16black2121,
         ),
         const SizedBox(height: 16),
         ...List.generate(4, (optionIndex) {
@@ -492,11 +471,7 @@ void _nextPage() {
                     ),
                     child: Text(
                       description,
-                      style: const TextStyle(
-                        color: Color(0xFF212121),
-                        fontSize: 14,
-                        height: 1.4,
-                      ),
+                      style: AppTextStyles.subtile14black2121,
                     ),
                   ),
                 ),
@@ -518,7 +493,7 @@ void _nextPage() {
       width: 100,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: const BorderRadius.only(
+        borderRadius:  BorderRadius.only(
           bottomLeft: Radius.circular(12),
           bottomRight: Radius.circular(12),
         ),
@@ -526,11 +501,7 @@ void _nextPage() {
       child: Center(
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.semilWhite12
         ),
       ),
     );

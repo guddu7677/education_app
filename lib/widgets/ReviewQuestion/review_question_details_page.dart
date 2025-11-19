@@ -101,41 +101,25 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
                     SizedBox(height: 30),
                     Text(
                       "Explanation",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                      ),
+                      style: AppTextStyles.black16,
                     ),
                     Divider(color: Color(0xFF4334B4)),
                     SizedBox(height: 10),
                     Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
 
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                      ),
+                      style: AppTextStyles.black14normal,
                     ),
                     SizedBox(height: 10),
                     Text(
                       "References:",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                      ),
+                      style:AppTextStyles.black16,
                     ),
                     Divider(color: Color(0xFF4334B4)),
                     Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                      ),
+                      style:AppTextStyles.black14normal,
                     ),
                   ],
                 ),
@@ -184,7 +168,6 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
     );
   }
 
-  /// ✅ Correct Answer Card (Green)
   Widget _buildCorrectAnswerCard(String label, String description) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -226,7 +209,6 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
     );
   }
 
-  /// ❌ Wrong Answer Card (Red)
   Widget _buildWrongAnswerCard(String label, String description) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -268,7 +250,6 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
     );
   }
 
-  /// 🔹 Common label builder (A, B, C, D)
   Widget _buildSideLabel({
     required String label,
     required Color color,
@@ -298,7 +279,6 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
     );
   }
 
-  /// 🔹 Common tag ("Your Answer")
   Widget _buildAnswerTag(String text, Color color) {
     return Container(
       height: 25,
@@ -313,11 +293,7 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.semilWhite12,
         ),
       ),
     );

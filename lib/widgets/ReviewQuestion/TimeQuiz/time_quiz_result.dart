@@ -1,5 +1,5 @@
 import 'package:education_app/constants/app_constant.dart';
-import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_first_page.dart';
+import 'package:education_app/widgets/ReviewQuestion/TimeQuiz/time_quiz_page.dart';
 import 'package:flutter/material.dart';
 
 class TimeQuizResult extends StatefulWidget {
@@ -66,18 +66,14 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
             child: ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, "/MainScreen"),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4334B4),
+                backgroundColor: AppColors.backgroundDark,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
               child: const Text(
                 "Back to Home",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                style: AppTextStyles.semiboldWhite16,
               ),
             ),
           ),

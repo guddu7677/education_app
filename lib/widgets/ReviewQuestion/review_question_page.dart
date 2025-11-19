@@ -47,11 +47,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
           const SizedBox(width: 80),
           const Text(
             "Review Question",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.semiboldWhite20,
           ),
         ],
       ),
@@ -208,11 +204,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
                   children: [
                     Text(
                       "Subject name here",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.boldblblack14
                     ),
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from setting.",

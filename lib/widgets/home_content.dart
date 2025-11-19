@@ -235,11 +235,7 @@ Widget _buildCalendarTab() {
             headerStyle: const HeaderStyle(
               formatButtonVisible: false,
               titleCentered: true,
-              titleTextStyle: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              titleTextStyle:AppTextStyles.boldWhite16,
               leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
               rightChevronIcon: Icon(
                 Icons.chevron_right,
@@ -261,11 +257,7 @@ Widget _buildCalendarTab() {
           children: [
             Text(
               "Calendar Key:",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppTextStyles.smallWhite12bold,
             ),
             SizedBox(width: 8),
             Icon(Icons.circle, color: Colors.white, size: 10),
@@ -295,11 +287,7 @@ Widget _buildCalendarTab() {
             const SizedBox(height: 16),
             const Text(
               "Question of the Day",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style:AppTextStyles.boldWhite18,
             ),
             const SizedBox(height: 8),
             Text(
@@ -335,11 +323,7 @@ Widget _buildCalendarTab() {
             const SizedBox(height: 16),
             const Text(
               "30 Day Streak Challenge",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style:AppTextStyles.boldWhite18,
             ),
             const SizedBox(height: 8),
             Text(
@@ -360,11 +344,7 @@ Widget _buildCalendarTab() {
                 ),
                 Text(
                   "5 Days 🔥",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.boldWhite16,
                 ),
               ],
             ),
@@ -380,19 +360,15 @@ Widget _buildCalendarTab() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               "Select Exam",
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: AppTextStyles.white16
             ),
             InkWell(
               onTap: () => _showAddExamPopup(context),
-              child: const Text(
+              child: Text(
                 "Add Exam",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTextStyles.boldWhite16,
               ),
             ),
           ],
@@ -407,12 +383,12 @@ Widget _buildCalendarTab() {
             border: Border.all(color: Colors.white24),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "AACN CCRN (Adult)",
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: AppTextStyles.white16,
               ),
               Icon(Icons.arrow_drop_down, color: Colors.white),
             ],
@@ -441,13 +417,9 @@ Widget _buildCalendarTab() {
               children: [
                 Image.asset("assets/images/qq.png", height: 41, width: 31),
                 const SizedBox(width: 12),
-                const Text(
+                 Text(
                   "Question of the day",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.boldWhite16
                 ),
               ],
             ),
@@ -477,17 +449,13 @@ Widget _buildCalendarTab() {
             children: [
               const Text(
                 "Quiz Modes",
-                style: TextStyle(color: Colors.black87, fontSize: 16),
+                style: AppTextStyles.black16,
               ),
               InkWell(
                 onTap: () => _showQuizSettingsPopup(context),
                 child: const Text(
                   "Quiz Settings",
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                  style:AppTextStyles.primaryBold16,
                 ),
               ),
             ],
@@ -627,11 +595,7 @@ void _showTimeQuizPopup(BuildContext context) {
                 const SizedBox(height: 16),
                 const Text(
                   "Time Quiz",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                  style:AppTextStyles.boldblack18,
                 ),
                 const SizedBox(height: 16),
                 const Padding(
@@ -640,11 +604,7 @@ void _showTimeQuizPopup(BuildContext context) {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Select Difficulty Level",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: AppTextStyles.semiblack14,
                     ),
                   ),
                 ),
@@ -679,11 +639,7 @@ void _showTimeQuizPopup(BuildContext context) {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "How Many Minutes?",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: AppTextStyles.semiblack14,
                     ),
                   ),
                 ),
@@ -767,11 +723,7 @@ void _showTimeQuizPopup(BuildContext context) {
                           ),
                           child: const Text(
                             "Start Quiz",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style:AppTextStyles.White14bold
                           ),
                         ),
                       ),
@@ -834,7 +786,7 @@ void _showAddExamPopup(BuildContext context) {
               ),
               const SizedBox(height: 14),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding:  EdgeInsets.symmetric(horizontal: 16),
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: "Your Exam Date",
@@ -896,10 +848,7 @@ void _showAddExamPopup(BuildContext context) {
                         ),
                         child: Text(
                           "Continue",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:  AppTextStyles.boldblack18
                         ),
                       ),
                     ),
@@ -942,11 +891,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                   const SizedBox(height: 16),
                   const Text(
                     "Quiz Settings",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style:  AppTextStyles.semiboldblack20,
                   ),
                   const SizedBox(height: 16),
                   const Padding(
@@ -954,7 +899,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                     child: Text(
                       "These controls will be default settings for all of your quiz modes.",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14, color: Colors.black87),
+                      style:  AppTextStyles.black14normal,
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -996,11 +941,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Adjust Subject",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
+                        style: AppTextStyles.boldblack16,
                       ),
                     ),
                   ),
@@ -1019,11 +960,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "All Subjects",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
+                        style: AppTextStyles.boldblack16,
                       ),
                     ),
                   ),
@@ -1096,10 +1033,7 @@ void _showQuizSettingsPopup(BuildContext context) {
                             ),
                             child: const Text(
                               "Save Setting",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: AppTextStyles.boldWhite18,
                             ),
                           ),
                         ),
@@ -1188,7 +1122,7 @@ Widget _buildSettingOption(String title, bool isSelected, VoidCallback onTap) {
         Expanded(
           child: Text(
             title,
-            style: const TextStyle(fontSize: 14, color: Colors.black87),
+            style:  AppTextStyles.black14normal,
           ),
         ),
       ],
@@ -1212,7 +1146,7 @@ Widget _buildSubjectItem(String title, bool isChecked) {
             : null,
       ),
       const SizedBox(width: 10),
-      Text(title, style: const TextStyle(fontSize: 14, color: Colors.black87)),
+      Text(title, style: AppTextStyles.black14normal),
     ],
   );
 }
