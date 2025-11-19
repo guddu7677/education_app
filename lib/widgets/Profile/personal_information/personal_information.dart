@@ -163,30 +163,32 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
     );
   }
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 22,
+Widget _buildHeader() {
+  return Row(
+    children: [
+      GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: const Icon(
+          Icons.arrow_back_ios,
+          color: Colors.white,
+          size: 22,
+        ),
+      ),
+
+      Expanded(
+        child: Center(
+          child: const Text(
+            "Personal Information",
+            style: AppTextStyles.boldWhite16,
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Personal Information",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Spacer(flex: 2),
-      ],
-    );
-  }
+      ),
+
+      const SizedBox(width: 22),
+    ],
+  );
+}
+
 
   Widget _buildProfilePic() {
     return Center(

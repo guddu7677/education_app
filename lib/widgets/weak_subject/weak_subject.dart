@@ -25,7 +25,7 @@ class _WeakSubjectState extends State<WeakSubject> {
               const SizedBox(height: 35),
 
               Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
                 ),
@@ -34,7 +34,7 @@ class _WeakSubjectState extends State<WeakSubject> {
 
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.2),
@@ -68,14 +68,13 @@ class _WeakSubjectState extends State<WeakSubject> {
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 24),
-                         AppButton(
-  title: "Add Weak Subject",
-  onTap: _addWeakSubject,
-  height: 48,
-  color: Colors.white,
-  textColor: AppColors.primary,
-),
-
+                          AppButton(
+                            title: "Add Weak Subject",
+                            onTap: _addWeakSubject,
+                            height: 48,
+                            color: Colors.white,
+                            textColor: AppColors.primary,
+                          ),
                         ],
                       ),
                     ),
@@ -90,19 +89,18 @@ class _WeakSubjectState extends State<WeakSubject> {
   }
 
   Widget _buildHeader() {
-    return Row(
+     return Stack(
+      alignment: Alignment.center,
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 22,
+        const Text("Weak Subjects", style: AppTextStyles.boldWhite16),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
           ),
         ),
-        const Spacer(),
-        const Text("Weak Subjects", style: AppTextStyles.semiboldWhite20),
-        const Spacer(flex: 2),
       ],
     );
   }

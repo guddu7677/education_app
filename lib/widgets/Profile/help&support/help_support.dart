@@ -167,29 +167,18 @@ class _HelpSupportState extends State<HelpSupport> {
 
   // HEADER
   Widget _buildHeader() {
-    return Row(
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 22,
+        const Text("Help & Support", style: AppTextStyles.boldWhite16),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
           ),
         ),
-
-        const Spacer(),
-
-        const Text(
-          "Help & Support",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-
-        const Spacer(flex: 2),
       ],
     );
   }

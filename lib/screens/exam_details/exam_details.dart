@@ -31,7 +31,7 @@ class _ExamDetailsState extends State<ExamDetails> {
         centerTitle: true,
         title: Text(
           "Exam Details",
-          style: AppTextStyles.semiboldblack18
+          style: AppTextStyles.boldblack16
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1),

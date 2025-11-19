@@ -15,7 +15,6 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -44,11 +43,8 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
             onTap: () => Navigator.pop(context),
             child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
           ),
-          const SizedBox(width: 80),
-          const Text(
-            "Review Question",
-            style: AppTextStyles.semiboldWhite20,
-          ),
+         SizedBox(width: 80),
+         Text("Review Question", style: AppTextStyles.boldWhite16),
         ],
       ),
     );
@@ -80,7 +76,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     );
   }
 
-   Widget _buildTabBar() {
+  Widget _buildTabBar() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
@@ -110,7 +106,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
     );
   }
 
-   Widget _buildTabIndicator() {
+  Widget _buildTabIndicator() {
     double tabWidth = MediaQuery.of(context).size.width / _tabs.length;
 
     return Column(
@@ -204,7 +200,7 @@ class _ReviewQuestionPageState extends State<ReviewQuestionPage> {
                   children: [
                     Text(
                       "Subject name here",
-                      style: AppTextStyles.boldblblack14
+                      style: AppTextStyles.boldblblack14,
                     ),
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from setting.",

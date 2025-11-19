@@ -230,31 +230,36 @@ class _TimeQuizPageState extends State<TimeQuizPage> {
       ),
     );
   }
-  Widget _buildHeader() {
-    return Positioned(
-      top: 50,
-      left: 16,
-      right: 16,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child:Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
+ Widget _buildHeader() {
+  return Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        // Back Button
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+        Expanded(
+          child: Center(
+            child: Text(
+              "Timed Quiz",
+              style: AppTextStyles.boldWhite16,
             ),
           ),
-           Spacer(),
-           Text(
-            "Quick Quiz",
-            style:AppTextStyles.White20bold,
-          ),
-           Spacer(flex: 2),
-        ],
-      ),
-    );
-  }
+        ),
+        SizedBox(width: 20),
+      ],
+    ),
+  );
+}
+
  Widget _buildProgressSection() {
     return Positioned(
       top: 100,

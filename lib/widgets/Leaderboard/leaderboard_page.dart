@@ -45,26 +45,21 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   }
 
   Widget _buildHeader() {
-    return Row(
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 20,
+        const Text("Leaderboard", style: AppTextStyles.boldWhite16),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Leaderboard",
-          style: AppTextStyles.White20bold
-        ),
-        const Spacer(flex: 2),
       ],
     );
   }
-
   Widget _buildTime() {
     return Container(
       padding: const EdgeInsets.all(16),

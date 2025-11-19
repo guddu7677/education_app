@@ -65,28 +65,27 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   }
 
   Widget _buildHeader() {
-    return Row(
-      children: [
-        GestureDetector(
+   return Stack(
+    alignment: Alignment.center,
+    children: [
+      const Text(
+        "Subscription",
+        style:AppTextStyles.boldWhite16
+      ),
+
+      Align(
+        alignment: Alignment.centerLeft,
+        child: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
-            size: 20,
+            size: 22,
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Subscription",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Spacer(flex: 2),
-      ],
-    );
+      ),
+    ],
+  );
   }
 
   Widget _buildGetPremium() {

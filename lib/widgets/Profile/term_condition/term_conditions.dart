@@ -24,7 +24,7 @@ class _TermConditionsState extends State<TermConditions> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
-                  vertical: 12,
+                  vertical: 20,
                 ),
                 child: _buildHeader(),
               ),
@@ -44,21 +44,23 @@ class _TermConditionsState extends State<TermConditions> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 20),
-                        Text("Professional Exam Preperation", style: AppTextStyles.boldblack16),
+                        Text(
+                          "Professional Exam Preperation",
+                          style: AppTextStyles.boldblack16,
+                        ),
                         const SizedBox(height: 16),
-          
+
                         Text("Exam Prep, Inc.", style: AppTextStyles.colorGrey),
                         const SizedBox(height: 16),
-          
+
                         Text(
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
                           "Mauris eget mauris nec elit placerat aliquam. "
                           "Proin cursus, ipsum in facilisis malesuada, "
                           "nisi eros interdum nisl, a pharetra massa risus ut erat.\n\n"
                           "Sed euismod sapien id arcu gravida, vitae consequat nisl dictum."
-                          ""
-                          ,
-                          
+                          "",
+
                           style: AppTextStyles.black16,
                         ),
                       ],
@@ -73,7 +75,6 @@ class _TermConditionsState extends State<TermConditions> {
     );
   }
 
-  /// HEADER
   Widget _buildHeader() {
     return Row(
       children: [
@@ -85,16 +86,15 @@ class _TermConditionsState extends State<TermConditions> {
             size: 22,
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Privacy Policy",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
+        Expanded(
+          child: Center(
+            child: const Text(
+              "Terms & Condition",
+              style: AppTextStyles.boldWhite16,
+            ),
           ),
         ),
-        const Spacer(flex: 2),
+        const SizedBox(width: 22),
       ],
     );
   }

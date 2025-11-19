@@ -44,25 +44,31 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
   }
 
   Widget _buildHeader() {
-    return Positioned(
-      top: 50,
-      left: 16,
-      right: 16,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
+  return Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
+        ),
+
+        Expanded(
+          child: Center(
+            child: Text(
+              "Weak Subject",
+              style: AppTextStyles.boldWhite16,
+            ),
           ),
-           SizedBox(width: 80),
-           Text(
-            "Weak Subject",
-            style: AppTextStyles.semiboldWhite20,
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+
+        SizedBox(width: 20), 
+      ],
+    ),
+  );
+}
 
   Widget _buildMainContent(double height) {
     return Positioned(

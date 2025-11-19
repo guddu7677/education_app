@@ -79,31 +79,36 @@ class _TimeQuizResultState extends State<TimeQuizResult> {
     );
   }
 
-  Widget _buildHeader() {
-    return Positioned(
-      top: 50,
-      left: 16,
-      right: 16,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
+ Widget _buildHeader() {
+  return Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+        Expanded(
+          child: Center(
+            child: Text(
+              "Time Quiz Result",
+              style: AppTextStyles.boldWhite16,
             ),
           ),
-          const Spacer(),
-          const Text(
-            "Time Quiz Result",
-            style:AppTextStyles.semiboldWhite20,
-          ),
-          const Spacer(),
-        ],
-      ),
-    );
-  }
+        ),
+
+        const SizedBox(width: 20),
+      ],
+    ),
+  );
+}
+
 
   Widget _quizResult() {
     return Positioned(

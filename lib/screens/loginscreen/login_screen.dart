@@ -49,8 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
           "Login Account",
           style: TextStyle(
             color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
         ),
          bottom: const PreferredSize(
@@ -147,19 +147,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   SizedBox(height: 80),
                 ],
-              ),
-            
-          
+              ),  
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child:AppButton(
-  title: "Continue",
-  onTap: _handleContinue,
-  color: const Color(0xFF4334B4),
-)
+          title: "Continue",
+          onTap: _handleContinue,
+          color: const Color(0xFF4334B4),
+         )
 
         ),
       ),

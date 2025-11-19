@@ -29,7 +29,7 @@ class _OtpScreenState extends State<OtpScreen> {
         elevation: 0,
         backgroundColor: BackGroundColor.white,
         centerTitle: true,
-        title: Text("OTP", style: AppTextStyles.semiboldblack18),
+        title: Text("OTP", style: AppTextStyles.boldblack16),
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(height: 1, thickness: 1, color: Colors.grey),
@@ -67,7 +67,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 SizedBox(height: 40),
                 Center(
                   child: Pinput(
-                    length: 6,
+                    length: 4,
                     defaultPinTheme: PinTheme(
                       width: 50,
                       height: 50,
@@ -76,7 +76,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey.shade400),
+                        border: Border.all(color: AppColors.primary),
                       ),
                     ),
                   ),

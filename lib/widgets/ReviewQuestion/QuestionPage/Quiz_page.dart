@@ -166,29 +166,37 @@ void _nextPage() {
               ),
             ),
           ),
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                const Spacer(),
-                const Text(
-                  "Quick Quiz",
-                  style: AppTextStyles.semiboldWhite20
-                ),
-                const Spacer(flex: 2),
-              ],
+      Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        // LEFT → Back Button
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+
+        // CENTER → Title
+        Expanded(
+          child: Center(
+            child: Text(
+              "Quick Quiz",
+              style: AppTextStyles.boldWhite16,
             ),
           ),
+        ),
+
+        // RIGHT → Dummy space for alignment
+        const SizedBox(width: 20),
+      ],
+    ),
+  ),
           Positioned(
             top: 100,
             left: 16,

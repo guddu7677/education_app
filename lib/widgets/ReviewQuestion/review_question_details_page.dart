@@ -36,7 +36,7 @@ class _SecondReviewQuestionPageState extends State<SecondReviewQuestionPage> {
                 const Spacer(),
                 const Text(
                   "Review Question",
-                  style: AppTextStyles.White20bold
+                  style: AppTextStyles.boldWhite16
                 ),
                 const Spacer(flex: 2),
               ],

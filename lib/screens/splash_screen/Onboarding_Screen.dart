@@ -68,10 +68,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onTap: () {
                   Navigator.pushNamed(context, "/LoginSingupScreen");
                 },
-                child: const Text(
-                  "Skip",
-                  style: AppTextStyles.semiboldWhite16,
-                ),
+                child: const Text("Skip", style: AppTextStyles.semiboldWhite16),
               ),
             ),
           PageView.builder(
@@ -139,24 +136,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Text(
                     data.title,
                     textAlign: TextAlign.center,
-                    style:AppTextStyles.boldblblack22,
+                    style: AppTextStyles.boldblblack22,
                   ),
                   Text(
                     data.description,
                     textAlign: TextAlign.center,
-                    style:AppTextStyles.smibold16black2121
+                    style: AppTextStyles.smibold16black2121,
                   ),
-                 AppButton(
-  title: _currentPage == _pages.length - 1
-      ? "Get Started"
-      : "Continue",
-  onTap: _onContinue,
-  color: const Color(0xFF4334B4),
-  textColor: Colors.white,
+                  AppButton(
+                    title: _currentPage == _pages.length - 1
+                        ? "Get Started"
+                        : "Continue",
+                    onTap: _onContinue,
+                    color: const Color(0xFF4334B4),
+                    textColor: Colors.white,
 
-  width: double.infinity,
-),
-
+                    width: double.infinity,
+                  ),
                 ],
               ),
             ),

@@ -50,33 +50,23 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
     );
   }
 
-  /// -------------------- HEADER --------------------
   Widget _buildHeader() {
-    return Row(
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 20,
+        const Text("Progress Tracking", style: AppTextStyles.boldWhite16),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Progress Tracking",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Spacer(flex: 2),
       ],
     );
   }
 
-  /// -------------------- QUIZ RESULT CARD --------------------
   Widget _buildQuizResultCard() {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -167,7 +157,6 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
     );
   }
 
-  /// -------------------- SUBJECT INSIGHTS --------------------
   Widget _buildMainContent() {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -178,7 +167,6 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// Header row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -201,7 +189,6 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// Subject name and total
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -210,8 +197,6 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
             ],
           ),
           const SizedBox(height: 6),
-
-          /// Subject score details
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -220,8 +205,6 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
             ],
           ),
           const SizedBox(height: 6),
-
-          /// Progress bar
           LinearPercentIndicator(
             lineHeight: 6,
             percent: 0.75,
@@ -237,8 +220,6 @@ class _ProgresstrackPageState extends State<ProgresstrackPage> {
       ),
     );
   }
-
-  /// -------------------- STUDY ACTIVITY SECTION --------------------
   Widget _studyActivity() {
     return Container(
       padding: const EdgeInsets.all(16),

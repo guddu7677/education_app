@@ -110,27 +110,34 @@ class _TimeQuizReviewPageState extends State<TimeQuizReviewPage> {
   }
 
   Widget _buildHeader() {
-    return Positioned(
-      top: 50,
-      left: 16,
-      right: 16,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
+  return Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+        Expanded(
+          child: Center(
+            child: Text(
+              "Timed Quiz",
+              style: AppTextStyles.boldWhite16,
             ),
           ),
-          const Spacer(),
-          const Text("Review Question", style: AppTextStyles.semiboldWhite20),
-          const Spacer(flex: 2),
-        ],
-      ),
-    );
-  }
+        ),
+        const SizedBox(width: 20),
+      ],
+    ),
+  );
+}
+
 
   Widget _buildProgressSection() {
     return Positioned(

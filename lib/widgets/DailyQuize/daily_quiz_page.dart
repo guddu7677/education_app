@@ -103,7 +103,7 @@ class _QuizPageViewState extends State<QuizPageView> {
                 const SizedBox(width: 100),
                 const Text(
                   "Daily Quiz",
-                  style: AppTextStyles.White20bold
+                  style: AppTextStyles.boldWhite16
                 ),
               ],
             ),
@@ -445,11 +445,7 @@ class _QuizPageViewState extends State<QuizPageView> {
                 child: Center(
                   child: Text(
                     label,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style:AppTextStyles.boldWhite16,
                   ),
                 ),
               ),

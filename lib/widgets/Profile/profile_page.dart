@@ -80,9 +80,17 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildHeader() {
-    return Row(
-      children: [
-        GestureDetector(
+  return Stack(
+    alignment: Alignment.center,
+    children: [
+      const Text(
+        "Profile",
+        style:AppTextStyles.boldWhite16
+      ),
+
+      Align(
+        alignment: Alignment.centerLeft,
+        child: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: const Icon(
             Icons.arrow_back_ios,
@@ -90,19 +98,11 @@ class _ProfilePageState extends State<ProfilePage> {
             size: 22,
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Profile",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Spacer(flex: 2),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
+
 
   Widget _personalInfo() {
     return Container(

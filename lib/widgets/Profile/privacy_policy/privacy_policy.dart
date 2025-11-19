@@ -24,11 +24,11 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
-                  vertical: 12,
+                  vertical: 20,
                 ),
                 child: _buildHeader(),
               ),
-          
+
               /// Page Content
               Expanded(
                 child: Container(
@@ -48,19 +48,18 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                         const SizedBox(height: 20),
                         Text("Definitions", style: AppTextStyles.boldblack16),
                         const SizedBox(height: 16),
-          
+
                         Text("Service", style: AppTextStyles.colorGrey),
                         const SizedBox(height: 16),
-          
+
                         Text(
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
                           "Mauris eget mauris nec elit placerat aliquam. "
                           "Proin cursus, ipsum in facilisis malesuada, "
                           "nisi eros interdum nisl, a pharetra massa risus ut erat.\n\n"
                           "Sed euismod sapien id arcu gravida, vitae consequat nisl dictum."
-                          ""
-                          ,
-                          
+                          "",
+
                           style: AppTextStyles.black16,
                         ),
                       ],
@@ -77,26 +76,18 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
   /// HEADER
   Widget _buildHeader() {
-    return Row(
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 22,
+        const Text(" Privacy Policy", style: AppTextStyles.boldWhite16),
+
+        Align(
+          alignment: Alignment.centerLeft,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 22),
           ),
         ),
-        const Spacer(),
-        const Text(
-          "Privacy Policy",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const Spacer(flex: 2),
       ],
     );
   }

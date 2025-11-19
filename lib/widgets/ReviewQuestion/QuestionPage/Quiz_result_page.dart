@@ -110,33 +110,37 @@ class _QuizResultPageState extends State<QuizResultPage> {
   }
 
   Widget _buildHeader() {
-    return Positioned(
-      top: 50,
-      left: 16,
-      right: 16,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 20,
+     return Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        // LEFT → Back Button
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+
+        // CENTER → Title
+        Expanded(
+          child: Center(
+            child: Text(
+              "Quick Quiz Result",
+              style: AppTextStyles.boldWhite16,
             ),
           ),
-          const Spacer(),
-          const Text(
-            "Review Questions",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const Spacer(flex: 2),
-        ],
-      ),
-    );
+        ),
+
+        // RIGHT → Dummy space for alignment
+        const SizedBox(width: 20),
+      ],
+    ),
+  );
   }
 
 Widget _buildQuizResult(int percentage, int avgTime) {

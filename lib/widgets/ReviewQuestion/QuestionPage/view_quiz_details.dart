@@ -1,3 +1,4 @@
+import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 class ViewQuizDetails extends StatefulWidget {
@@ -27,33 +28,37 @@ class _ViewQuizDetailsState extends State<ViewQuizDetails> {
           ),
 
           /// 🔹 Header (Back button + Title)
-          Positioned(
-            top: 50,
-            left: 16,
-            right: 16,
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                const Spacer(),
-                const Text(
-                  "Review Question",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const Spacer(flex: 2),
-              ],
+           Positioned(
+    top: 50,
+    left: 16,
+    right: 16,
+    child: Row(
+      children: [
+        // LEFT → Back Button
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+
+        // CENTER → Title
+        Expanded(
+          child: Center(
+            child: Text(
+              "Quick Quiz",
+              style: AppTextStyles.boldWhite16,
             ),
           ),
+        ),
+
+        // RIGHT → Dummy space for alignment
+        const SizedBox(width: 20),
+      ],
+    ),
+  ),
 
           /// 🔹 Progress + Question Info
           Positioned(

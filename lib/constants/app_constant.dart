@@ -12,8 +12,9 @@ class AppColors {
   static const Color subtilecolor = Color(0xFF212121);
   static const Color redColor = Colors.red;
   static const Color balcksemibColor = Color(0xFF212121);
-  static const Color closebuttonbackgroundcolor = Color(0x33D70404); // 20% opaque red
-
+  static const Color closebuttonbackgroundcolor = Color(
+    0x33D70404,
+  ); 
 }
 
 class BackGroundColor {
@@ -67,62 +68,16 @@ class AppImages {
 }
 
 class AppTextStyles {
-  static TextStyle white16 = TextStyle(color: Colors.white, fontSize: 16);
-
-  static const TextStyle boldWhite16 = TextStyle(
-    color: Colors.white,
-    fontSize: 16,
+  static const TextStyle smallblack12bold = TextStyle(
+    color: Colors.black,
+    fontSize: 12,
     fontWeight: FontWeight.bold,
   );
-
-  static const TextStyle semiboldWhite16 = TextStyle(
-    color: Colors.white,
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-  );
-
-  static const TextStyle boldblack16 = TextStyle(
+  static const TextStyle smallblack12 = TextStyle(
     color: Colors.black,
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle semiboldblack18 = TextStyle(
-    color: Colors.black,
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-  );
-   static const TextStyle boldblack18 = TextStyle(
-    color: Colors.black,
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle boldWhite18 = TextStyle(
-    color: Colors.white,
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-  );
-
-  static const TextStyle boldblblack14 = TextStyle(
-    color: Colors.black,
-    fontSize: 14,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle boldblblack22 = TextStyle(
-    color: Colors.black,
-    fontSize: 22,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle black16 = TextStyle(
-    color: Colors.black,
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: FontWeight.normal,
   );
-  static const TextStyle colorGrey = TextStyle(
-    color: Colors.grey,
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-  );
-
   static const TextStyle smallWhite12 = TextStyle(
     color: Colors.white,
     fontSize: 12,
@@ -142,20 +97,10 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.bold,
   );
-  static const TextStyle White20bold = TextStyle(
-    color: Colors.white,
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle semiboldWhite20 = TextStyle(
-    color: Colors.white,
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-  );
-  static const TextStyle semiboldblack20 = TextStyle(
+  static const TextStyle boldblblack14 = TextStyle(
     color: Colors.black,
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
   );
   static const TextStyle White14bold = TextStyle(
     color: Colors.white,
@@ -172,22 +117,46 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
-  static const TextStyle smallblack12bold = TextStyle(
-    color: Colors.black,
-    fontSize: 12,
-    fontWeight: FontWeight.bold,
-  );
-  static const TextStyle smallblack12 = TextStyle(
-    color: Colors.black,
-    fontSize: 12,
-    fontWeight: FontWeight.normal,
-  );
+
   static const TextStyle subtile14black2121 = TextStyle(
     color: Color(0xFF212121),
     fontSize: 14,
     fontWeight: FontWeight.normal,
     height: 1.4,
   );
+
+  static TextStyle white16 = TextStyle(
+    color: Colors.white, fontSize: 16,
+    fontWeight: FontWeight.normal
+    );
+
+  static const TextStyle boldWhite16 = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle semiboldWhite16 = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle black16 = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+  );
+  static const TextStyle colorGrey = TextStyle(
+    color: Colors.grey,
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const TextStyle boldblack16 = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+
   static const TextStyle smibold16black2121 = TextStyle(
     color: Color(0xFF212121),
     fontSize: 16,
@@ -204,9 +173,44 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 16,
   );
+  static const TextStyle semiboldblack18 = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle boldblack18 = TextStyle(
+    color: Colors.black,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle boldWhite18 = TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle White20bold = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static const TextStyle semiboldWhite20 = TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle semiboldblack20 = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle boldblblack22 = TextStyle(
+    color: Colors.black,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  );
 }
 
-class appdot {
+class circleDot {
   static final Container dot10Container = Container(
     height: 10,
     width: 10,

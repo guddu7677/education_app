@@ -46,11 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         centerTitle: true,
         title: Text(
           "Register Account",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.boldblack16,
         ),
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
@@ -152,13 +148,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child:AppButton(
-  title: "Continue",
-  onTap: _handleContinue,
-  color: const Color(0xFF4334B4),
-  
-)
-
+          child: AppButton(
+            title: "Continue",
+            onTap: _handleContinue,
+            color: const Color(0xFF4334B4),
+          ),
         ),
       ),
     );

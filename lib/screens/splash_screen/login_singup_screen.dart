@@ -1,3 +1,4 @@
+import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +15,11 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          /// Background Image
           Positioned.fill(
             child: Image.asset(AppImages.background, fit: BoxFit.cover),
           ),
+
           Positioned(
             top: 100,
             left: 20,
@@ -31,19 +34,22 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Image.asset(
-                    AppImages.bookimage,
+                    AppImages.lock,
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
             ),
           ),
+
+          /// Bottom White Card
           Positioned(
             bottom: 60,
             left: 16,
             right: 16,
             child: Container(
               height: 330,
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -55,72 +61,52 @@ class _LoginSingupScreenState extends State<LoginSingupScreen> {
                   ),
                 ],
               ),
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      "Login Or Sign Up",
-                      textAlign: TextAlign.center,
-                      style:AppTextStyles.boldblblack22,
+
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "Login Or Sign Up",
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.boldblblack22,
+                  ),
+
+                  Text(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black54,
+                      fontSize: 16,
+                      height: 1.3,
                     ),
-                    Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.black54, fontSize: 16),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/RegisterScreen");
-                      },
-                      child: Container(
-                        height: 48,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF4334B4),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Create An Account!",
-                            style:AppTextStyles.boldWhite16,
-                          ),
-                        ),
+                  ),
+
+                  /// Create Account Button
+                  AppButton(
+                    title: "Create An Account!",
+                    onTap: () => Navigator.pushNamed(context, "/RegisterScreen"),
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Expanded(child: Divider(color: Colors.grey)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text("OR", style: TextStyle(color: Colors.grey)),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(height: 1, width: 100, color: Colors.grey),
-                        Text(
-                          "OR",
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
-                        ),
-                        Container(height: 1, width: 100, color: Colors.grey),
-                      ],
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/LoginScreen");
-                      },
-                      child: Container(
-                        height: 48,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF4334B4).withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            "Login",
-                            style: AppTextStyles.primaryBold16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                      Expanded(child: Divider(color: Colors.grey)),
+                    ],
+                  ),
+
+                  /// Login Button (Secondary style)
+                  AppButton(
+                    title: "Login",
+                    color: AppColors.primary.withOpacity(0.2),
+                    textColor: AppColors.primary,
+                    onTap: () => Navigator.pushNamed(context, "/LoginScreen"),
+                  ),
+                ],
               ),
             ),
           ),
