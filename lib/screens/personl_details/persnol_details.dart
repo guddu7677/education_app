@@ -1,170 +1,177 @@
+import 'dart:io';
 import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/services/api_service.dart';
 import 'package:flutter/material.dart';
 
-class PersnolDetails extends StatefulWidget {
-  const PersnolDetails({super.key});
+class PersonalDetails extends StatefulWidget {
+  const PersonalDetails({super.key});
 
   @override
-  State<PersnolDetails> createState() => _PersnolDetailsState();
+  State<PersonalDetails> createState() => _PersonalDetailsState();
 }
 
-class _PersnolDetailsState extends State<PersnolDetails> {
+class _PersonalDetailsState extends State<PersonalDetails> {
   final _formKey = GlobalKey<FormState>();
+  final ApiService _api = ApiService();
 
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _mobileController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _examCategoryController = TextEditingController();
+  bool _loading = false;
+
+  final TextEditingController firstName = TextEditingController();
+  final TextEditingController lastName = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController altMobile = TextEditingController();
+  final TextEditingController examCategory = TextEditingController();
+
+  @override
+  void dispose() {
+    firstName.dispose();
+    lastName.dispose();
+    email.dispose();
+    altMobile.dispose();
+    examCategory.dispose();
+    super.dispose();
+  }
+
+  Future<void> _saveDetails() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _loading = true);
+
+    final result = await _api.savePersonalDetails(
+      firstName: firstName.text,
+      lastName: lastName.text,
+      email: email.text,
+      alternateMobile: altMobile.text.isEmpty ? null : altMobile.text,
+      image: null, 
+    );
+
+    setState(() => _loading = false);
+
+    if (result['success']) {
+      if (examCategory.text.isNotEmpty) {
+        await _api.saveExamCategory(examCategory.text);
+      }
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(result['message'])));
+
+      Navigator.pushReplacementNamed(context, "/ExamDetails");
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(result['message'])));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: BackGroundColor.white,
       appBar: AppBar(
-        scrolledUnderElevation: 0,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 18,
-            color: Color(0xFF4334B4),
-          ),
-        ),
+        backgroundColor: Colors.white,
         elevation: 0,
-        backgroundColor: BackGroundColor.white,
         centerTitle: true,
-        title: Text(
-          "Personal Details",
-          style: AppTextStyles.boldblack16,
-        ),
+        leading: BackButton(color: AppColors.primary),
+        title: Text("Personal Details", style: AppTextStyles.boldblack16),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1),
-          child: Divider(height: 1, thickness: 1, color: Colors.grey),
+          child: Divider(height: 1, color: Colors.grey),
         ),
       ),
-      body: SingleChildScrollView(
-        
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-             Text(
-                "Enter your personal details",
-                style: AppTextStyles.boldblblack22,
-              ),
-               SizedBox(height: 6),
-             Text(
-                "Enter your details in the below fields",
-                style: TextStyle(fontSize: 16, color: AppColors.balcksemibColor),
-              ),
-               SizedBox(height: 25),
-              _buildTextField(
-                controller: _firstNameController,
-                label: "First Name",
-                hint: "Loren",
-                validator: (value) =>
-                  value!.isEmpty ? "Please enter first name" : null,
-              ),
-               SizedBox(height: 20),
-              _buildTextField(
-                controller: _lastNameController,
-                label: "Last Name",
-                hint: "Ipsum",
-                validator: (value) =>
-                  value!.isEmpty ? "Please enter last name" : null,
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                controller: _mobileController,
-                label: "Alternate Mobile Number",
-                hint: "+91 1234567890",
-                keyboardType: TextInputType.phone,
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(
-                controller: _emailController,
-                label: "Email",
-                hint: "example@gmail.com",
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter email";
-                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                    return "Please enter a valid email";
-                  }
-                  return null;
-                },
-              ),
 
-              const SizedBox(height: 20),
-              _buildTextField(
-                controller: _examCategoryController,
-                label: "Exam Category",
-                hint: "Choose Category",
-                readOnly: true,
-                suffixIcon: const Icon(Icons.arrow_drop_down, color: Color(0xFF4334B4)),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.all(24),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Enter your personal details",
+                      style: AppTextStyles.boldblblack22),
+                  SizedBox(height: 6),
+                  Text("Enter your details in the below fields",
+                      style: TextStyle(color: AppColors.balcksemibColor)),
+
+                  SizedBox(height: 25),
+
+                  _field("First Name", firstName, "Loren",
+                      validator: (val) =>
+                          val!.isEmpty ? "Please enter first name" : null),
+
+                  SizedBox(height: 20),
+
+                  _field("Last Name", lastName, "Ipsum",
+                      validator: (val) =>
+                          val!.isEmpty ? "Please enter last name" : null),
+
+                  SizedBox(height: 20),
+
+                  _field("Alternate Mobile", altMobile, "+91 1234567890",
+                      keyboard: TextInputType.phone),
+
+                  SizedBox(height: 20),
+
+                  _field("Email", email, "example@gmail.com",
+                      keyboard: TextInputType.emailAddress,
+                      validator: (val) {
+                    if (val == null || val.isEmpty) return "Please enter email";
+                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(val))
+                      return "Please enter valid email";
+                    return null;
+                  }),
+
+                  SizedBox(height: 20),
+
+                  _field("Exam Category", examCategory, "Choose Category",
+                      readOnly: true,
+                      suffix: Icon(Icons.arrow_drop_down,
+                          color: AppColors.primary)),
+
+                  SizedBox(height: 40),
+
+                  AppButton(
+                    title: "Continue",
+                    color: AppColors.primary,
+                    onTap: _loading ? null : _saveDetails,
+                  )
+                ],
               ),
-
-              const SizedBox(height: 40),
-
-              AppButton(
-                title: "Continue",
-                color: ButtonBackgroundColor.buttonBackgroundColor,
-                textColor: Colors.white,
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, "/ExamDetails");
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Form submitted successfully!")),
-                    );
-                  }
-                },
-              ),
-            ],
+            ),
           ),
-        ),
+
+          if (_loading)
+            Container(
+              color: Colors.black26,
+              child: Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
+            )
+        ],
       ),
     );
   }
 
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    required String hint,
-    TextInputType keyboardType = TextInputType.text,
-    Widget? suffixIcon,
-    FormFieldValidator<String>? validator,
+  Widget _field(
+    String label,
+    TextEditingController controller,
+    String hint, {
     bool readOnly = false,
+    TextInputType keyboard = TextInputType.text,
+    Widget? suffix,
+    FormFieldValidator<String>? validator,
   }) {
     return TextFormField(
       controller: controller,
-      keyboardType: keyboardType,
       readOnly: readOnly,
       validator: validator,
+      keyboardType: keyboard,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        hintStyle: TextStyle(color: Colors.grey),
-        labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        suffixIcon: suffixIcon,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: BorderColor.borderPrimary),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: BorderColor.borderPrimary),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: BorderColor.borderPrimary, width: 2),
-        ),
+        suffixIcon: suffix,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }

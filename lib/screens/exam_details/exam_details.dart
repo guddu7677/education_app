@@ -102,7 +102,6 @@ class _ExamDetailsState extends State<ExamDetails> {
                 ),
               ),
              SizedBox(height: 25),
-
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(16),
@@ -123,27 +122,26 @@ class _ExamDetailsState extends State<ExamDetails> {
                             border: Border.all(color: BorderColor.borderPrimary,),
                           ),
                           child: Container(
-                            margin: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColors.primary,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        const Text(
+                       SizedBox(width: 10),
+                       Text(
                           "Cisco CCNA",
                           style: AppTextStyles.smibold16black2121,)
                       ],
                     ),
-                    const SizedBox(height: 10),
+                   SizedBox(height: 10),
 
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
                       style: TextStyle(fontSize: 12, color: AppColors.balcksemibColor),
                     ),
-                    const SizedBox(height: 12),
-
+                   SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -157,7 +155,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+             SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(16),
@@ -168,7 +166,6 @@ class _ExamDetailsState extends State<ExamDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header with radio and title
                     Row(
                       children: [
                         Container(
@@ -179,28 +176,26 @@ class _ExamDetailsState extends State<ExamDetails> {
                             border: Border.all(color: BorderColor.borderPrimary),
                           ),
                           child: Container(
-                            margin: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColors.primary,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        const Text(
+                       SizedBox(width: 10),
+                       Text(
                           "Cisco CCNA",
                           style: AppTextStyles.smibold16black2121
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-
+                   SizedBox(height: 10),
                     Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
                       style: TextStyle(fontSize: 12, color: AppColors.balcksemibColor),
                     ),
-                    const SizedBox(height: 12),
-
+                     SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -214,8 +209,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-
+             SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(16),
@@ -236,28 +230,26 @@ class _ExamDetailsState extends State<ExamDetails> {
                             border: Border.all(color: BorderColor.borderPrimary),
                           ),
                           child: Container(
-                            margin: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColors.primary,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        const Text(
+                       SizedBox(width: 10),
+                       Text(
                           "Cisco CCNA",
                           style:AppTextStyles.smibold16black2121
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-
-                    Text(
+                   SizedBox(height: 10),
+                  Text(
                       "Please select your exam as per your industry. Or you can skip it for now and add later from settings.",
                       style: TextStyle(fontSize: 12, color: AppColors.balcksemibColor),
                     ),
-                    const SizedBox(height: 12),
-
+                   SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -295,8 +287,7 @@ class _ExamDetailsState extends State<ExamDetails> {
                       ),
                       padding: EdgeInsets.symmetric(vertical: 14),
                     ),
-                    child: Text(
-                      
+                    child: Text( 
                       "Skip",
                       style: AppTextStyles.primarysemiBold16,
                     ),
@@ -329,17 +320,17 @@ class _ExamDetailsState extends State<ExamDetails> {
           height: 24,
           width: 24,
           decoration: BoxDecoration(
-            color: const Color(0xFF4334B4).withOpacity(0.1),
+            color: Color(0xFF4334B4).withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(
             child: Icon(icon, color: AppColors.primary, size: 16),
           ),
         ),
-        const SizedBox(width: 8),
+       SizedBox(width: 8),
         Text(
           text,
-          style: const TextStyle(fontSize: 12, color:AppColors.balcksemibColor),
+          style: TextStyle(fontSize: 12, color:AppColors.balcksemibColor),
         ),
       ],
     );

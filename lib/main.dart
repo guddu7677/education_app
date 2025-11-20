@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: RegisterScreen(),
       routes: {
         "/SplashScreen": (context) => SplashScreen(),
         "/OnboardinScreen": (context) => OnboardingScreen(),
@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         "/LoginScreen": (context) => LoginScreen(),
         "/RegisterScreen": (context) => RegisterScreen(),
         "/OtpScreen": (context) => OtpScreen(),
-        "/PersnolDetails": (context) => PersnolDetails(),
+        "/PersonalDetails": (context) => PersonalDetails(),
         "/ExamDetails": (context) => ExamDetails(),
         "/MainScreen": (context) => MainScreen(),
         "/QuizPageView": (context) => QuizPageView(),

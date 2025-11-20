@@ -38,7 +38,9 @@ dependencies:
   table_calendar: ^3.2.0
   percent_indicator: ^4.2.5
   semicircle_indicator: ^1.1.1
-
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  image_picker: ^1.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

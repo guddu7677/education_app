@@ -1,7 +1,7 @@
 import 'package:education_app/CustomButton/bottomNavButton.dart';
 import 'package:education_app/constants/app_constant.dart';
+import 'package:education_app/services/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -11,24 +11,51 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final ApiService _apiService = ApiService();
+  bool _isLoading = false;
 
   @override
   void dispose() {
-    phoneController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
-  void _handleContinue() {
-    if (phoneController.text.length == 10) {
-      print("Phone number: +91${phoneController.text}");
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Please enter a valid 10-digit phone number"),
-        ),
-      );
-    }
+  bool _isValidEmail(String email) {
+    return RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email);
+  }
+void _handleContinue() async {
+  if (_isValidEmail(emailController.text)) {
+    setState(() {
+      _isLoading = true;
+    });
+
+    _apiService.userSignup(emailController.text).then((result) {
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (!result['success']) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(result['message'] ?? "Something went wrong")),
+        );
+      }
+    });
+
+    Navigator.pushNamed(
+      context,
+      "/OtpScreen",
+      arguments: {
+        'email': emailController.text,
+        'isLogin': false,
+      },
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Please enter a valid email address")),
+    );
+  }
+
   }
 
   @override
@@ -53,104 +80,97 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Divider(height: 1, thickness: 1, color: Colors.grey),
         ),
       ),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 30),
-
-              Text(
-                "Get started with your phone number",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "Enter your phone number to continue.",
-                style: TextStyle(fontSize: 16, color: Color(0xFF212121)),
-              ),
-              SizedBox(height: 30),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey.shade400),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: 10),
-                    Text("🇮🇳", style: TextStyle(fontSize: 22)),
-                    SizedBox(width: 8),
-                    Text(
-                      "+91",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30),
+                  Text(
+                    "Get started with your Gmail",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                    SizedBox(width: 8),
-                    Container(
-                      height: 24,
-                      width: 1.2,
-                      color: Colors.grey.shade400,
-                    ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: TextField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.phone,
-                        maxLength: 10,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Enter phone number",
-                          hintStyle: TextStyle(color: Colors.grey),
-                          counterText: "",
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 20),
-              Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: "Already have an account? ",
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                    children: [
-                      TextSpan(
-                        text: "Login!",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF4334B4),
-                        ),
-                      ),
-                    ],
                   ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Enter your Gmail to continue.",
+                    style: TextStyle(fontSize: 16, color: Color(0xFF212121)),
+                  ),
+                  SizedBox(height: 30),
+                 Container(
+  padding: EdgeInsets.symmetric(horizontal: 12),
+  child: TextField(
+    controller: emailController,
+    keyboardType: TextInputType.emailAddress,
+    decoration: InputDecoration(
+      hintText: "Email or phone",
+      hintStyle: TextStyle(
+        color: Colors.grey.shade600,
+        fontSize: 16,
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey.shade400),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.blue, width: 2),
+      ),
+      contentPadding: EdgeInsets.symmetric(vertical: 14),
+    ),
+  ),
+),
+
+                  SizedBox(height: 20),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/LoginScreen");
+                      },
+                      child: Text.rich(
+                        TextSpan(
+                          text: "Already have an account? ",
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                          children: [
+                            TextSpan(
+                              text: "Login!",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF4334B4),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 80),
+                ],
+              ),
+            ),
+          ),
+          if (_isLoading)
+            Container(
+              color: Colors.black26,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: Color(0xFF4334B4),
                 ),
               ),
-
-              SizedBox(height: 80),
-            ],
-          ),
-        ),
+            ),
+        ],
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: AppButton(
             title: "Continue",
-            onTap: _handleContinue,
+            onTap: _isLoading ? () {} : _handleContinue,
             color: const Color(0xFF4334B4),
           ),
         ),

@@ -11,29 +11,20 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
-            child: Image.asset(
-              AppImages.background,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(AppImages.background, fit: BoxFit.cover),
           ),
 
           Column(
             children: [
-               SizedBox(height: 35),
-
+              SizedBox(height: 35),
               Padding(
-                padding:
-                   EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: _buildHeader(),
               ),
-
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -79,7 +70,6 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
 
-  
   Widget _notificationTile() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,16 +83,12 @@ class _NotificationPageState extends State<NotificationPage> {
             Text("1 week ago", style: AppTextStyles.colorGrey),
           ],
         ),
-
         const SizedBox(height: 8),
-
         Text(
           "Lorem Ipsum Lorem Ipsum Lorem Ipsum\nLorem Ipsum Lorem Ipsum",
           style: AppTextStyles.colorGrey,
         ),
-
         const SizedBox(height: 12),
-
         const Divider(height: 0),
       ],
     );

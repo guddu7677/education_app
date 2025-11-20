@@ -1,5 +1,6 @@
+// lib/screens/weak_subject_list.dart
 import 'package:education_app/constants/app_constant.dart';
-import 'package:education_app/CustomButton/bottomNavButton.dart';
+import 'package:education_app/services/api_service.dart';
 import 'package:flutter/material.dart';
 
 class WeakSubjectList extends StatefulWidget {
@@ -10,6 +11,36 @@ class WeakSubjectList extends StatefulWidget {
 }
 
 class _WeakSubjectListState extends State<WeakSubjectList> {
+  bool loading = true;
+  List<dynamic> subjects = [];
+  int examId = 3; // change if needed or pass via constructor
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSubjects();
+  }
+
+  Future<void> _loadSubjects() async {
+    setState(() {
+      loading = true;
+    });
+
+    final res = await ApiService().fetchWeakSubjects(examId);
+
+    if (res["success"] == true) {
+      setState(() {
+        subjects = res["data"] ?? [];
+        loading = false;
+      });
+    } else {
+      setState(() {
+        loading = false;
+      });
+      final msg = res["message"]?.toString() ?? "Failed to fetch";
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +55,15 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
           _buildMainContent(height),
         ],
       ),
-     bottomNavigationBar: SafeArea(
-  child: Padding(
-    padding: const EdgeInsets.all(16),
-    child: AppButton(
-      title: "Add Weak Subject",
-      onTap: () => Navigator.pop(context),
-    ),
-  ),
-),
-
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Close"),
+          ),
+        ),
+      ),
     );
   }
 
@@ -44,31 +74,29 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
   }
 
   Widget _buildHeader() {
-  return Positioned(
-    top: 50,
-    left: 16,
-    right: 16,
-    child: Row(
-      children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
-        ),
-
-        Expanded(
-          child: Center(
-            child: Text(
-              "Weak Subject",
-              style: AppTextStyles.boldWhite16,
+    return Positioned(
+      top: 50,
+      left: 16,
+      right: 16,
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
+          ),
+          Expanded(
+            child: Center(
+              child: Text(
+                "Weak Subject",
+                style: AppTextStyles.boldWhite16,
+              ),
             ),
           ),
-        ),
-
-        SizedBox(width: 20), 
-      ],
-    ),
-  );
-}
+          const SizedBox(width: 20),
+        ],
+      ),
+    );
+  }
 
   Widget _buildMainContent(double height) {
     return Positioned(
@@ -84,112 +112,69 @@ class _WeakSubjectListState extends State<WeakSubjectList> {
             topRight: Radius.circular(16),
           ),
         ),
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            Expanded(child: _buildQuestionsList()),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildQuestionsList() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-           Padding(
-             padding: const EdgeInsets.symmetric(horizontal: 16),
-             child: Row(mainAxisAlignment: MainAxisAlignment.start,
-               children: [
-                 Text("Weak Subject List",style: AppTextStyles.black16,),
-               ],
-             ),
-           ),
-           SizedBox(height: 16,),
-          InkWell(
-            onTap: () {
-              // Navigator.pushNamed(context, "/SecondReviewQuestionPage");
-            },
-            child: _buildQuestionCard(isCorrect: false),
-          ),
-          
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: false),
-          const SizedBox(height: 12),
-          _buildQuestionCard(isCorrect: true),
-          const SizedBox(height: 20),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuestionCard({required bool isCorrect}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
-                  color: Color(0xFFF8F9FD),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    bottomLeft: Radius.circular(12),
-                  ),
-                  border: Border(
-                    top: BorderSide(color: Colors.grey),
-                    left: BorderSide(color: Colors.grey),
-                    bottom: BorderSide(color: Colors.grey),
-                  ),
-                ),
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "AACN CCRN (Adult)",
-                      style: AppTextStyles.boldblblack14
+        child: loading
+            ? const Center(child: CircularProgressIndicator())
+            : subjects.isEmpty
+                ? Center(
+                    child: Text("No weak subjects found", style: AppTextStyles.black16),
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text("Weak Subject List", style: AppTextStyles.black16),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ...subjects.map((item) {
+                          final id = item["id"]?.toString() ?? "";
+                          final name = item["name"] ?? "N/A";
+                          final desc = item["description"] ?? "N/A";
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF8F9FD),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                ),
+                                border: Border.all(color: Colors.grey.shade300),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(name.toString(), style: AppTextStyles.boldblblack14),
+                                        const SizedBox(height: 6),
+                                        Text(desc.toString(), style: const TextStyle(fontSize: 14)),
+                                      ],
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      // add delete/edit later
+                                    },
+                                    icon: const Icon(Icons.delete_outline_outlined, color: Colors.red),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        const SizedBox(height: 20),
+                      ],
                     ),
-                    Text(
-                      "Please select your exam as per your industry. Or you can skip it for now and add later from setting.",
-                      style: TextStyle(
-                        color: Color(0xFF212121),
-                        fontSize: 14,
-                        height: 1.4,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              width: 40,
-              decoration: BoxDecoration(
-                color:
-                     Color(0xFFD70404).withOpacity(0.2),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-                border: Border.all(color: Colors.grey),
-              ),
-              child: Center(
-                child: Icon(
-                   Icons.delete_outline_outlined,
-                  color:  Colors.red,
-                  size: 30,
-                ),
-              ),
-            ),
-          ],
-        ),
+                  ),
       ),
     );
   }
