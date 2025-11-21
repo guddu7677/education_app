@@ -25,38 +25,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email);
   }
 void _handleContinue() async {
-  if (_isValidEmail(emailController.text)) {
-    setState(() {
-      _isLoading = true;
-    });
+  final email = emailController.text.trim();
 
-    _apiService.userSignup(emailController.text).then((result) {
-      setState(() {
-        _isLoading = false;
-      });
-
-      if (!result['success']) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(result['message'] ?? "Something went wrong")),
-        );
-      }
-    });
-
-    Navigator.pushNamed(
-      context,
-      "/OtpScreen",
-      arguments: {
-        'email': emailController.text,
-        'isLogin': false,
-      },
-    );
-  } else {
+  if (!_isValidEmail(email)) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Please enter a valid email address")),
     );
+    return;
   }
 
+  setState(() => _isLoading = true);
+
+  try {
+    final result = await _apiService.userSignup(email);
+
+    setState(() => _isLoading = false);
+
+    if (result["status"] == true || result["success"] == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result["message"] ?? "OTP sent successfully!")),
+      );
+
+
+      Navigator.pushNamed(
+        context,
+        "/OtpScreen",
+        arguments: {
+          "email": email,
+          "isLogin": false,
+        },
+      );
+            await _apiService.saveEmail(email);
+
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result["message"] ?? "Something went wrong")),
+      );
+    }
+  } catch (e) {
+    setState(() => _isLoading = false);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Error: $e")),
+    );
   }
+
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,27 +117,23 @@ void _handleContinue() async {
                     style: TextStyle(fontSize: 16, color: Color(0xFF212121)),
                   ),
                   SizedBox(height: 30),
-                 Container(
-  padding: EdgeInsets.symmetric(horizontal: 12),
-  child: TextField(
-    controller: emailController,
-    keyboardType: TextInputType.emailAddress,
-    decoration: InputDecoration(
-      hintText: "Email or phone",
-      hintStyle: TextStyle(
-        color: Colors.grey.shade600,
-        fontSize: 16,
-      ),
-      enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.grey.shade400),
-      ),
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.blue, width: 2),
-      ),
-      contentPadding: EdgeInsets.symmetric(vertical: 14),
-    ),
-  ),
-),
+ Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border:
+                        Border.all(color: Colors.grey.shade400),
+                  ),
+                  child: TextField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Enter email",
+                    ),
+                  ),
+                ),
 
                   SizedBox(height: 20),
                   Center(

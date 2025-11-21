@@ -51,10 +51,7 @@ class _WeakSubjectState extends State<WeakSubject> {
             children: [
               const SizedBox(height: 35),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: _buildHeader(),
               ),
               Expanded(
@@ -107,7 +104,8 @@ class _WeakSubjectState extends State<WeakSubject> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => const WeakSubjectList()),
+                                  builder: (_) => const WeakSubjectList(),
+                                ),
                               );
                             },
                             height: 44,
@@ -147,202 +145,231 @@ class _WeakSubjectState extends State<WeakSubject> {
       barrierDismissible: true,
       builder: (context) {
         // Use StatefulBuilder so dialog can update state locally
-        return StatefulBuilder(builder: (context, setStateDialog) {
-          return Dialog(
-            insetPadding: EdgeInsets.zero,
-            backgroundColor: Colors.transparent,
-            child: Align(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 40),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(18),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.12),
-                        blurRadius: 12,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 18),
-                      Image.asset(AppImages.mode3, height: 80, width: 80),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "Add Exam",
-                        style: AppTextStyles.semiboldblack20,
-                      ),
-                      const SizedBox(height: 16),
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return Dialog(
+              insetPadding: EdgeInsets.zero,
+              backgroundColor: Colors.transparent,
+              child: Align(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.symmetric(horizontal: 12, vertical: 40),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(18),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.12),
+                          blurRadius: 12,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 18),
+                        Image.asset(AppImages.mode3, height: 80, width: 80),
+                        const SizedBox(height: 16),
+                        const Text(
+                          "Add Exam",
+                          style: AppTextStyles.semiboldblack20,
+                        ),
+                        const SizedBox(height: 16),
 
-                      // EXAM DROPDOWN
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: DropdownButtonFormField<int>(
-                          decoration: InputDecoration(
-                            labelText: "Select Exam",
-                            hintText: "Choose exam",
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 14),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                        // EXAM DROPDOWN
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: DropdownButtonFormField<int>(
+                            decoration: InputDecoration(
+                              labelText: "Select Exam",
+                              hintText: "Choose exam",
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 14,
+                              ),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
-                          ),
-                          value: selectedExamId,
-                          items: exams
-                              .map((e) => DropdownMenuItem<int>(
+                            value: selectedExamId,
+                            items: exams
+                                .map(
+                                  (e) => DropdownMenuItem<int>(
                                     value: e["id"] as int,
                                     child: Text(e["name"] as String),
-                                  ))
-                              .toList(),
-                          onChanged: (v) {
-                            setStateDialog(() => selectedExamId = v);
-                          },
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (v) {
+                              setStateDialog(() => selectedExamId = v);
+                            },
+                          ),
                         ),
-                      ),
 
-                      const SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
-                      // Header: Select Subjects
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Select Subjects",
-                              style: AppTextStyles.boldblack16,
-                              textAlign: TextAlign.start,
-                            ),
-                          ],
+                        // Header: Select Subjects
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Select Subjects",
+                                style: AppTextStyles.boldblack16,
+                                textAlign: TextAlign.start,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
 
-                      const SizedBox(height: 14),
+                        const SizedBox(height: 14),
 
-                      // SUBJECT ITEMS
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          children: subjects
-                              .map((s) => Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 6),
+                        // SUBJECT ITEMS
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            children: subjects
+                                .map(
+                                  (s) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 6,
+                                    ),
                                     child: _subjectItemWidget(
                                       s["name"] as String,
                                       s["id"] as int,
                                       setStateDialog,
                                     ),
-                                  ))
-                              .toList(),
-                        ),
-                      ),
-
-                      const SizedBox(height: 20),
-
-                      // SUBMIT BUTTON AREA
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(16),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFEFF3FF),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(18),
-                            bottomRight: Radius.circular(18),
+                                  ),
+                                )
+                                .toList(),
                           ),
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: AppButton(
-                                title: isLoading
-                                    ? "Please wait..."
-                                    : "Add Weak Subject",
-                                onTap: () async {
-                                  if (isLoading) return;
 
-                                  if (selectedExamId == null) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content:
-                                              Text("Please select an exam")),
-                                    );
-                                    return;
-                                  }
+                        const SizedBox(height: 20),
 
-                                  if (selectedSubjectIds.isEmpty) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              "Please select at least one subject")),
-                                    );
-                                    return;
-                                  }
-
-                                  setStateDialog(() => isLoading = true);
-                                  setState(() => isLoading = true);
-
-                                  final res = await ApiService().addWeakSubject(
-                                    examId: selectedExamId!,
-                                    weakSubjects: selectedSubjectIds,
-                                  );
-
-                                  setStateDialog(() => isLoading = false);
-                                  setState(() => isLoading = false);
-
-                                  if (res["success"] == true) {
-                                    // Close dialog and go to list
-                                    Navigator.pop(context);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              const WeakSubjectList()),
-                                    );
-
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              "Weak subjects added successfully")),
-                                    );
-                                  } else {
-                                    final msg = res["message"]?.toString() ??
-                                        "Something went wrong";
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(msg)),
-                                    );
-                                  }
-                                },
-                                height: 48,
-                                color: Colors.white,
-                                textColor: AppColors.primary,
-                              ),
+                        // SUBMIT BUTTON AREA
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFEFF3FF),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(18),
+                              bottomRight: Radius.circular(18),
                             ),
-                          ],
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: AppButton(
+                                  title: isLoading
+                                      ? "Please wait..."
+                                      : "Add Weak Subject",
+                                  onTap: () async {
+                                    if (isLoading) return;
+
+                                    if (selectedExamId == null) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "Please select an exam",
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
+
+                                    if (selectedSubjectIds.isEmpty) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "Please select at least one subject",
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
+
+                                    setStateDialog(() => isLoading = true);
+                                    setState(() => isLoading = true);
+
+                                    final res = await ApiService()
+                                        .addWeakSubject(
+                                          examId: selectedExamId!,
+                                          weakSubjects: selectedSubjectIds,
+                                        );
+
+                                    setStateDialog(() => isLoading = false);
+                                    setState(() => isLoading = false);
+
+                                    if (res["success"] == true) {
+                                      // Close dialog and go to list
+                                      Navigator.pop(context);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) =>
+                                              const WeakSubjectList(),
+                                        ),
+                                      );
+
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "Weak subjects added successfully",
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      final msg =
+                                          res["message"]?.toString() ??
+                                          "Something went wrong";
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(content: Text(msg)),
+                                      );
+                                    }
+                                  },
+                                  height: 48,
+                                  color: Colors.white,
+                                  textColor: AppColors.primary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        });
+            );
+          },
+        );
       },
     );
   }
 
   // Subject tile widget inside dialog
   Widget _subjectItemWidget(
-      String title, int id, void Function(void Function()) setStateDialog) {
+    String title,
+    int id,
+    void Function(void Function()) setStateDialog,
+  ) {
     final isSelected = selectedSubjectIds.contains(id);
 
     return GestureDetector(
@@ -365,7 +392,9 @@ class _WeakSubjectState extends State<WeakSubject> {
             color: isSelected ? AppColors.primary : Colors.grey.shade300,
             width: 1.4,
           ),
-          color: isSelected ? AppColors.primary.withOpacity(0.12) : Colors.white,
+          color: isSelected
+              ? AppColors.primary.withOpacity(0.12)
+              : Colors.white,
         ),
         child: Row(
           children: [
